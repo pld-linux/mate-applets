@@ -10,7 +10,7 @@ Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.5/%{name}-%{version}.tar.xz
 # Source0-md5:	4d7fe1c9b2dc14544c83fdbf17464a13
 # check paths in Makefile before removing it!
-#Patch0:	m4_fix.patch
+#Patch0: m4_fix.patch
 Patch0:		mate-gnome-conflicts.patch
 URL:		http://mate-desktop.org/
 %if 0
@@ -62,6 +62,8 @@ BuildRequires:	mate-doc-utils >= 0.3.2
 BuildRequires:	mate-icon-theme-devel >= 1.1.0
 BuildRequires:	pkgconfig(libmatepanelapplet-4.0)
 BuildRequires:	rpmbuild(find_lang) >= 1.36
+BuildRequires:	tar >= 1:1.22
+BuildRequires:	xz
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
