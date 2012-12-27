@@ -35,7 +35,6 @@ BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libgnomekbd-devel >= 2.24.0
 BuildRequires:	libgtop-devel >= 1:2.22.0
 BuildRequires:	libgweather-devel >= 2.26.0
-BuildRequires:	libnotify-devel >= 0.4.4
 BuildRequires:	libtool
 BuildRequires:	libwnck-devel >= 2.26.0
 BuildRequires:	libxklavier-devel >= 4.0
@@ -58,6 +57,7 @@ Requires:	mate-panel >= 2.26.0
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
 %endif
+BuildRequires:	libmatenotify-devel >= 1.5
 BuildRequires:	mate-doc-utils >= 0.3.2
 BuildRequires:	mate-icon-theme-devel >= 1.1.0
 BuildRequires:	pkgconfig(libmatepanelapplet-4.0)
