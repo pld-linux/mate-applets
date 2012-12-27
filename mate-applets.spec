@@ -1,10 +1,19 @@
+# TODO
+# - rename applets (to match applet name vs package name):
+#        - charpick
+#        - mateweather
+#        - invest-applet
+#        - trashapplet
+# - build:
+#        - timer-applet
+# - cpufreq applet does not startup
 Summary:	Small applications which embed themselves in the MATE panel
 Summary(pl.UTF-8):	Aplety MATE - małe aplikacje osadzające się w panelu
 Summary(ru.UTF-8):	Маленькие программы, встраивающиеся в панель MATE
 Summary(uk.UTF-8):	Маленькі програми, що вбудовуються в панель MATE
 Name:		mate-applets
 Version:	1.5.0
-Release:	0.9
+Release:	0.11
 License:	GPL v2, FDL
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.5/%{name}-%{version}.tar.xz
@@ -15,11 +24,8 @@ Patch0:		mate-gnome-conflicts.patch
 URL:		http://mate-desktop.org/
 %if 0
 BuildRequires:	GConf2-devel >= 2.26.0
-BuildRequires:	NetworkManager-devel >= 0.7
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.8
-BuildRequires:	cpufrequtils-devel >= 0.3
-BuildRequires:	dbus-glib-devel >= 0.74
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-dtd43-xml
 BuildRequires:	gettext-devel
@@ -30,7 +36,6 @@ BuildRequires:	gnome-settings-daemon-devel >= 2.26.0
 BuildRequires:	gstreamer-plugins-base-devel >= 0.10.10
 BuildRequires:	gtk+2-devel >= 2:2.20.0
 BuildRequires:	gucharmap-devel >= 2.26.0
-BuildRequires:	hal-devel >= 0.5.10
 BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libgnomekbd-devel >= 2.24.0
 BuildRequires:	libgtop-devel >= 1:2.22.0
@@ -40,30 +45,33 @@ BuildRequires:	libwnck-devel >= 2.26.0
 BuildRequires:	libxklavier-devel >= 4.0
 BuildRequires:	libxml2-devel >= 1:2.6.30
 BuildRequires:	libxslt-progs >= 1.1.20
-BuildRequires:	mate-panel-devel >= 2.32.0
-BuildRequires:	pkgconfig >= 1:0.19
 BuildRequires:	polkit-devel >= 0.92
 BuildRequires:	python-devel >= 1:2.4
 BuildRequires:	python-gnome-desktop-devel
 BuildRequires:	python-gnome-devel >= 2.22.0
 BuildRequires:	python-pygtk-devel >= 2:2.14.0
 BuildRequires:	rpm-pythonprov
-BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	scrollkeeper >= 0.3.11-4
-Requires(post,postun):	gtk-update-icon-cache
-Requires(post,postun):	hicolor-icon-theme
-Requires:	gnome-icon-theme >= 2.26.0
-Requires:	mate-panel >= 2.26.0
-# sr@Latn vs. sr@latin
-Conflicts:	glibc-misc < 6:2.7
 %endif
+BuildRequires:	NetworkManager-devel >= 0.7
+BuildRequires:	cpufrequtils-devel >= 0.3
+BuildRequires:	dbus-glib-devel >= 0.74
 BuildRequires:	libmatenotify-devel >= 1.5
 BuildRequires:	mate-doc-utils >= 0.3.2
 BuildRequires:	mate-icon-theme-devel >= 1.1.0
+BuildRequires:	mate-panel-devel >= 1.5
+BuildRequires:	pkgconfig >= 1:0.19
 BuildRequires:	pkgconfig(libmatepanelapplet-4.0)
 BuildRequires:	rpmbuild(find_lang) >= 1.36
+BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	tar >= 1:1.22
 BuildRequires:	xz
+Requires(post,postun):	gtk-update-icon-cache
+Requires(post,postun):	hicolor-icon-theme
+Requires:	gnome-icon-theme >= 2.26.0
+Requires:	mate-panel >= 1.5
+# sr@Latn vs. sr@latin
+Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 %description
@@ -360,6 +368,9 @@ ale jest przydatny o tyle, że panele są zawsze widoczne.
 %build
 NOCONFIGURE=1 ./autogen.sh
 %configure \
+	--without-hal \
+	--enable-networkmanager \
+	--disable-schemas-compile \
 	--disable-static
 %{__make} \
 	DOC_MODULE=
