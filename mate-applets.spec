@@ -1,12 +1,10 @@
-# TODO
-# - battstat applet requires deprecated apmd, not repsent in th
 Summary:	Small applications which embed themselves in the MATE panel
 Summary(pl.UTF-8):	Aplety MATE - małe aplikacje osadzające się w panelu
 Summary(ru.UTF-8):	Маленькие программы, встраивающиеся в панель MATE
 Summary(uk.UTF-8):	Маленькі програми, що вбудовуються в панель MATE
 Name:		mate-applets
 Version:	1.5.0
-Release:	0.8
+Release:	0.9
 License:	GPL v2, FDL
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.5/%{name}-%{version}.tar.xz
@@ -360,14 +358,7 @@ ale jest przydatny o tyle, że panele są zawsze widoczne.
 %build
 NOCONFIGURE=1 ./autogen.sh
 %configure \
-	--disable-static \
-	--disable-schemas-install \
-	--with-html-dir=%{_gtkdocdir} \
-	--disable-gtk-doc \
-	--disable-gtk-doc-html \
-	--enable-mini-commander \
-	--enable-mixer-applet \
-	--disable-battstat
+	--disable-static
 %{__make} \
 	DOC_MODULE=
 
@@ -682,7 +673,6 @@ GCONF_CONFIG_SOURCE="`%{_bindir}/gconftool-2 --get-default-source`" %{_libdir}/%
 %{_pixmapsdir}/mate-accessx-status-applet
 %{_iconsdir}/mate/*/apps/ax-applet.png
 
-%if 0
 %files battstat -f battstat.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libdir}/battstat-applet-2
@@ -692,7 +682,6 @@ GCONF_CONFIG_SOURCE="`%{_bindir}/gconftool-2 --get-default-source`" %{_libdir}/%
 %{_datadir}/%{name}/builder/battstat_applet.ui
 %{_datadir}/glib-2.0/schemas/org.mate.panel.applet.battstat.gschema.xml
 %{_sysconfdir}/sound/events/mate-battstat_applet.soundlist
-%endif
 
 %files charpicker -f char-palette.lang
 %defattr(644,root,root,755)
