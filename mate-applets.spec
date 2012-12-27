@@ -297,7 +297,7 @@ Group:		X11/Applications
 Requires(post,postun):	scrollkeeper
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.26.0
-Suggests:	gnome-system-monitor >= 2.24.0
+Suggests:	mate-system-monitor >= 1.5
 
 %description multiload
 The System Monitor displays system load information in graphical
