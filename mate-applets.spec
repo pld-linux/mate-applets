@@ -28,7 +28,6 @@ BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.22.0
 BuildRequires:	gnome-common >= 2.24.0
 BuildRequires:	gnome-desktop-devel >= 2.26.0
-BuildRequires:	gnome-doc-utils >= 0.14.0
 BuildRequires:	gnome-settings-daemon-devel >= 2.26.0
 BuildRequires:	gstreamer-plugins-base-devel >= 0.10.10
 BuildRequires:	gtk+2-devel >= 2:2.20.0
@@ -61,6 +60,7 @@ Requires:	mate-panel >= 2.26.0
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
 %endif
+BuildRequires:	mate-doc-utils >= 0.3.2
 BuildRequires:	mate-icon-theme-devel >= 1.1.0
 BuildRequires:	pkgconfig(libmatepanelapplet-4.0)
 BuildRequires:	rpmbuild(find_lang) >= 1.36
