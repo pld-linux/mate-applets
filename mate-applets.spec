@@ -13,7 +13,7 @@ Summary(ru.UTF-8):	Маленькие программы, встраивающи
 Summary(uk.UTF-8):	Маленькі програми, що вбудовуються в панель MATE
 Name:		mate-applets
 Version:	1.5.0
-Release:	0.11
+Release:	0.12
 License:	GPL v2, FDL
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.5/%{name}-%{version}.tar.xz
@@ -29,44 +29,47 @@ BuildRequires:	automake >= 1:1.8
 BuildRequires:	docbook-dtd412-xml
 BuildRequires:	docbook-dtd43-xml
 BuildRequires:	gettext-devel
-BuildRequires:	glib2-devel >= 1:2.22.0
-BuildRequires:	gnome-common >= 2.24.0
-BuildRequires:	gnome-desktop-devel >= 2.26.0
 BuildRequires:	gnome-settings-daemon-devel >= 2.26.0
 BuildRequires:	gstreamer-plugins-base-devel >= 0.10.10
-BuildRequires:	gtk+2-devel >= 2:2.20.0
-BuildRequires:	gucharmap-devel >= 2.26.0
 BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libgnomekbd-devel >= 2.24.0
-BuildRequires:	libgtop-devel >= 1:2.22.0
 BuildRequires:	libgweather-devel >= 2.26.0
 BuildRequires:	libtool
-BuildRequires:	libwnck-devel >= 2.26.0
-BuildRequires:	libxklavier-devel >= 4.0
-BuildRequires:	libxml2-devel >= 1:2.6.30
 BuildRequires:	libxslt-progs >= 1.1.20
-BuildRequires:	polkit-devel >= 0.92
 BuildRequires:	python-devel >= 1:2.4
 BuildRequires:	python-gnome-desktop-devel
 BuildRequires:	python-gnome-devel >= 2.22.0
-BuildRequires:	python-pygtk-devel >= 2:2.14.0
 BuildRequires:	rpm-pythonprov
 BuildRequires:	scrollkeeper >= 0.3.11-4
 %endif
 BuildRequires:	NetworkManager-devel >= 0.7
 BuildRequires:	cpufrequtils-devel >= 0.3
+BuildRequires:	dbus-devel >= 1.1.1
 BuildRequires:	dbus-glib-devel >= 0.74
-BuildRequires:	libmatenotify-devel >= 1.5
+BuildRequires:	glib2-devel >= 1:2.22.0
+BuildRequires:	gtk+2-devel >= 2:2.20.0
+BuildRequires:	libgtop-devel >= 1:2.11.92
+BuildRequires:	libmatenotify-devel >= 1.1.0
+BuildRequires:	libmatewnck-devel >= 1.3.0
+BuildRequires:	libxklavier-devel >= 4.0
+BuildRequires:	libxml2-devel >= 1:2.5.0
+BuildRequires:	mate-desktop-devel >= 1.1.0
 BuildRequires:	mate-doc-utils >= 0.3.2
 BuildRequires:	mate-icon-theme-devel >= 1.1.0
-BuildRequires:	mate-panel-devel >= 1.5
+BuildRequires:	mate-panel-devel >= 1.5.2
 BuildRequires:	pkgconfig >= 1:0.19
 BuildRequires:	pkgconfig(libmatepanelapplet-4.0)
+BuildRequires:	polkit-devel >= 0.92
+BuildRequires:	python-pygobject-devel >= 2.6
+BuildRequires:	python-pygtk-devel >= 2:2.6
 BuildRequires:	rpmbuild(find_lang) >= 1.36
 BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	tar >= 1:1.22
+BuildRequires:	upower-devel >= 0.9.4
 BuildRequires:	xz
 Requires(post,postun):	gtk-update-icon-cache
+BuildRequires:	gucharmap-devel >= 1.4.0
+BuildRequires:	gucharmap2-devel >= 2.23.0
 Requires(post,postun):	hicolor-icon-theme
 Requires:	gnome-icon-theme >= 2.26.0
 Requires:	mate-panel >= 1.5
@@ -708,16 +711,16 @@ GCONF_CONFIG_SOURCE="`%{_bindir}/gconftool-2 --get-default-source`" %{_libdir}/%
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/mate-cpufreq-selector
 %attr(755,root,root) %{_libdir}/mate-cpufreq-applet
-/etc/dbus-1/system.d/org.mate.CPUFreqSelector.conf
-%{_datadir}/dbus-1/system-services/org.mate.CPUFreqSelector.service
 %{_datadir}/dbus-1/services/org.mate.panel.applet.CPUFreqAppletFactory.service
 %{_datadir}/glib-2.0/schemas/org.mate.panel.applet.cpufreq.gschema.xml
-%{_datadir}/mate-panel/applets/org.mate.applets.CPUFreqApplet.mate-panel-applet
+%if 1
+/etc/dbus-1/system.d/org.mate.CPUFreqSelector.conf
+%{_datadir}/dbus-1/system-services/org.mate.CPUFreqSelector.service
 %{_datadir}/polkit-1/actions/org.mate.cpufreqselector.policy
+%endif
+%{_datadir}/mate-panel/applets/org.mate.applets.CPUFreqApplet.mate-panel-applet
 %{_datadir}/%{name}/builder/cpufreq-preferences.ui
 %{_datadir}/mate-2.0/ui/cpufreq-applet-menu.xml
-#/etc/dbus-1/system.d/org.gnome.CPUFreqSelector.conf
-#%{_sysconfdir}/gconf/schemas/cpufreq-applet.schemas
 %{_pixmapsdir}/mate-cpufreq-applet
 %{_iconsdir}/hicolor/*/apps/mate-cpu-frequency-applet.png
 %{_iconsdir}/hicolor/*/apps/mate-cpu-frequency-applet.svg
