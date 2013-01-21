@@ -21,7 +21,7 @@ Source0:	http://pub.mate-desktop.org/releases/1.5/%{name}-%{version}.tar.xz
 # check paths in Makefile before removing it!
 #Patch0: m4_fix.patch
 Patch0:		mate-gnome-conflicts.patch
-URL:		http://mate-desktop.org/
+URL:		https://github.com/mate-desktop/mate-applets
 %if 0
 BuildRequires:	GConf2-devel >= 2.26.0
 BuildRequires:	autoconf >= 2.59
@@ -58,7 +58,6 @@ BuildRequires:	mate-doc-utils >= 0.3.2
 BuildRequires:	mate-icon-theme-devel >= 1.1.0
 BuildRequires:	mate-panel-devel >= 1.5.2
 BuildRequires:	pkgconfig >= 1:0.19
-BuildRequires:	pkgconfig(libmatepanelapplet-4.0)
 BuildRequires:	polkit-devel >= 0.92
 BuildRequires:	python-pygobject-devel >= 2.6
 BuildRequires:	python-pygtk-devel >= 2:2.6
