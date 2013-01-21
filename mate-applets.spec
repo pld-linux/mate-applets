@@ -12,12 +12,12 @@ Summary(pl.UTF-8):	Aplety MATE - małe aplikacje osadzające się w panelu
 Summary(ru.UTF-8):	Маленькие программы, встраивающиеся в панель MATE
 Summary(uk.UTF-8):	Маленькі програми, що вбудовуються в панель MATE
 Name:		mate-applets
-Version:	1.5.0
+Version:	1.5.1
 Release:	0.12
 License:	GPL v2, FDL
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.5/%{name}-%{version}.tar.xz
-# Source0-md5:	4d7fe1c9b2dc14544c83fdbf17464a13
+# Source0-md5:	0d903468bb288c3c05030c36fa5a25c8
 # check paths in Makefile before removing it!
 #Patch0: m4_fix.patch
 Patch0:		mate-gnome-conflicts.patch
@@ -386,6 +386,9 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \
 	pythondir=%{py_sitedir}
+
+# mate < 1.5 did not exist in pld, avoid dependency on mate-conf
+%{__rm} $RPM_BUILD_ROOT%{_datadir}/MateConf/gsettings/stickynotes-applet.convert
 
 #%{__rm} $RPM_BUILD_ROOT%{_libdir}/libgweather.la
 %{__rm} $RPM_BUILD_ROOT%{py_sitedir}/mate_invest/*.py
