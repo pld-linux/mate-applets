@@ -23,29 +23,25 @@ Source0:	http://pub.mate-desktop.org/releases/1.5/%{name}-%{version}.tar.xz
 Patch0:		mate-gnome-conflicts.patch
 URL:		https://github.com/mate-desktop/mate-applets
 BuildRequires:	GConf2-devel >= 2.26.0
+BuildRequires:	NetworkManager-devel >= 0.7
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.8
-BuildRequires:	docbook-dtd412-xml
-BuildRequires:	gettext-devel
-BuildRequires:	gnome-settings-daemon-devel >= 2.26.0
-BuildRequires:	gstreamer-plugins-base-devel >= 0.10.10
-BuildRequires:	intltool >= 0.40.0
-BuildRequires:	libgnomekbd-devel >= 2.24.0
-BuildRequires:	libgweather-devel >= 2.26.0
-BuildRequires:	libtool
-BuildRequires:	python-devel >= 1:2.4
-BuildRequires:	python-gnome-desktop-devel
-BuildRequires:	python-gnome-devel >= 2.22.0
-BuildRequires:	rpm-pythonprov
-BuildRequires:	NetworkManager-devel >= 0.7
 BuildRequires:	cpufrequtils-devel >= 0.3
 BuildRequires:	dbus-devel >= 1.1.1
 BuildRequires:	dbus-glib-devel >= 0.74
+BuildRequires:	docbook-dtd412-xml
+BuildRequires:	gettext-devel
 BuildRequires:	glib2-devel >= 1:2.22.0
+BuildRequires:	gnome-settings-daemon-devel >= 2.26.0
+BuildRequires:	gstreamer-plugins-base-devel >= 0.10.10
 BuildRequires:	gtk+2-devel >= 2:2.20.0
+BuildRequires:	intltool >= 0.40.0
+BuildRequires:	libgnomekbd-devel >= 2.24.0
 BuildRequires:	libgtop-devel >= 1:2.11.92
+BuildRequires:	libgweather-devel >= 2.26.0
 BuildRequires:	libmatenotify-devel >= 1.1.0
 BuildRequires:	libmatewnck-devel >= 1.3.0
+BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.5.0
 BuildRequires:	mate-desktop-devel >= 1.1.0
 BuildRequires:	mate-doc-utils >= 0.3.2
@@ -53,8 +49,13 @@ BuildRequires:	mate-icon-theme-devel >= 1.1.0
 BuildRequires:	mate-panel-devel >= 1.5.2
 BuildRequires:	pkgconfig >= 1:0.19
 BuildRequires:	polkit-devel >= 0.92
+BuildRequires:	python-devel >= 1:2.4
+BuildRequires:	python-gnome-desktop-devel
+BuildRequires:	python-gnome-devel >= 2.22.0
 BuildRequires:	python-pygobject-devel >= 2.6
 BuildRequires:	python-pygtk-devel >= 2:2.6
+BuildRequires:	rpm-pythonprov
+BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(find_lang) >= 1.36
 BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	tar >= 1:1.22
