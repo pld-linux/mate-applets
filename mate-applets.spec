@@ -1,9 +1,4 @@
 # TODO
-# - rename applets (to match applet name vs package name):
-#        - charpick
-#        - mateweather
-#        - invest-applet
-#        - trashapplet
 # - build:
 #        - timer-applet
 # - cpufreq applet does not startup
@@ -13,7 +8,7 @@ Summary(ru.UTF-8):	Маленькие программы, встраивающи
 Summary(uk.UTF-8):	Маленькі програми, що вбудовуються в панель MATE
 Name:		mate-applets
 Version:	1.5.2
-Release:	0.18
+Release:	0.25
 License:	GPL v2, FDL
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.5/%{name}-%{version}.tar.xz
@@ -34,9 +29,9 @@ BuildRequires:	glib2-devel >= 1:2.22.0
 BuildRequires:	gtk+2-devel >= 2:2.20.0
 BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libgtop-devel >= 1:2.11.92
-BuildRequires:	libwnck2-devel >= 2.9.3
 BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	libtool
+BuildRequires:	libwnck2-devel >= 2.9.3
 BuildRequires:	libxml2-devel >= 1:2.5.0
 BuildRequires:	mate-desktop-devel >= 1.1.0
 BuildRequires:	mate-doc-utils >= 0.3.2
@@ -80,7 +75,7 @@ z MATE.
 Пакет mate-applets содержит апплеты Панели MATE, увеличивающие
 комфортность работы в среде MATE.
 
-%package accessx-status
+%package -n mate-applet-accessx-status
 Summary:	Keyboard Accessibility Status applet
 Summary(pl.UTF-8):	Aplet stanu dostepności klawiatury
 Group:		X11/Applications
@@ -88,38 +83,38 @@ Requires(post,postun):	gtk+2
 Requires:	%{name} = %{version}-%{release}
 Suggests:	mate-control-center >= 1.5
 
-%description accessx-status
+%description -n mate-applet-accessx-status
 The Keyboard Accessibility Monitor shows you the status of the
 keyboard accessibility features when these are in use. For example,
 you can see which modifier keys are currently active, and which mouse
 buttons are being pressed via the keyboard.
 
-%description accessx-status -l pl.UTF-8
+%description -n mate-applet-accessx-status -l pl.UTF-8
 Aplet monitora dostępności klawiatury pokazuje stan funkcji
 zwiększających dostępność klawiatury, kiedy są włączone. Pozwala
 zobaczyć m.in. które klawisze modyfikatorów są aktywne albo które
 przyciski myszy są wciskane z poziomu klawiatury.
 
-%package battstat
+%package -n mate-applet-battstat
 Summary:	Battery Charge Monitor applet
 Summary(pl.UTF-8):	Aplet monitora stanu naładowania akumulatora
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.26.0
 
-%description battstat
+%description -n mate-applet-battstat
 The Battery Charge Monitor shows the status of any batteries in your
 laptop computer. The monitor can tell you the capacity remaining both
 visually and as a percentage, as well as offer you an estimate of the
 time remaining based off the current usage rate.
 
-%description battstat -l pl.UTF-8
+%description -n mate-applet-battstat -l pl.UTF-8
 Aplet monitora stanu naładowania akumulatora pokazuje stan wszelkich
 baterii w laptopie. Monitor informuje o pozostałej pojemności zarówno
 w postaci graficznej, jak i procentowej, a także podaje przybliżony
 pozostały czas pracy przy założeniu bieżącego użycia prądu.
 
-%package charpicker
+%package -n mate-applet-charpicker
 Summary:	Character Palette applet
 Summary(pl.UTF-8):	Aplet palety znaków
 Group:		X11/Applications
@@ -127,7 +122,7 @@ Requires(post,postun):	gtk+2
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.26.0
 
-%description charpicker
+%description -n mate-applet-charpicker
 The Character Palette provides a convenient way to access characters
 that are not on your keyboard, such as accented characters,
 mathematical symbols, special symbols, and punctuation marks.
@@ -139,7 +134,7 @@ the contents of the applet to suit your requirements.
 Character Palette supports the UTF-8 character encoding so you can use
 the palette to display or copy any Unicode character.
 
-%description charpicker -l pl.UTF-8
+%description -n mate-applet-charpicker -l pl.UTF-8
 Aplet palety znaków udostępnia wygodną metodę wprowadzania znaków nie
 istniejących na klawiaturze, takich jak znaki akcentowane, symbole
 matematyczne, symbole specjalne i znaki przestankowe.
@@ -151,7 +146,7 @@ apletu można dostosowywać do własnych wymagań.
 Paleta znaków obsługuje kodowanie znaków UTF-8, więc można jej używać
 do wyświetlania lub kopiowania dowolnych znaków unikodowych.
 
-%package cpufreq
+%package -n mate-applet-cpufreq
 Summary:	CPU Frequency Scaling Monitor applet
 Summary(pl.UTF-8):	Aplet monitora częstotliwości procesora
 Group:		X11/Applications
@@ -159,30 +154,30 @@ Requires(post,postun):	gtk+2
 Requires:	%{name} = %{version}-%{release}
 Requires:	mate-polkit
 
-%description cpufreq
+%description -n mate-applet-cpufreq
 The CPU Frequency Scaling Monitor provides a convenient way to monitor
 the CPU Frequency Scaling for each CPU.
 
-%description cpufreq -l pl.UTF-8
+%description -n mate-applet-cpufreq -l pl.UTF-8
 Aplet monitora częstotliwości procesora umożliwia wygodne
 monitorowanie częstotliwości dla każdego procesora.
 
-%package drivemount
+%package -n mate-applet-drivemount
 Summary:	Disk Mounter applet
 Summary(pl.UTF-8):	Aplet do montowania dysków
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.26.0
 
-%description drivemount
+%description -n mate-applet-drivemount
 The Disk Mounter enables you to quickly mount and unmount various
 types of drives and file systems.
 
-%description drivemount -l pl.UTF-8
+%description -n mate-applet-drivemount -l pl.UTF-8
 Aplet do montowania dysków, pozwalający szybko montować i odmontowywać
 różne rodzaje dysków i systemów plików.
 
-%package geyes
+%package -n mate-applet-geyes
 Summary:	Geyes applet - tracking the mouse pointer
 Summary(pl.UTF-8):	Aplet geyes - śledzenie wskaźnika myszy
 Group:		X11/Applications
@@ -190,53 +185,53 @@ Requires(post,postun):	gtk+2
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.26.0
 
-%description geyes
+%description -n mate-applet-geyes
 The Geyes applet provides an entertaining way to track the movement of
 the mouse pointer around your screen. The applet is an image of one or
 more eyes that follow the mouse pointer around the screen.
 
-%description geyes -l pl.UTF-8
+%description -n mate-applet-geyes -l pl.UTF-8
 Aplet geyes to zabawny sposób śledzenia ruchu wskaźnika myszy po
 ekranie. Aplet jest obrazem jednego lub większej liczby oczu
 podążających za wskaźnikiem myszy.
 
-%package gweather
+%package -n mate-applet-gweather
 Summary:	Weather Report applet
 Summary(pl.UTF-8):	Aplet raportu pogodowego
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 Requires:	dbus(org.freedesktop.Notifications)
 
-%description gweather
+%description -n mate-applet-gweather
 The Weather Report downloads weather information from the U.S.
 National Weather Service (NWS) servers, including the Interactive
 Weather Information Network (IWIN) and other weather services. You can
 use Weather Report to display current weather information and weather
 forecasts on your computer.
 
-%description gweather -l pl.UTF-8
+%description -n mate-applet-gweather -l pl.UTF-8
 Aplet raportu pogodowego ściąga informacje pogodowe z serwerów U.S.
 National Weather Service (NWS), wraz z siecią Interactive Weather
 Information Network (IWIN) oraz innych serwisów pogodowych. Apletu
 można używać do wyświetlania aktualnych informacji pogodowych oraz
 prognoz.
 
-%package invest
+%package -n mate-applet-invest
 Summary:	Stock Ticker applet
 Summary(pl.UTF-8):	Aplet wskaźnika giełdowego
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 #Requires:	python-gnome-extras-egg >= 2.14.2
 
-%description invest
+%description -n mate-applet-invest
 The Invest MATE panel applet downloads current stock quotes from
 Yahoo! Finance and displays the quotes in a drop-down list.
 
-%description invest -l pl.UTF-8
+%description -n mate-applet-invest -l pl.UTF-8
 Aplet wskaźnika giełdowego, ściągający aktualne notowania z serwisu
 Yahoo! Finance i wyświetlające je na rozwijanej liście.
 
-%package multiload
+%package -n mate-applet-multiload
 Summary:	System Monitor applet
 Summary(pl.UTF-8):	Aplet monitora systemu
 Group:		X11/Applications
@@ -244,15 +239,15 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.26.0
 Suggests:	mate-system-monitor >= 1.5
 
-%description multiload
+%description -n mate-applet-multiload
 The System Monitor displays system load information in graphical
 format in a panel.
 
-%description multiload -l pl.UTF-8
+%description -n mate-applet-multiload -l pl.UTF-8
 Aplet monitora systemu wyświetla w panelu informacje o obciążeniu
 systemu w postaci graficznej.
 
-%package stickynotes
+%package -n mate-applet-stickynotes
 Summary:	Sticky Notes applet
 Summary(pl.UTF-8):	Aplet notatek
 Group:		X11/Applications
@@ -260,7 +255,7 @@ Requires(post,postun):	gtk+2
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.26.0
 
-%description stickynotes
+%description -n mate-applet-stickynotes
 The Sticky Notes panel application enables you to create, view, and
 manage sticky notes on your desktop. You can edit the title, contents,
 dimensions, and style of sticky notes. When the panel is restarted,
@@ -268,7 +263,7 @@ for example when you log out and log in again, all sticky notes are
 saved and reopened in the same position with the same dimensions and
 style.
 
-%description stickynotes -l pl.UTF-8
+%description -n mate-applet-stickynotes -l pl.UTF-8
 Aplet notatek pozwala na tworzenie, oglądanie i zarządzanie
 przyczepianymi notatkami na pulpicie. Pozwala modyfikować tytuł,
 treść, wymiary i styl notatek. Przy restarcie panelu, na przykład przy
@@ -276,19 +271,19 @@ wylogowaniu i ponownym zalogowaniu, wszystkie notatki są zapisywane, a
 następnie otwierane ponownie w tym samym miejscu, z tymi samymi
 wymiarami i stylem.
 
-%package trash
+%package -n mate-applet-trash
 Summary:	Trash applet
 Summary(pl.UTF-8):	Aplet śmietnika
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 
-%description trash
+%description -n mate-applet-trash
 The Panel Trash applet lets you manage your Trash from the panel.
 
 The trash on your panel acts identically to the trash on your desktop,
 however it is useful because your panels are always visible.
 
-%description trash -l pl.UTF-8
+%description -n mate-applet-trash -l pl.UTF-8
 Aplet śmietnika pozwala na zarządzanie śmietnikiem z poziomu panelu.
 
 Śmietnik w panelu zachowuje się tak samo, jak śmietnik na pulpicie,
@@ -448,91 +443,91 @@ EOF
 %clean
 rm -rf $RPM_BUILD_ROOT
 
-%post accessx-status
+%post -n mate-applet-accessx-status
 %update_icon_cache hicolor
 
-%postun accessx-status
+%postun -n mate-applet-accessx-status
 %update_icon_cache hicolor
 
-%post battstat
+%post -n mate-applet-battstat
 %glib_compile_schemas
 
-%preun battstat
+%preun -n mate-applet-battstat
 %glib_compile_schemas
 
-%postun battstat
+%postun -n mate-applet-battstat
 
-%post charpicker
-%glib_compile_schemas
-%update_icon_cache hicolor
-
-%preun charpicker
-%glib_compile_schemas
-
-%postun charpicker
-%update_icon_cache hicolor
-
-%post cpufreq
+%post -n mate-applet-charpicker
 %glib_compile_schemas
 %update_icon_cache hicolor
 
-%preun cpufreq
+%preun -n mate-applet-charpicker
 %glib_compile_schemas
 
-%postun cpufreq
+%postun -n mate-applet-charpicker
 %update_icon_cache hicolor
 
-%post drivemount
-%glib_compile_schemas
-
-%preun drivemount
-%glib_compile_schemas
-
-%postun drivemount
-
-%post geyes
+%post -n mate-applet-cpufreq
 %glib_compile_schemas
 %update_icon_cache hicolor
 
-%preun geyes
+%preun -n mate-applet-cpufreq
 %glib_compile_schemas
 
-%postun geyes
+%postun -n mate-applet-cpufreq
 %update_icon_cache hicolor
 
-%post gweather
+%post -n mate-applet-drivemount
+%glib_compile_schemas
+
+%preun -n mate-applet-drivemount
+%glib_compile_schemas
+
+%postun -n mate-applet-drivemount
+
+%post -n mate-applet-geyes
+%glib_compile_schemas
+%update_icon_cache hicolor
+
+%preun -n mate-applet-geyes
+%glib_compile_schemas
+
+%postun -n mate-applet-geyes
+%update_icon_cache hicolor
+
+%post -n mate-applet-gweather
 /sbin/ldconfig
 
-%postun gweather
+%postun -n mate-applet-gweather
 /sbin/ldconfig
 
-%post invest
+%post -n mate-applet-invest
 %update_icon_cache hicolor
 
-%postun invest
+%postun -n mate-applet-invest
 %update_icon_cache hicolor
 
-%post multiload
+%post -n mate-applet-multiload
 %glib_compile_schemas
 
-%preun multiload
+%preun -n mate-applet-multiload
 %glib_compile_schemas
 
-%postun multiload
+%postun -n mate-applet-multiload
 
-%post stickynotes
+%post -n mate-applet-stickynotes
 %glib_compile_schemas
 %update_icon_cache hicolor
 
-%preun stickynotes
+%preun -n mate-applet-stickynotes
 %glib_compile_schemas
 
-%postun stickynotes
+%postun -n mate-applet-stickynotes
 %update_icon_cache hicolor
 
-%post trash
+%post -n mate-applet-trash
 
-%postun trash
+%postun -n mate-applet-trash
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
@@ -566,7 +561,7 @@ rm -rf $RPM_BUILD_ROOT
 %lang(es_VE) %dir %{_localedir}/es_VE
 %lang(es_VE) %dir %{_localedir}/es_VE/LC_MESSAGES
 
-%files accessx-status -f accessx-status.lang
+%files -n mate-applet-accessx-status -f accessx-status.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libexecdir}/accessx-status-applet
 %{_datadir}/dbus-1/services/org.mate.panel.applet.AccessxStatusAppletFactory.service
@@ -575,7 +570,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_pixmapsdir}/mate-accessx-status-applet
 %{_iconsdir}/mate/*/apps/ax-applet.png
 
-%files battstat -f battstat.lang
+%files -n mate-applet-battstat -f battstat.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libexecdir}/battstat-applet-2
 %{_datadir}/dbus-1/services/org.mate.panel.applet.BattstatAppletFactory.service
@@ -588,7 +583,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{_sysconfdir}/sound/events
 %{_sysconfdir}/sound/events/mate-battstat_applet.soundlist
 
-%files charpicker -f char-palette.lang
+%files -n mate-applet-charpicker -f char-palette.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libexecdir}/charpick_applet2
 %{_datadir}/dbus-1/services/org.mate.panel.applet.CharpickerAppletFactory.service
@@ -596,7 +591,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mate-panel/applets/org.mate.applets.CharpickerApplet.mate-panel-applet
 %{_datadir}/glib-2.0/schemas/org.mate.panel.applet.charpick.gschema.xml
 
-%files cpufreq -f cpufreq.lang
+%files -n mate-applet-cpufreq -f cpufreq.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/mate-cpufreq-selector
 %attr(755,root,root) %{_libexecdir}/mate-cpufreq-applet
@@ -614,14 +609,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/*/apps/mate-cpu-frequency-applet.png
 %{_iconsdir}/hicolor/*/apps/mate-cpu-frequency-applet.svg
 
-%files drivemount -f drivemount.lang
+%files -n mate-applet-drivemount -f drivemount.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libexecdir}/drivemount_applet2
 %{_datadir}/dbus-1/services/org.mate.panel.applet.DriveMountAppletFactory.service
 %{_datadir}/mate-panel/ui/drivemount-applet-menu.xml
 %{_datadir}/mate-panel/applets/org.mate.applets.DriveMountApplet.mate-panel-applet
 
-%files geyes -f geyes.lang
+%files -n mate-applet-geyes -f geyes.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libexecdir}/geyes_applet2
 %{_datadir}/dbus-1/services/org.mate.panel.applet.GeyesAppletFactory.service
@@ -631,14 +626,14 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/*/apps/mate-eyes-applet.*
 %{_datadir}/glib-2.0/schemas/org.mate.panel.applet.geyes.gschema.xml
 
-%files gweather -f gweather.lang
+%files -n mate-applet-gweather -f gweather.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libexecdir}/mateweather-applet-2
 %{_datadir}/dbus-1/services/org.mate.panel.applet.MateWeatherAppletFactory.service
 %{_datadir}/mate-panel/ui/mateweather-applet-menu.xml
 %{_datadir}/mate-panel/applets/org.mate.applets.MateWeatherApplet.mate-panel-applet
 
-%files invest -f invest-applet.lang
+%files -n mate-applet-invest -f invest-applet.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/mate-invest-chart
 %attr(755,root,root) %{_libexecdir}/invest-applet
@@ -652,7 +647,7 @@ rm -rf $RPM_BUILD_ROOT
 %dir %{py_sitedir}/mate_invest
 %{py_sitedir}/mate_invest/*.py[co]
 
-%files multiload -f multiload.lang
+%files -n mate-applet-multiload -f multiload.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libexecdir}/multiload-applet-2
 %{_datadir}/dbus-1/services/org.mate.panel.applet.MultiLoadAppletFactory.service
@@ -660,7 +655,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mate-panel/applets/org.mate.applets.MultiLoadApplet.mate-panel-applet
 %{_datadir}/glib-2.0/schemas/org.mate.panel.applet.multiload.gschema.xml
 
-%files stickynotes -f stickynotes_applet.lang
+%files -n mate-applet-stickynotes -f stickynotes_applet.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libexecdir}/stickynotes_applet
 %{_datadir}/dbus-1/services/org.mate.panel.applet.StickyNotesAppletFactory.service
@@ -671,7 +666,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/*/apps/mate-sticky-notes-applet.*
 %{_datadir}/glib-2.0/schemas/org.mate.stickynotes.gschema.xml
 
-%files trash -f trashapplet.lang
+%files -n mate-applet-trash -f trashapplet.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libexecdir}/trashapplet
 %{_datadir}/dbus-1/services/org.mate.panel.applet.TrashAppletFactory.service
