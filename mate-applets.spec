@@ -13,7 +13,7 @@ Summary(ru.UTF-8):	Маленькие программы, встраивающи
 Summary(uk.UTF-8):	Маленькі програми, що вбудовуються в панель MATE
 Name:		mate-applets
 Version:	1.5.2
-Release:	0.16
+Release:	0.18
 License:	GPL v2, FDL
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.5/%{name}-%{version}.tar.xz
@@ -23,7 +23,6 @@ Source0:	http://pub.mate-desktop.org/releases/1.5/%{name}-%{version}.tar.xz
 Patch0:		uidir.patch
 Patch1:		use-libwnck.patch
 URL:		https://github.com/mate-desktop/mate-applets
-BuildRequires:	GConf2-devel >= 2.26.0
 BuildRequires:	NetworkManager-devel >= 0.7
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.8
@@ -161,7 +160,6 @@ Summary(pl.UTF-8):	Aplet monitora częstotliwości procesora
 Group:		X11/Applications
 Requires(post,postun):	gtk+2
 Requires(post,postun):	scrollkeeper
-Requires(post,preun):	GConf2
 Requires:	%{name} = %{version}-%{release}
 Requires:	mate-polkit
 
@@ -213,7 +211,6 @@ Summary:	Weather Report applet
 Summary(pl.UTF-8):	Aplet raportu pogodowego
 Group:		X11/Applications
 Requires(post,postun):	scrollkeeper
-Requires(post,preun):	GConf2
 Requires:	%{name} = %{version}-%{release}
 Requires:	dbus(org.freedesktop.Notifications)
 
@@ -236,7 +233,6 @@ Summary:	Stock Ticker applet
 Summary(pl.UTF-8):	Aplet wskaźnika giełdowego
 Group:		X11/Applications
 Requires(post,postun):	scrollkeeper
-Requires(post,preun):	GConf2
 Requires:	%{name} = %{version}-%{release}
 Requires:	python-gnome-extras-egg >= 2.14.2
 
@@ -331,7 +327,6 @@ rm -rf $RPM_BUILD_ROOT
 %{__make} install \
 	DOC_MODULE= \
 	DESTDIR=$RPM_BUILD_ROOT \
-	GCONF_DISABLE_MAKEFILE_SCHEMA_INSTALL=1 \
 	pythondir=%{py_sitedir}
 
 # mate < 1.5 did not exist in pld, avoid dependency on mate-conf
@@ -495,12 +490,12 @@ rm -rf $RPM_BUILD_ROOT
 %update_icon_cache hicolor
 
 %post cpufreq
+%glib_compile_schemas
 %scrollkeeper_update_post
-%gconf_schema_install cpufreq-applet.schemas
 %update_icon_cache hicolor
 
 %preun cpufreq
-%gconf_schema_uninstall cpufreq-applet.schemas
+%glib_compile_schemas
 
 %postun cpufreq
 %scrollkeeper_update_postun
@@ -658,7 +653,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/dbus-1/services/org.mate.panel.applet.DriveMountAppletFactory.service
 %{_datadir}/mate-panel/ui/drivemount-applet-menu.xml
 %{_datadir}/mate-panel/applets/org.mate.applets.DriveMountApplet.mate-panel-applet
-#%{_sysconfdir}/gconf/schemas/drivemount.schemas
 
 %files geyes -f geyes.lang
 %defattr(644,root,root,755)
