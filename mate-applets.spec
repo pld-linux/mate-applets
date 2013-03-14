@@ -248,49 +248,6 @@ Yahoo! Finance and displays the quotes in a drop-down list.
 Aplet wskaźnika giełdowego, ściągający aktualne notowania z serwisu
 Yahoo! Finance i wyświetlające je na rozwijanej liście.
 
-%package minicommander
-Summary:	Command Line applet
-Summary(pl.UTF-8):	Aplet wiersza poleceń
-Group:		X11/Applications
-Requires(post,postun):	scrollkeeper
-Requires(post,preun):	GConf2
-Requires:	%{name} = %{version}-%{release}
-
-%description minicommander
-The Command Line provides a command line that you can use within any
-panel on the desktop.
-
-%description minicommander -l pl.UTF-8
-Aplet wiersza poleceń udostępnia linię poleceń z poziomu każdego
-panelu na pulpicie.
-
-%package mixer
-Summary:	Volume Control applet
-Summary(pl.UTF-8):	Aplet regulacji głośności
-Group:		X11/Applications
-Requires(post,postun):	gtk+2
-Requires(post,postun):	scrollkeeper
-Requires(post,preun):	GConf2
-Requires:	%{name} = %{version}-%{release}
-Requires:	gstreamer-audio-effects-base >= 0.10.10
-Requires:	gstreamer-audiosink
-Suggests:	gnome-media-volume-control >= 2.22.0
-
-%description mixer
-The Volume Control applet enables you to control the sound volume on
-your system. The applet icon changes depending on the volume level
-that you select. For example, if you select a low volume level, the
-icon displays one sound wave emanating from the speaker in the applet
-icon. As you increase the volume, the icon changes to display more
-sound waves.
-
-%description mixer -l pl.UTF-8
-Aplet regulacji głośności pozwala sterować głośnością dźwięku. Ikona
-apletu zmienia się w zależności od wybranego poziomu głośności. Na
-przykład przy niskiej głośności pokazuje pojedynczą falę wydobywającą
-się z głośnika; w miarę zwiększania głośności ikona wyświetla coraz
-więcej fal.
-
 %package multiload
 Summary:	System Monitor applet
 Summary(pl.UTF-8):	Aplet monitora systemu
@@ -587,31 +544,6 @@ rm -rf $RPM_BUILD_ROOT
 %scrollkeeper_update_postun
 %update_icon_cache hicolor
 
-%post minicommander
-%scrollkeeper_update_post
-%gconf_schema_install mini-commander-global.schemas
-%gconf_schema_install mini-commander.schemas
-GCONF_CONFIG_SOURCE="`%{_bindir}/gconftool-2 --get-default-source`" %{_libdir}/%{name}/mc-install-default-macros
-%update_icon_cache hicolor
-
-%preun minicommander
-%gconf_schema_uninstall mini-commander-global.schemas
-%gconf_schema_uninstall mini-commander.schemas
-
-%postun minicommander
-%scrollkeeper_update_postun
-%update_icon_cache hicolor
-
-%post mixer
-%scrollkeeper_update_post
-%gconf_schema_install mixer.schemas
-
-%preun mixer
-%gconf_schema_uninstall mixer.schemas
-
-%postun mixer
-%scrollkeeper_update_postun
-
 %post multiload
 %scrollkeeper_update_post
 %glib_compile_schemas
@@ -758,26 +690,6 @@ GCONF_CONFIG_SOURCE="`%{_bindir}/gconftool-2 --get-default-source`" %{_libdir}/%
 %{_iconsdir}/hicolor/*/apps/mate-invest-applet.*
 %dir %{py_sitedir}/mate_invest
 %{py_sitedir}/mate_invest/*.py[co]
-
-#%files minicommander -f command-line.lang
-#%defattr(644,root,root,755)
-#%attr(755,root,root) %{_libexecdir}/mini_commander_applet
-#%attr(755,root,root) %{_libexecdir}/%{name}/mc-install-default-macros
-#%{_datadir}/dbus-1/services/org.gnome.panel.applet.MiniCommanderAppletFactory.service
-#%{_datadir}/mate-panel/ui/mini-commander-applet-menu.xml
-#%{_datadir}/%{name}/builder/mini-commander.ui
-#%{_datadir}/mate-panel/applets/org.gnome.applets.MiniCommanderApplet.panel-applet
-#%{_iconsdir}/hicolor/48x48/apps/gnome-mini-commander.png
-#%{_sysconfdir}/gconf/schemas/mini-commander-global.schemas
-#%{_sysconfdir}/gconf/schemas/mini-commander.schemas
-
-#%files mixer -f mixer_applet2.lang
-#%defattr(644,root,root,755)
-#%attr(755,root,root) %{_libexecdir}/mixer_applet2
-#%{_datadir}/dbus-1/services/org.gnome.panel.applet.MixerAppletFactory.service
-#%{_datadir}/mate-panel/ui/mixer-applet-menu.xml
-#%{_datadir}/mate-panel/applets/org.gnome.applets.MixerApplet.panel-applet
-#%{_sysconfdir}/gconf/schemas/mixer.schemas
 
 %files multiload -f multiload.lang
 %defattr(644,root,root,755)
