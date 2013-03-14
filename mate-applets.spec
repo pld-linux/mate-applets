@@ -234,7 +234,7 @@ Summary(pl.UTF-8):	Aplet wskaźnika giełdowego
 Group:		X11/Applications
 Requires(post,postun):	scrollkeeper
 Requires:	%{name} = %{version}-%{release}
-Requires:	python-gnome-extras-egg >= 2.14.2
+#Requires:	python-gnome-extras-egg >= 2.14.2
 
 %description invest
 The Invest MATE panel applet downloads current stock quotes from
