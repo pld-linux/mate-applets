@@ -1,0 +1,152 @@
+--- mate-applets-1.5.2/./modemlights/Makefile.am~	2013-03-08 02:20:01.000000000 +0200
++++ mate-applets-1.5.2/./modemlights/Makefile.am	2013-03-14 19:59:47.806812372 +0200
+@@ -14,7 +14,7 @@
+ 	$(MATE_APPLETS4_LIBS)	\
+ 	$(MODEMLIGHTS_LIBS)
+ 
+-uidir	= $(datadir)/mate-2.0/ui
++uidir	= $(datadir)/mate-panel/ui
+ ui_DATA	= modem-applet-menu.xml
+ 
+ 
+--- mate-applets-1.5.2/./battstat/Makefile.am~	2013-03-08 02:20:01.000000000 +0200
++++ mate-applets-1.5.2/./battstat/Makefile.am	2013-03-14 20:00:10.041169347 +0200
+@@ -91,7 +91,7 @@
+ 
+ CLEANFILES = $(applet_DATA) $(applet_DATA).in $(service_DATA) $(gsettings_SCHEMAS_in)  $(gsettings_SCHEMAS) *.gschema.valid
+ 
+-uidir = $(datadir)/mate-2.0/ui
++uidir = $(datadir)/mate-panel/ui
+ ui_DATA = battstat-applet-menu.xml
+ 
+ EXTRA_DIST = 							\
+--- mate-applets-1.5.2/./multiload/Makefile.am~	2013-03-08 02:20:01.000000000 +0200
++++ mate-applets-1.5.2/./multiload/Makefile.am	2013-03-14 20:00:28.041998082 +0200
+@@ -42,7 +42,7 @@
+ 	$(gsettings_SCHEMAS_in_in)			\
+ 	$(ui_DATA)
+ 
+-uidir		= $(datadir)/mate-2.0/ui
++uidir		= $(datadir)/mate-panel/ui
+ ui_DATA		= multiload-applet-menu.xml
+ 
+ appletdir       = $(datadir)/mate-panel/applets
+--- mate-applets-1.5.2/./stickynotes/Makefile.am~	2013-03-08 02:20:01.000000000 +0200
++++ mate-applets-1.5.2/./stickynotes/Makefile.am	2013-03-14 20:00:40.159222611 +0200
+@@ -40,7 +40,7 @@
+ 
+ builder_DATA = $(builder_files)
+ 
+-uidir = $(datadir)/mate-2.0/ui
++uidir = $(datadir)/mate-panel/ui
+ ui_DATA = $(ui_files)
+ 
+ @INTLTOOL_XML_NOMERGE_RULE@
+--- mate-applets-1.5.2/./accessx-status/Makefile.am~	2013-03-08 02:20:01.000000000 +0200
++++ mate-applets-1.5.2/./accessx-status/Makefile.am	2013-03-14 20:00:51.406407084 +0200
+@@ -36,7 +36,7 @@
+ 		-e "s|\@LIBEXECDIR\@|$(libexecdir)|" \
+ 		$< > $@
+ 
+-uidir   = $(datadir)/mate-2.0/ui
++uidir   = $(datadir)/mate-panel/ui
+ ui_DATA = accessx-status-applet-menu.xml
+ 
+ CLEANFILES = $(applet_DATA) $(applet_DATA).in $(service_DATA) $(ACCESSX_STATUS_APPLET_CLEANFILES)
+--- mate-applets-1.5.2/./trashapplet/Makefile.am~	2013-03-08 02:20:01.000000000 +0200
++++ mate-applets-1.5.2/./trashapplet/Makefile.am	2013-03-14 20:01:02.450248862 +0200
+@@ -21,7 +21,7 @@
+             -e "s|\@LIBEXECDIR\@|$(libexecdir)|" \
+             $< > $@
+ 
+-uidir = $(datadir)/mate-2.0/ui
++uidir = $(datadir)/mate-panel/ui
+ ui_DATA = trashapplet-menu.xml
+ 
+ builder_DATA = trashapplet-empty-progress.ui
+--- mate-applets-1.5.2/./trashapplet/src/Makefile.am~	2013-03-08 02:20:01.000000000 +0200
++++ mate-applets-1.5.2/./trashapplet/src/Makefile.am	2013-03-14 20:02:34.934506721 +0200
+@@ -1,8 +1,9 @@
+ INCLUDES = -I$(top_srcdir)		\
+-	   $(MATE_APPLETS4_CFLAGS)	\
+-	   $(GIO_CFLAGS)		\
+-           -DTRASH_MENU_UI_DIR=\""$(datadir)/mate-2.0/ui"\"
++	$(MATE_APPLETS4_CFLAGS)	\
++	$(GIO_CFLAGS)		\
++	-DTRASH_MENU_UI_DIR=\""$(uidir)"\"
+ 
++uidir = $(datadir)/mate-panel/ui
+ libexec_PROGRAMS = trashapplet
+ 
+ trashapplet_SOURCES = \
+--- mate-applets-1.5.2/./cpufreq/Makefile.am~	2013-03-08 02:20:01.000000000 +0200
++++ mate-applets-1.5.2/./cpufreq/Makefile.am	2013-03-14 20:02:57.252200866 +0200
+@@ -30,7 +30,7 @@
+ 
+ builder_DATA = cpufreq-preferences.ui
+ 
+-uidir = $(datadir)/mate-2.0/ui
++uidir = $(datadir)/mate-panel/ui
+ ui_DATA = cpufreq-applet-menu.xml
+ 
+ CLEANFILES = \
+--- mate-applets-1.5.2/./cpufreq/src/Makefile.am~	2013-03-08 02:20:01.000000000 +0200
++++ mate-applets-1.5.2/./cpufreq/src/Makefile.am	2013-03-14 20:03:29.287009042 +0200
+@@ -5,11 +5,12 @@
+ SUBDIRS = $(selector_SUBDIR)
+ 
+ INCLUDES = \
+-	-DCPUFREQ_MENU_UI_DIR=\""$(datadir)/mate-2.0/ui"\" 	\
++	-DCPUFREQ_MENU_UI_DIR=\""$(uidir)"\" 	\
+ 	$(MATE_APPLETS4_CFLAGS) 				\
+ 	$(LIBGLADE_CFLAGS)					\
+ 	$(DBUS_CFLAGS)
+ 
++uidir = $(datadir)/mate-panel/ui
+ libexec_PROGRAMS = mate-cpufreq-applet
+ 
+ if HAVE_LIBCPUFREQ
+--- mate-applets-1.5.2/./mateweather/Makefile.am~	2013-03-08 02:20:01.000000000 +0200
++++ mate-applets-1.5.2/./mateweather/Makefile.am	2013-03-14 20:03:47.911199809 +0200
+@@ -30,7 +30,7 @@
+ 	$(NETWORKMANAGER_LIBS)	\
+ 	$(DBUS_LIBS)
+ 
+-uidir = $(datadir)/mate-2.0/ui
++uidir = $(datadir)/mate-panel/ui
+ ui_DATA = mateweather-applet-menu.xml
+ 
+ appletdir       = $(datadir)/mate-panel/applets
+--- mate-applets-1.5.2/./drivemount/Makefile.am~	2013-03-08 02:20:01.000000000 +0200
++++ mate-applets-1.5.2/./drivemount/Makefile.am	2013-03-14 20:04:02.671879372 +0200
+@@ -40,7 +40,7 @@
+             -e "s|\@LIBEXECDIR\@|$(libexecdir)|" \
+             $< > $@
+ 
+-uidir = $(datadir)/mate-2.0/ui
++uidir = $(datadir)/mate-panel/ui
+ ui_DATA = drivemount-applet-menu.xml
+ 
+ CLEANFILES = $(applet_DATA) $(applet_DATA).in $(service_DATA)
+--- mate-applets-1.5.2/./geyes/Makefile.am~	2013-03-08 02:20:01.000000000 +0200
++++ mate-applets-1.5.2/./geyes/Makefile.am	2013-03-14 20:04:15.615808629 +0200
+@@ -40,7 +40,7 @@
+             -e "s|\@LIBEXECDIR\@|$(libexecdir)|" \
+             $< > $@
+ 
+-uidir = $(datadir)/mate-2.0/ui
++uidir = $(datadir)/mate-panel/ui
+ ui_DATA = geyes-applet-menu.xml
+ 
+ @INTLTOOL_XML_NOMERGE_RULE@
+--- mate-applets-1.5.2/./charpick/Makefile.am~	2013-03-08 02:20:01.000000000 +0200
++++ mate-applets-1.5.2/./charpick/Makefile.am	2013-03-14 20:04:26.936329764 +0200
+@@ -45,7 +45,7 @@
+ %.gschema.xml.in: %.gschema.xml.in.in Makefile
+ 	$(AM_V_GEN) $(SED) -e 's^\@GETTEXT_PACKAGE\@^$(GETTEXT_PACKAGE)^g' < $< > $@
+ 
+-uidir = $(datadir)/mate-2.0/ui
++uidir = $(datadir)/mate-panel/ui
+ ui_DATA = charpick-applet-menu.xml
+ 
+ CLEANFILES = $(applet_DATA) $(applet_DATA).in $(service_DATA) $(gsettings_SCHEMAS_in)  $(gsettings_SCHEMAS) *.gschema.valid

@@ -13,13 +13,14 @@ Summary(ru.UTF-8):	Маленькие программы, встраивающи
 Summary(uk.UTF-8):	Маленькі програми, що вбудовуються в панель MATE
 Name:		mate-applets
 Version:	1.5.2
-Release:	0.12
+Release:	0.15
 License:	GPL v2, FDL
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.5/%{name}-%{version}.tar.xz
 # Source0-md5:	912af4be09fb78405bd4da437b3b7f05
 # check paths in Makefile before removing it!
 #Patch0: m4_fix.patch
+Patch0:		uidir.patch
 URL:		https://github.com/mate-desktop/mate-applets
 BuildRequires:	GConf2-devel >= 2.26.0
 BuildRequires:	NetworkManager-devel >= 0.7
@@ -33,8 +34,8 @@ BuildRequires:	glib2-devel >= 1:2.22.0
 BuildRequires:	gtk+2-devel >= 2:2.20.0
 BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libgtop-devel >= 1:2.11.92
-BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	libmatewnck-devel >= 1.3.0
+BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.5.0
 BuildRequires:	mate-desktop-devel >= 1.1.0
@@ -60,6 +61,8 @@ Requires:	mate-panel >= 1.5
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
+
+%define		_libexecdir	%{_libdir}/mate-panel
 
 %description
 The mate-applets package provides Panel applets which enhance your
@@ -350,6 +353,7 @@ ale jest przydatny o tyle, że panele są zawsze widoczne.
 
 %prep
 %setup -q
+%patch0 -p1
 
 %build
 NOCONFIGURE=1 ./autogen.sh
@@ -668,35 +672,38 @@ GCONF_CONFIG_SOURCE="`%{_bindir}/gconftool-2 --get-default-source`" %{_libdir}/%
 
 %files accessx-status -f accessx-status.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/accessx-status-applet
+%attr(755,root,root) %{_libexecdir}/accessx-status-applet
 %{_datadir}/dbus-1/services/org.mate.panel.applet.AccessxStatusAppletFactory.service
-%{_datadir}/mate-2.0/ui/accessx-status-applet-menu.xml
+%{_datadir}/mate-panel/ui/accessx-status-applet-menu.xml
 %{_datadir}/mate-panel/applets/org.mate.applets.AccessxStatusApplet.mate-panel-applet
 %{_pixmapsdir}/mate-accessx-status-applet
 %{_iconsdir}/mate/*/apps/ax-applet.png
 
 %files battstat -f battstat.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/battstat-applet-2
+%attr(755,root,root) %{_libexecdir}/battstat-applet-2
 %{_datadir}/dbus-1/services/org.mate.panel.applet.BattstatAppletFactory.service
-%{_datadir}/mate-2.0/ui/battstat-applet-menu.xml
+%{_datadir}/mate-panel/ui/battstat-applet-menu.xml
 %{_datadir}/mate-panel/applets/org.mate.applets.BattstatApplet.mate-panel-applet
 %{_datadir}/%{name}/builder/battstat_applet.ui
 %{_datadir}/glib-2.0/schemas/org.mate.panel.applet.battstat.gschema.xml
+# FIXME package not to pull 'balsa'
+%dir %{_sysconfdir}/sound
+%dir %{_sysconfdir}/sound/events
 %{_sysconfdir}/sound/events/mate-battstat_applet.soundlist
 
 %files charpicker -f char-palette.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/charpick_applet2
+%attr(755,root,root) %{_libexecdir}/charpick_applet2
 %{_datadir}/dbus-1/services/org.mate.panel.applet.CharpickerAppletFactory.service
-%{_datadir}/mate-2.0/ui/charpick-applet-menu.xml
+%{_datadir}/mate-panel/ui/charpick-applet-menu.xml
 %{_datadir}/mate-panel/applets/org.mate.applets.CharpickerApplet.mate-panel-applet
 %{_datadir}/glib-2.0/schemas/org.mate.panel.applet.charpick.gschema.xml
 
 %files cpufreq -f cpufreq.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/mate-cpufreq-selector
-%attr(755,root,root) %{_libdir}/mate-cpufreq-applet
+%attr(755,root,root) %{_libexecdir}/mate-cpufreq-applet
 %{_datadir}/dbus-1/services/org.mate.panel.applet.CPUFreqAppletFactory.service
 %{_datadir}/glib-2.0/schemas/org.mate.panel.applet.cpufreq.gschema.xml
 %if 1
@@ -706,24 +713,24 @@ GCONF_CONFIG_SOURCE="`%{_bindir}/gconftool-2 --get-default-source`" %{_libdir}/%
 %endif
 %{_datadir}/mate-panel/applets/org.mate.applets.CPUFreqApplet.mate-panel-applet
 %{_datadir}/%{name}/builder/cpufreq-preferences.ui
-%{_datadir}/mate-2.0/ui/cpufreq-applet-menu.xml
+%{_datadir}/mate-panel/ui/cpufreq-applet-menu.xml
 %{_pixmapsdir}/mate-cpufreq-applet
 %{_iconsdir}/hicolor/*/apps/mate-cpu-frequency-applet.png
 %{_iconsdir}/hicolor/*/apps/mate-cpu-frequency-applet.svg
 
 %files drivemount -f drivemount.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/drivemount_applet2
+%attr(755,root,root) %{_libexecdir}/drivemount_applet2
 %{_datadir}/dbus-1/services/org.mate.panel.applet.DriveMountAppletFactory.service
-%{_datadir}/mate-2.0/ui/drivemount-applet-menu.xml
+%{_datadir}/mate-panel/ui/drivemount-applet-menu.xml
 %{_datadir}/mate-panel/applets/org.mate.applets.DriveMountApplet.mate-panel-applet
 #%{_sysconfdir}/gconf/schemas/drivemount.schemas
 
 %files geyes -f geyes.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/geyes_applet2
+%attr(755,root,root) %{_libexecdir}/geyes_applet2
 %{_datadir}/dbus-1/services/org.mate.panel.applet.GeyesAppletFactory.service
-%{_datadir}/mate-2.0/ui/geyes-applet-menu.xml
+%{_datadir}/mate-panel/ui/geyes-applet-menu.xml
 %{_datadir}/%{name}/geyes
 %{_datadir}/mate-panel/applets/org.mate.applets.GeyesApplet.mate-panel-applet
 %{_iconsdir}/hicolor/*/apps/mate-eyes-applet.*
@@ -731,15 +738,15 @@ GCONF_CONFIG_SOURCE="`%{_bindir}/gconftool-2 --get-default-source`" %{_libdir}/%
 
 %files gweather -f gweather.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/mateweather-applet-2
+%attr(755,root,root) %{_libexecdir}/mateweather-applet-2
 %{_datadir}/dbus-1/services/org.mate.panel.applet.MateWeatherAppletFactory.service
-%{_datadir}/mate-2.0/ui/mateweather-applet-menu.xml
+%{_datadir}/mate-panel/ui/mateweather-applet-menu.xml
 %{_datadir}/mate-panel/applets/org.mate.applets.MateWeatherApplet.mate-panel-applet
 
 %files invest -f invest-applet.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_bindir}/mate-invest-chart
-%attr(755,root,root) %{_libdir}/invest-applet
+%attr(755,root,root) %{_libexecdir}/invest-applet
 %{_datadir}/dbus-1/services/org.mate.panel.applet.InvestAppletFactory.service
 %{_datadir}/%{name}/Invest_Applet.xml
 %{_datadir}/mate-panel/applets/org.mate.applets.InvestApplet.mate-panel-applet
@@ -752,10 +759,10 @@ GCONF_CONFIG_SOURCE="`%{_bindir}/gconftool-2 --get-default-source`" %{_libdir}/%
 
 #%files minicommander -f command-line.lang
 #%defattr(644,root,root,755)
-#%attr(755,root,root) %{_libdir}/mini_commander_applet
-#%attr(755,root,root) %{_libdir}/%{name}/mc-install-default-macros
+#%attr(755,root,root) %{_libexecdir}/mini_commander_applet
+#%attr(755,root,root) %{_libexecdir}/%{name}/mc-install-default-macros
 #%{_datadir}/dbus-1/services/org.gnome.panel.applet.MiniCommanderAppletFactory.service
-#%{_datadir}/mate-2.0/ui/mini-commander-applet-menu.xml
+#%{_datadir}/mate-panel/ui/mini-commander-applet-menu.xml
 #%{_datadir}/%{name}/builder/mini-commander.ui
 #%{_datadir}/mate-panel/applets/org.gnome.applets.MiniCommanderApplet.panel-applet
 #%{_iconsdir}/hicolor/48x48/apps/gnome-mini-commander.png
@@ -764,25 +771,25 @@ GCONF_CONFIG_SOURCE="`%{_bindir}/gconftool-2 --get-default-source`" %{_libdir}/%
 
 #%files mixer -f mixer_applet2.lang
 #%defattr(644,root,root,755)
-#%attr(755,root,root) %{_libdir}/mixer_applet2
+#%attr(755,root,root) %{_libexecdir}/mixer_applet2
 #%{_datadir}/dbus-1/services/org.gnome.panel.applet.MixerAppletFactory.service
-#%{_datadir}/mate-2.0/ui/mixer-applet-menu.xml
+#%{_datadir}/mate-panel/ui/mixer-applet-menu.xml
 #%{_datadir}/mate-panel/applets/org.gnome.applets.MixerApplet.panel-applet
 #%{_sysconfdir}/gconf/schemas/mixer.schemas
 
 %files multiload -f multiload.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/multiload-applet-2
+%attr(755,root,root) %{_libexecdir}/multiload-applet-2
 %{_datadir}/dbus-1/services/org.mate.panel.applet.MultiLoadAppletFactory.service
-%{_datadir}/mate-2.0/ui/multiload-applet-menu.xml
+%{_datadir}/mate-panel/ui/multiload-applet-menu.xml
 %{_datadir}/mate-panel/applets/org.mate.applets.MultiLoadApplet.mate-panel-applet
 %{_datadir}/glib-2.0/schemas/org.mate.panel.applet.multiload.gschema.xml
 
 %files stickynotes -f stickynotes_applet.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/stickynotes_applet
+%attr(755,root,root) %{_libexecdir}/stickynotes_applet
 %{_datadir}/dbus-1/services/org.mate.panel.applet.StickyNotesAppletFactory.service
-%{_datadir}/mate-2.0/ui/stickynotes-applet-menu.xml
+%{_datadir}/mate-panel/ui/stickynotes-applet-menu.xml
 %{_datadir}/%{name}/builder/stickynotes.ui
 %{_datadir}/mate-panel/applets/org.mate.applets.StickyNotesApplet.mate-panel-applet
 %{_pixmapsdir}/mate-stickynotes
@@ -791,8 +798,8 @@ GCONF_CONFIG_SOURCE="`%{_bindir}/gconftool-2 --get-default-source`" %{_libdir}/%
 
 %files trash -f trashapplet.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libdir}/trashapplet
+%attr(755,root,root) %{_libexecdir}/trashapplet
 %{_datadir}/dbus-1/services/org.mate.panel.applet.TrashAppletFactory.service
 %{_datadir}/%{name}/builder/trashapplet-empty-progress.ui
-%{_datadir}/mate-2.0/ui/trashapplet-menu.xml
+%{_datadir}/mate-panel/ui/trashapplet-menu.xml
 %{_datadir}/mate-panel/applets/org.mate.applets.TrashApplet.mate-panel-applet
