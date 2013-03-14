@@ -13,7 +13,7 @@ Summary(ru.UTF-8):	Маленькие программы, встраивающи
 Summary(uk.UTF-8):	Маленькі програми, що вбудовуються в панель MATE
 Name:		mate-applets
 Version:	1.5.2
-Release:	0.15
+Release:	0.16
 License:	GPL v2, FDL
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.5/%{name}-%{version}.tar.xz
@@ -21,6 +21,7 @@ Source0:	http://pub.mate-desktop.org/releases/1.5/%{name}-%{version}.tar.xz
 # check paths in Makefile before removing it!
 #Patch0: m4_fix.patch
 Patch0:		uidir.patch
+Patch1:		use-libwnck.patch
 URL:		https://github.com/mate-desktop/mate-applets
 BuildRequires:	GConf2-devel >= 2.26.0
 BuildRequires:	NetworkManager-devel >= 0.7
@@ -34,7 +35,7 @@ BuildRequires:	glib2-devel >= 1:2.22.0
 BuildRequires:	gtk+2-devel >= 2:2.20.0
 BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libgtop-devel >= 1:2.11.92
-BuildRequires:	libmatewnck-devel >= 1.3.0
+BuildRequires:	libwnck2-devel >= 2.9.3
 BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	libtool
 BuildRequires:	libxml2-devel >= 1:2.5.0
@@ -354,6 +355,7 @@ ale jest przydatny o tyle, że panele są zawsze widoczne.
 %prep
 %setup -q
 %patch0 -p1
+%patch1 -p1
 
 %build
 NOCONFIGURE=1 ./autogen.sh
