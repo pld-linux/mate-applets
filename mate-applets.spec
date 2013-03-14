@@ -85,7 +85,6 @@ Summary:	Keyboard Accessibility Status applet
 Summary(pl.UTF-8):	Aplet stanu dostepności klawiatury
 Group:		X11/Applications
 Requires(post,postun):	gtk+2
-Requires(post,postun):	scrollkeeper
 Requires:	%{name} = %{version}-%{release}
 Suggests:	mate-control-center >= 1.5
 
@@ -105,7 +104,6 @@ przyciski myszy są wciskane z poziomu klawiatury.
 Summary:	Battery Charge Monitor applet
 Summary(pl.UTF-8):	Aplet monitora stanu naładowania akumulatora
 Group:		X11/Applications
-Requires(post,postun):	scrollkeeper
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.26.0
 
@@ -126,7 +124,6 @@ Summary:	Character Palette applet
 Summary(pl.UTF-8):	Aplet palety znaków
 Group:		X11/Applications
 Requires(post,postun):	gtk+2
-Requires(post,postun):	scrollkeeper
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.26.0
 
@@ -159,7 +156,6 @@ Summary:	CPU Frequency Scaling Monitor applet
 Summary(pl.UTF-8):	Aplet monitora częstotliwości procesora
 Group:		X11/Applications
 Requires(post,postun):	gtk+2
-Requires(post,postun):	scrollkeeper
 Requires:	%{name} = %{version}-%{release}
 Requires:	mate-polkit
 
@@ -175,7 +171,6 @@ monitorowanie częstotliwości dla każdego procesora.
 Summary:	Disk Mounter applet
 Summary(pl.UTF-8):	Aplet do montowania dysków
 Group:		X11/Applications
-Requires(post,postun):	scrollkeeper
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.26.0
 
@@ -192,7 +187,6 @@ Summary:	Geyes applet - tracking the mouse pointer
 Summary(pl.UTF-8):	Aplet geyes - śledzenie wskaźnika myszy
 Group:		X11/Applications
 Requires(post,postun):	gtk+2
-Requires(post,postun):	scrollkeeper
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.26.0
 
@@ -210,7 +204,6 @@ podążających za wskaźnikiem myszy.
 Summary:	Weather Report applet
 Summary(pl.UTF-8):	Aplet raportu pogodowego
 Group:		X11/Applications
-Requires(post,postun):	scrollkeeper
 Requires:	%{name} = %{version}-%{release}
 Requires:	dbus(org.freedesktop.Notifications)
 
@@ -232,7 +225,6 @@ prognoz.
 Summary:	Stock Ticker applet
 Summary(pl.UTF-8):	Aplet wskaźnika giełdowego
 Group:		X11/Applications
-Requires(post,postun):	scrollkeeper
 Requires:	%{name} = %{version}-%{release}
 #Requires:	python-gnome-extras-egg >= 2.14.2
 
@@ -248,7 +240,6 @@ Yahoo! Finance i wyświetlające je na rozwijanej liście.
 Summary:	System Monitor applet
 Summary(pl.UTF-8):	Aplet monitora systemu
 Group:		X11/Applications
-Requires(post,postun):	scrollkeeper
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.26.0
 Suggests:	mate-system-monitor >= 1.5
@@ -266,7 +257,6 @@ Summary:	Sticky Notes applet
 Summary(pl.UTF-8):	Aplet notatek
 Group:		X11/Applications
 Requires(post,postun):	gtk+2
-Requires(post,postun):	scrollkeeper
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.26.0
 
@@ -290,7 +280,6 @@ wymiarami i stylem.
 Summary:	Trash applet
 Summary(pl.UTF-8):	Aplet śmietnika
 Group:		X11/Applications
-Requires(post,postun):	scrollkeeper
 Requires:	%{name} = %{version}-%{release}
 
 %description trash
@@ -460,25 +449,20 @@ EOF
 rm -rf $RPM_BUILD_ROOT
 
 %post accessx-status
-%scrollkeeper_update_post
 %update_icon_cache hicolor
 
 %postun accessx-status
-%scrollkeeper_update_postun
 %update_icon_cache hicolor
 
 %post battstat
-%scrollkeeper_update_post
 %glib_compile_schemas
 
 %preun battstat
 %glib_compile_schemas
 
 %postun battstat
-%scrollkeeper_update_postun
 
 %post charpicker
-%scrollkeeper_update_post
 %glib_compile_schemas
 %update_icon_cache hicolor
 
@@ -486,33 +470,27 @@ rm -rf $RPM_BUILD_ROOT
 %glib_compile_schemas
 
 %postun charpicker
-%scrollkeeper_update_postun
 %update_icon_cache hicolor
 
 %post cpufreq
 %glib_compile_schemas
-%scrollkeeper_update_post
 %update_icon_cache hicolor
 
 %preun cpufreq
 %glib_compile_schemas
 
 %postun cpufreq
-%scrollkeeper_update_postun
 %update_icon_cache hicolor
 
 %post drivemount
-%scrollkeeper_update_post
 %glib_compile_schemas
 
 %preun drivemount
 %glib_compile_schemas
 
 %postun drivemount
-%scrollkeeper_update_postun
 
 %post geyes
-%scrollkeeper_update_post
 %glib_compile_schemas
 %update_icon_cache hicolor
 
@@ -520,37 +498,29 @@ rm -rf $RPM_BUILD_ROOT
 %glib_compile_schemas
 
 %postun geyes
-%scrollkeeper_update_postun
 %update_icon_cache hicolor
 
 %post gweather
 /sbin/ldconfig
-%scrollkeeper_update_post
 
 %postun gweather
 /sbin/ldconfig
-%scrollkeeper_update_postun
 
 %post invest
-%scrollkeeper_update_post
 %update_icon_cache hicolor
 
 %postun invest
-%scrollkeeper_update_postun
 %update_icon_cache hicolor
 
 %post multiload
-%scrollkeeper_update_post
 %glib_compile_schemas
 
 %preun multiload
 %glib_compile_schemas
 
 %postun multiload
-%scrollkeeper_update_postun
 
 %post stickynotes
-%scrollkeeper_update_post
 %glib_compile_schemas
 %update_icon_cache hicolor
 
@@ -558,14 +528,11 @@ rm -rf $RPM_BUILD_ROOT
 %glib_compile_schemas
 
 %postun stickynotes
-%scrollkeeper_update_postun
 %update_icon_cache hicolor
 
 %post trash
-%scrollkeeper_update_post
 
 %postun trash
-%scrollkeeper_update_postun
 
 %files -f %{name}.lang
 %defattr(644,root,root,755)
