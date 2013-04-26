@@ -7,12 +7,12 @@ Summary(pl.UTF-8):	Aplety MATE - małe aplikacje osadzające się w panelu
 Summary(ru.UTF-8):	Маленькие программы, встраивающиеся в панель MATE
 Summary(uk.UTF-8):	Маленькі програми, що вбудовуються в панель MATE
 Name:		mate-applets
-Version:	1.5.2
-Release:	0.25
+Version:	1.6.1
+Release:	1
 License:	GPL v2, FDL
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.5/%{name}-%{version}.tar.xz
-# Source0-md5:	912af4be09fb78405bd4da437b3b7f05
+Source0:	http://pub.mate-desktop.org/releases/1.6/%{name}-%{version}.tar.xz
+# Source0-md5:	56c4570510b776d8da858f55b32482ef
 # check paths in Makefile before removing it!
 #Patch0: m4_fix.patch
 Patch0:		uidir.patch
@@ -29,6 +29,7 @@ BuildRequires:	glib2-devel >= 1:2.22.0
 BuildRequires:	gtk+2-devel >= 2:2.20.0
 BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libgtop-devel >= 1:2.11.92
+BuildRequires:	libmateweather-devel >= 1.6.1
 BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	libtool
 BuildRequires:	libwnck2-devel >= 2.9.3
@@ -221,7 +222,7 @@ Summary:	Stock Ticker applet
 Summary(pl.UTF-8):	Aplet wskaźnika giełdowego
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
-#Requires:	python-gnome-extras-egg >= 2.14.2
+Requires:	mate-panel
 
 %description -n mate-applet-invest
 The Invest MATE panel applet downloads current stock quotes from
