@@ -50,7 +50,6 @@ BuildRequires:	tar >= 1:1.22
 BuildRequires:	upower-devel >= 0.9.4
 BuildRequires:	xz
 Requires(post,postun):	gtk-update-icon-cache
-BuildRequires:	gucharmap2-devel >= 2.23.0
 Requires(post,postun):	hicolor-icon-theme
 Requires:	gnome-icon-theme >= 2.26.0
 Requires:	mate-panel >= 1.5
