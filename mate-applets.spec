@@ -1,7 +1,9 @@
 # TODO
-# - build:
-#        - timer-applet
 # - cpufreq applet does not start
+#
+# Conditional build:
+%bcond_with	timerapplet	# Timer applet (has some unresolved/obsolete dependencies?)
+#
 Summary:	Small applications which embed themselves in the MATE panel
 Summary(pl.UTF-8):	Aplety MATE - małe aplikacje osadzające się w panelu
 Summary(ru.UTF-8):	Маленькие программы, встраивающиеся в панель MATE
@@ -42,7 +44,9 @@ BuildRequires:	mate-panel-devel >= 1.5.2
 BuildRequires:	pkgconfig >= 1:0.19
 BuildRequires:	polkit-devel >= 0.92
 BuildRequires:	python-devel >= 1:2.4
-# just for outdated configure checks; invest applet uses pygobject3 + gtk+2 gobject binding
+# just for outdated configure checks:
+# - invest applet uses pygobject3 + gtk+2 gobject binding
+# - timer applet uses pygtk 2, but doesn't depend on any check
 BuildRequires:	python-pygobject-devel >= 2.6
 BuildRequires:	python-pygtk-devel >= 2:2.6
 BuildRequires:	rpm-pythonprov
@@ -77,8 +81,8 @@ z MATE.
 комфортность работы в среде MATE.
 
 %package -n mate-applet-accessx-status
-Summary:	Keyboard Accessibility Status applet
-Summary(pl.UTF-8):	Aplet stanu dostepności klawiatury
+Summary:	Keyboard Accessibility Status applet for MATE Desktop
+Summary(pl.UTF-8):	Aplet stanu dostepności klawiatury dla środowiska MATE
 Group:		X11/Applications
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name} = %{version}-%{release}
@@ -101,8 +105,8 @@ zobaczyć m.in. które klawisze modyfikatorów są aktywne albo które
 przyciski myszy są wciskane z poziomu klawiatury.
 
 %package -n mate-applet-battstat
-Summary:	Battery Charge Monitor applet
-Summary(pl.UTF-8):	Aplet monitora stanu naładowania akumulatora
+Summary:	Battery Charge Monitor applet for MATE Desktop
+Summary(pl.UTF-8):	Aplet monitora stanu naładowania akumulatora dla środowiska MATE
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.26.0
@@ -124,8 +128,8 @@ w postaci graficznej, jak i procentowej, a także podaje przybliżony
 pozostały czas pracy przy założeniu bieżącego użycia prądu.
 
 %package -n mate-applet-charpicker
-Summary:	Character Palette applet
-Summary(pl.UTF-8):	Aplet palety znaków
+Summary:	Character Palette applet for MATE Desktop
+Summary(pl.UTF-8):	Aplet palety znaków dla środowiska MATE
 Group:		X11/Applications
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name} = %{version}-%{release}
@@ -159,8 +163,8 @@ Paleta znaków obsługuje kodowanie znaków UTF-8, więc można jej używać
 do wyświetlania lub kopiowania dowolnych znaków unikodowych.
 
 %package -n mate-applet-cpufreq
-Summary:	CPU Frequency Scaling Monitor applet
-Summary(pl.UTF-8):	Aplet monitora częstotliwości procesora
+Summary:	CPU Frequency Scaling Monitor applet for MATE Desktop
+Summary(pl.UTF-8):	Aplet monitora częstotliwości procesora dla środowiska MATE
 Group:		X11/Applications
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name} = %{version}-%{release}
@@ -180,8 +184,8 @@ Aplet monitora częstotliwości procesora umożliwia wygodne
 monitorowanie częstotliwości dla każdego procesora.
 
 %package -n mate-applet-drivemount
-Summary:	Disk Mounter applet
-Summary(pl.UTF-8):	Aplet do montowania dysków
+Summary:	Disk Mounter applet for MATE Desktop
+Summary(pl.UTF-8):	Aplet do montowania dysków dla środowiska MATE
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.26.0
@@ -197,8 +201,8 @@ Aplet do montowania dysków, pozwalający szybko montować i odmontowywać
 różne rodzaje dysków i systemów plików.
 
 %package -n mate-applet-geyes
-Summary:	Geyes applet - tracking the mouse pointer
-Summary(pl.UTF-8):	Aplet geyes - śledzenie wskaźnika myszy
+Summary:	Geyes applet - tracking the mouse pointer for MATE Desktop
+Summary(pl.UTF-8):	Aplet geyes - śledzenie wskaźnika myszy dla środowiska MATE
 Group:		X11/Applications
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name} = %{version}-%{release}
@@ -218,8 +222,8 @@ ekranie. Aplet jest obrazem jednego lub większej liczby oczu
 podążających za wskaźnikiem myszy.
 
 %package -n mate-applet-gweather
-Summary:	Weather Report applet
-Summary(pl.UTF-8):	Aplet raportu pogodowego
+Summary:	Weather Report applet for MATE Desktop
+Summary(pl.UTF-8):	Aplet raportu pogodowego dla środowiska MATE
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 Requires:	dbus >= 1.1.1
@@ -246,8 +250,8 @@ można używać do wyświetlania aktualnych informacji pogodowych oraz
 prognoz.
 
 %package -n mate-applet-invest
-Summary:	Stock Ticker applet
-Summary(pl.UTF-8):	Aplet wskaźnika giełdowego
+Summary:	Stock Ticker applet for MATE Desktop
+Summary(pl.UTF-8):	Aplet wskaźnika giełdowego dla środowiska MATE
 Group:		X11/Applications
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name} = %{version}-%{release}
@@ -267,8 +271,8 @@ Aplet wskaźnika giełdowego, ściągający aktualne notowania z serwisu
 Yahoo! Finance i wyświetlające je na rozwijanej liście.
 
 %package -n mate-applet-multiload
-Summary:	System Monitor applet
-Summary(pl.UTF-8):	Aplet monitora systemu
+Summary:	System Monitor applet for MATE Desktop
+Summary(pl.UTF-8):	Aplet monitora systemu dla środowiska MATE
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.26.0
@@ -286,8 +290,8 @@ Aplet monitora systemu wyświetla w panelu informacje o obciążeniu
 systemu w postaci graficznej.
 
 %package -n mate-applet-stickynotes
-Summary:	Sticky Notes applet
-Summary(pl.UTF-8):	Aplet notatek
+Summary:	Sticky Notes applet for MATE Desktop
+Summary(pl.UTF-8):	Aplet notatek dla środowiska MATE
 Group:		X11/Applications
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name} = %{version}-%{release}
@@ -314,9 +318,30 @@ wylogowaniu i ponownym zalogowaniu, wszystkie notatki są zapisywane, a
 następnie otwierane ponownie w tym samym miejscu, z tymi samymi
 wymiarami i stylem.
 
+%package -n mate-applet-timer
+Summary:	Timer applet for MATE Desktop
+Summary(pl.UTF-8):	Aplet czasomierza dla środowiska MATE
+Group:		X11/Applications
+Requires:	%{name} = %{version}-%{release}
+Requires:	mate-panel >= 1.5.2
+Requires:	python-dbus
+Requires:	python-gstreamer0.10
+Requires:	python-pygobject-devel >= 2.6
+Requires:	python-pygtk-glade >= 2:2.6
+Requires:	python-pygtk-gtk >= 2:2.6
+# ???
+#Requires:	python-mateapplet
+#Requires:	python-mateconf
+
+%description -n mate-applet-timer
+Timer applet for MATE Desktop.
+
+%description -n mate-applet-timer -l pl.UTF-8
+Aplet czasomierza dla środowiska MATE.
+
 %package -n mate-applet-trash
-Summary:	Trash applet
-Summary(pl.UTF-8):	Aplet śmietnika
+Summary:	Trash applet for MATE Desktop
+Summary(pl.UTF-8):	Aplet śmietnika dla środowiska MATE
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.26.0
@@ -341,7 +366,9 @@ ale jest przydatny o tyle, że panele są zawsze widoczne.
 %patch1 -p1
 %patch2 -p1
 
-%{__sed} -i -e '1s,/usr/bin/env python,/usr/bin/python,' invest-applet/invest/{invest-applet.py,mate-invest-chart}
+%{__sed} -i -e '1s,/usr/bin/env python,/usr/bin/python,' \
+	invest-applet/invest/{invest-applet.py,mate-invest-chart} \
+	timer-applet/src/timer-applet
 
 %build
 mate-doc-prepare --copy --force
@@ -355,7 +382,8 @@ mate-doc-prepare --copy --force
 	--without-hal \
 	--enable-networkmanager \
 	--disable-schemas-compile \
-	--disable-static
+	--disable-static \
+	%{?with_timerapplet:--enable-timer-applet}
 
 %{__make}
 
@@ -368,7 +396,7 @@ rm -rf $RPM_BUILD_ROOT
 # mate < 1.5 did not exist in pld, avoid dependency on mate-conf
 %{__rm} $RPM_BUILD_ROOT%{_datadir}/MateConf/gsettings/stickynotes-applet.convert
 
-%{__rm} $RPM_BUILD_ROOT%{py_sitedir}/mate_invest/*.py
+%py_postclean
 
 # outdated version of es (as of 1.6.1)
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/es_ES
@@ -388,88 +416,18 @@ find_lang_figures() {
 	done >>"$file"
 }
 
-rm -f *.lang
 %find_lang %{name}
-#cat <<EOF >>%{name}.lang
-#%dir %{_datadir}/mate/help/C
-#%dir %{_datadir}/mate/help/C/figures
-#%lang(ar) %dir %{_datadir}/mate/help/ar
-#%lang(ar) %dir %{_datadir}/mate/help/ar/figures
-#%lang(ast) %dir %{_datadir}/mate/help/ast
-#%lang(ast) %dir %{_datadir}/mate/help/ast/figures
-#%lang(bg) %dir %{_datadir}/mate/help/bg
-#%lang(bg) %dir %{_datadir}/mate/help/bg/figures
-#%lang(ca) %dir %{_datadir}/mate/help/ca
-#%lang(ca) %dir %{_datadir}/mate/help/ca/figures
-#%lang(cs) %dir %{_datadir}/mate/help/cs
-#%lang(cs) %dir %{_datadir}/mate/help/cs/figures
-#%lang(da) %dir %{_datadir}/mate/help/da
-#%lang(da) %dir %{_datadir}/mate/help/da/figures
-#%lang(de) %dir %{_datadir}/mate/help/de
-#%lang(de) %dir %{_datadir}/mate/help/de/figures
-#%lang(el) %dir %{_datadir}/mate/help/el
-#%lang(el) %dir %{_datadir}/mate/help/el/figures
-#%lang(en_GB) %dir %{_datadir}/mate/help/en_GB
-#%lang(en_GB) %dir %{_datadir}/mate/help/en_GB/figures
-#%lang(es) %dir %{_datadir}/mate/help/es
-#%lang(es) %dir %{_datadir}/mate/help/es/figures
-#%lang(eu) %dir %{_datadir}/mate/help/eu
-#%lang(eu) %dir %{_datadir}/mate/help/eu/figures
-#%lang(fi) %dir %{_datadir}/mate/help/fi
-#%lang(fi) %dir %{_datadir}/mate/help/fi/figures
-#%lang(fr) %dir %{_datadir}/mate/help/fr
-#%lang(fr) %dir %{_datadir}/mate/help/fr/figures
-#%lang(gl) %dir %{_datadir}/mate/help/gl
-#%lang(gl) %dir %{_datadir}/mate/help/gl/figures
-#%lang(hu) %dir %{_datadir}/mate/help/hu
-#%lang(hu) %dir %{_datadir}/mate/help/hu/figures
-#%lang(it) %dir %{_datadir}/mate/help/it
-#%lang(it) %dir %{_datadir}/mate/help/it/figures
-#%lang(ko) %dir %{_datadir}/mate/help/ko
-#%lang(ko) %dir %{_datadir}/mate/help/ko/figures
-#%lang(nl) %dir %{_datadir}/mate/help/nl
-#%lang(nl) %dir %{_datadir}/mate/help/nl/figures
-#%lang(oc) %dir %{_datadir}/mate/help/oc
-#%lang(oc) %dir %{_datadir}/mate/help/oc/figures
-#%lang(pa) %dir %{_datadir}/mate/help/pa
-#%lang(pa) %dir %{_datadir}/mate/help/pa/figures
-#%lang(pt_BR) %dir %{_datadir}/mate/help/pt_BR
-#%lang(pt_BR) %dir %{_datadir}/mate/help/pt_BR/figures
-#%lang(ru) %dir %{_datadir}/mate/help/ru
-#%lang(ru) %dir %{_datadir}/mate/help/ru/figures
-#%lang(sv) %dir %{_datadir}/mate/help/sv
-#%lang(sv) %dir %{_datadir}/mate/help/sv/figures
-#%lang(uk) %dir %{_datadir}/mate/help/uk
-#%lang(uk) %dir %{_datadir}/mate/help/uk/figures
-#%lang(zh_CN) %dir %{_datadir}/mate/help/zh_CN
-#%lang(zh_CN) %dir %{_datadir}/mate/help/zh_CN/figures
-#%lang(zh_HK) %dir %{_datadir}/mate/help/zh_HK
-#%lang(zh_HK) %dir %{_datadir}/mate/help/zh_HK/figures
-#%lang(zh_TW) %dir %{_datadir}/mate/help/zh_TW
-#%lang(zh_TW) %dir %{_datadir}/mate/help/zh_TW/figures
-#EOF
 %find_lang mate-accessx-status --with-mate --with-omf
-#find_lang_figures accessx-status accessx*.png
 %find_lang mate-battstat --with-mate --with-omf
-#find_lang_figures battstat battstat*.png context-menu.png
 %find_lang mate-char-palette --with-mate --with-omf
-#find_lang_figures char-palette charpalette*.png charpick*.png
 %find_lang mate-cpufreq-applet --with-mate --with-omf
-#find_lang_figures cpufreq cpufreq*.png
 %find_lang mate-drivemount --with-mate --with-omf
-#find_lang_figures drivemount drivemount*.png
 %find_lang mate-geyes --with-mate --with-omf
-#find_lang_figures geyes geyes*.png
 %find_lang mateweather --with-mate --with-omf
-#find_lang_figures gweather mateweather*.png stock_weather-*.png
 %find_lang mate-invest-applet --with-mate --with-omf
-#find_lang_figures invest-applet symbol-search.png
 %find_lang mate-multiload --with-mate --with-omf
-#find_lang_figures multiload multiload*.png system_monitor.png system-monitor-*.png
 %find_lang mate-stickynotes_applet --with-mate --with-omf
-#find_lang_figures stickynotes_applet stickynote*.png
 %find_lang mate-trashapplet --with-mate --with-omf
-#find_lang_figures trashapplet trash-applet.png
 
 %clean
 rm -rf $RPM_BUILD_ROOT
@@ -654,6 +612,20 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mate-panel/ui/stickynotes-applet-menu.xml
 %{_pixmapsdir}/mate-stickynotes
 %{_iconsdir}/hicolor/*/apps/mate-sticky-notes-applet.*
+
+%if %{with timerapplet}
+%files -n mate-applet-timer
+%defattr(644,root,root,755)
+%doc timer-applet/AUTHORS
+%attr(755,root,root) %{_libexecdir}/timer-applet
+%dir %{_libdir}/matecomponent
+%dir %{_libdir}/matecomponent/servers
+%dir %{_libdir}/matecomponent/servers/TimerApplet.server
+%{_datadir}/mate-applets/TimerApplet.xml
+%{_datadir}/mate-applets/timer-applet.glade
+%{py_sitedir}/timerapplet
+%{_pixmapsdir}/timer-applet.png
+%endif
 
 %files -n mate-applet-trash -f mate-trashapplet.lang
 %defattr(644,root,root,755)
