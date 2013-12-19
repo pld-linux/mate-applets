@@ -2,6 +2,7 @@
 # - cpufreq applet does not start
 #
 # Conditional build:
+%bcond_without	mucharmap	# Mucharmap (character map) support in charpicker applet
 %bcond_with	timerapplet	# Timer applet (has some unresolved/obsolete dependencies?)
 #
 Summary:	Small applications which embed themselves in the MATE panel
@@ -36,6 +37,7 @@ BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	libtool >= 1:1.4.3
 BuildRequires:	libwnck2-devel >= 2.9.3
 BuildRequires:	libxml2-devel >= 1:2.5.0
+%{?with_mucharmap:BuildRequires:	mate-character-map-devel >= 1.5.0}
 BuildRequires:	mate-common >= 1.1.0
 BuildRequires:	mate-desktop-devel >= 1.1.0
 BuildRequires:	mate-doc-utils >= 1.1.0
@@ -57,6 +59,7 @@ BuildRequires:	tar >= 1:1.22
 BuildRequires:	upower-devel >= 0.9.4
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xz
+%{!?with_mucharmap:BuildConflicts:	mate-character-map-devel}
 Requires:	gnome-icon-theme >= 2.26.0
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
@@ -136,6 +139,7 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.26.0
 Requires:	gtk+2 >= 2:2.20.0
 Requires:	hicolor-icon-theme
+%{?with_mucharmap:Requires:	mate-character-map >= 1.5.0}
 Requires:	mate-panel >= 1.5.2
 
 %description -n mate-applet-charpicker
