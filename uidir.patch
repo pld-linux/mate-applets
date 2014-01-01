@@ -64,21 +64,18 @@
  ui_DATA = trashapplet-menu.xml
  
  builder_DATA = trashapplet-empty-progress.ui
---- mate-applets-1.5.2/./trashapplet/src/Makefile.am~	2013-03-08 02:20:01.000000000 +0200
-+++ mate-applets-1.5.2/./trashapplet/src/Makefile.am	2013-03-14 20:02:34.934506721 +0200
-@@ -1,8 +1,9 @@
- INCLUDES = -I$(top_srcdir)		\
--	   $(MATE_APPLETS4_CFLAGS)	\
--	   $(GIO_CFLAGS)		\
--           -DTRASH_MENU_UI_DIR=\""$(datadir)/mate-2.0/ui"\"
-+	$(MATE_APPLETS4_CFLAGS)	\
-+	$(GIO_CFLAGS)		\
-+	-DTRASH_MENU_UI_DIR=\""$(uidir)"\"
- 
+--- mate-applets-1.6.2/trashapplet/src/Makefile.am.orig	2014-01-01 10:57:39.783292710 +0100
++++ mate-applets-1.6.2/trashapplet/src/Makefile.am	2014-01-01 10:59:11.219955539 +0100
+@@ -1,7 +1,8 @@
 +uidir = $(datadir)/mate-panel/ui
+ AM_CPPFLAGS = -I$(top_srcdir)		\
+ 	   $(MATE_APPLETS4_CFLAGS)	\
+ 	   $(GIO_CFLAGS)		\
+-           -DTRASH_MENU_UI_DIR=\""$(datadir)/mate-2.0/ui"\"
++           -DTRASH_MENU_UI_DIR=\""$(uidir)"\"
+ 
  libexec_PROGRAMS = trashapplet
  
- trashapplet_SOURCES = \
 --- mate-applets-1.5.2/./cpufreq/Makefile.am~	2013-03-08 02:20:01.000000000 +0200
 +++ mate-applets-1.5.2/./cpufreq/Makefile.am	2013-03-14 20:02:57.252200866 +0200
 @@ -30,7 +30,7 @@
@@ -90,22 +87,19 @@
  ui_DATA = cpufreq-applet-menu.xml
  
  CLEANFILES = \
---- mate-applets-1.5.2/./cpufreq/src/Makefile.am~	2013-03-08 02:20:01.000000000 +0200
-+++ mate-applets-1.5.2/./cpufreq/src/Makefile.am	2013-03-14 20:03:29.287009042 +0200
-@@ -5,11 +5,12 @@
+--- mate-applets-1.6.2/cpufreq/src/Makefile.am.orig	2014-01-01 11:01:50.666615515 +0100
++++ mate-applets-1.6.2/cpufreq/src/Makefile.am	2014-01-01 11:03:13.679945361 +0100
+@@ -4,8 +4,9 @@
+ 
  SUBDIRS = $(selector_SUBDIR)
  
- INCLUDES = \
++uidir = $(datadir)/mate-panel/ui
+ AM_CPPFLAGS = \
 -	-DCPUFREQ_MENU_UI_DIR=\""$(datadir)/mate-2.0/ui"\" 	\
 +	-DCPUFREQ_MENU_UI_DIR=\""$(uidir)"\" 	\
  	$(MATE_APPLETS4_CFLAGS) 				\
  	$(LIBGLADE_CFLAGS)					\
  	$(DBUS_CFLAGS)
- 
-+uidir = $(datadir)/mate-panel/ui
- libexec_PROGRAMS = mate-cpufreq-applet
- 
- if HAVE_LIBCPUFREQ
 --- mate-applets-1.5.2/./mateweather/Makefile.am~	2013-03-08 02:20:01.000000000 +0200
 +++ mate-applets-1.5.2/./mateweather/Makefile.am	2013-03-14 20:03:47.911199809 +0200
 @@ -30,7 +30,7 @@

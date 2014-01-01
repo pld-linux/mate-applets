@@ -1,5 +1,6 @@
 # TODO
 # - cpufreq applet does not start
+# - modemlights applet (currently disabled in configure.ac)
 #
 # Conditional build:
 %bcond_without	mucharmap	# Mucharmap (character map) support in charpicker applet
@@ -10,12 +11,12 @@ Summary(pl.UTF-8):	Aplety MATE - małe aplikacje osadzające się w panelu
 Summary(ru.UTF-8):	Маленькие программы, встраивающиеся в панель MATE
 Summary(uk.UTF-8):	Маленькі програми, що вбудовуються в панель MATE
 Name:		mate-applets
-Version:	1.6.1
-Release:	3
+Version:	1.6.2
+Release:	1
 License:	GPL v2+ (applets), FDL (help)
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.6/%{name}-%{version}.tar.xz
-# Source0-md5:	56c4570510b776d8da858f55b32482ef
+# Source0-md5:	7a83557afd1a71940cb623d92788ecc4
 # check paths in Makefile before removing it!
 Patch0:		m4_fix.patch
 Patch1:		uidir.patch
@@ -25,7 +26,7 @@ BuildRequires:	NetworkManager-devel >= 0.7
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	cpufrequtils-devel >= 0.3
-BuildRequires:	dbus-devel >= 1.1.1
+BuildRequires:	dbus-devel >= 1.1.2
 BuildRequires:	dbus-glib-devel >= 0.74
 BuildRequires:	gettext-devel >= 0.10.40
 BuildRequires:	glib2-devel >= 1:2.26.0
@@ -46,11 +47,7 @@ BuildRequires:	mate-panel-devel >= 1.5.2
 BuildRequires:	pkgconfig >= 1:0.19
 BuildRequires:	polkit-devel >= 0.92
 BuildRequires:	python-devel >= 1:2.4
-# just for outdated configure checks:
-# - invest applet uses pygobject3 + gtk+2 gobject binding
-# - timer applet uses pygtk 2, but doesn't depend on any check
-BuildRequires:	python-pygobject-devel >= 2.6
-BuildRequires:	python-pygtk-devel >= 2:2.6
+BuildRequires:	python-pygobject3-devel >= 3.0
 BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(find_lang) >= 1.36
 BuildRequires:	rpmbuild(macros) >= 1.311
@@ -230,7 +227,7 @@ Summary:	Weather Report applet for MATE Desktop
 Summary(pl.UTF-8):	Aplet raportu pogodowego dla środowiska MATE
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
-Requires:	dbus >= 1.1.1
+Requires:	dbus >= 1.1.2
 Requires:	dbus-glib >= 0.74
 Requires:	dbus(org.freedesktop.Notifications)
 Requires:	glib2 >= 1:2.26.0
@@ -264,7 +261,7 @@ Requires:	gtk+2 >= 2:2.20.0
 Requires:	hicolor-icon-theme
 Requires:	mate-panel >= 1.5.2
 Requires:	python-dbus
-Requires:	python-pygobject3 >= 3
+Requires:	python-pygobject3 >= 3.0
 
 %description -n mate-applet-invest
 The Invest MATE panel applet downloads current stock quotes from
@@ -330,12 +327,14 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	mate-panel >= 1.5.2
 Requires:	python-dbus
 Requires:	python-gstreamer0.10
-Requires:	python-pygobject-devel >= 2.6
-Requires:	python-pygtk-glade >= 2:2.6
-Requires:	python-pygtk-gtk >= 2:2.6
+Requires:	python-pygobject-devel >= 2.12
+Requires:	python-pygtk-glade >= 2:2.10
+Requires:	python-pygtk-gtk >= 2:2.10
+Requires:	python-pynotify >= 0.1.1
 # ???
-#Requires:	python-mateapplet
-#Requires:	python-mateconf
+#Requires:	python-mate >= 2.18
+#Requires:	python-mateapplet >= 2.18
+#Requires:	python-mateconf >= 2.18
 
 %description -n mate-applet-timer
 Timer applet for MATE Desktop.
