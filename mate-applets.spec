@@ -404,21 +404,6 @@ rm -rf $RPM_BUILD_ROOT
 # outdated version of es (as of 1.6.1)
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/es_ES
 
-find_lang_figures() {
-	file="$(pwd)/${1}.lang"
-	shift
-	for glob in $* ; do
-		for f in $(echo $RPM_BUILD_ROOT%{_datadir}/mate/help/*/figures/$glob) ; do
-			l="$(echo "$f" | sed -e 's,.*%{_datadir}/mate/help/\([^/]\+\)/figures/.*,\1,')"
-			if [ "$l" = "C" ]; then
-				echo "${f#$RPM_BUILD_ROOT}"
-			else
-				echo "%lang($l) ${f#$RPM_BUILD_ROOT}"
-			fi
-		done
-	done >>"$file"
-}
-
 %find_lang %{name}
 %find_lang mate-accessx-status --with-mate --with-omf
 %find_lang mate-battstat --with-mate --with-omf
