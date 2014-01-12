@@ -4,7 +4,7 @@
 #
 # Conditional build:
 %bcond_without	mucharmap	# Mucharmap (character map) support in charpicker applet
-%bcond_with	timerapplet	# Timer applet (has some unresolved/obsolete dependencies?)
+%bcond_with	timerapplet	# Timer applet (requires Python binding from MATE <= 1.4)
 #
 Summary:	Small applications which embed themselves in the MATE panel
 Summary(pl.UTF-8):	Aplety MATE - małe aplikacje osadzające się w panelu
@@ -327,14 +327,14 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	mate-panel >= 1.5.2
 Requires:	python-dbus
 Requires:	python-gstreamer0.10
+Requires:	python-mate >= 1.1.0
+Requires:	python-mate-conf >= 1.1.0
 Requires:	python-pygobject-devel >= 2.12
 Requires:	python-pygtk-glade >= 2:2.10
 Requires:	python-pygtk-gtk >= 2:2.10
 Requires:	python-pynotify >= 0.1.1
 # ???
-#Requires:	python-mate >= 2.18
 #Requires:	python-mateapplet >= 2.18
-#Requires:	python-mateconf >= 2.18
 
 %description -n mate-applet-timer
 Timer applet for MATE Desktop.
