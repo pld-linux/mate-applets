@@ -5,14 +5,14 @@
 # Conditional build:
 %bcond_without	mucharmap	# Mucharmap (character map) support in charpicker applet
 %bcond_with	timerapplet	# Timer applet (requires Python binding from MATE <= 1.4)
-#
+
 Summary:	Small applications which embed themselves in the MATE panel
 Summary(pl.UTF-8):	Aplety MATE - małe aplikacje osadzające się w panelu
 Summary(ru.UTF-8):	Маленькие программы, встраивающиеся в панель MATE
 Summary(uk.UTF-8):	Маленькі програми, що вбудовуються в панель MATE
 Name:		mate-applets
 Version:	1.6.2
-Release:	1
+Release:	2
 License:	GPL v2+ (applets), FDL (help)
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.6/%{name}-%{version}.tar.xz
@@ -57,7 +57,7 @@ BuildRequires:	upower-devel >= 0.9.4
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xz
 %{!?with_mucharmap:BuildConflicts:	mate-character-map-devel}
-Requires:	gnome-icon-theme >= 2.26.0
+Requires:	mate-icon-theme
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -228,8 +228,8 @@ Summary(pl.UTF-8):	Aplet raportu pogodowego dla środowiska MATE
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 Requires:	dbus >= 1.1.2
-Requires:	dbus-glib >= 0.74
 Requires:	dbus(org.freedesktop.Notifications)
+Requires:	dbus-glib >= 0.74
 Requires:	glib2 >= 1:2.26.0
 Requires:	gtk+2 >= 2:2.20.0
 Requires:	libmateweather >= 1.6.1
