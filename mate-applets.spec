@@ -1,26 +1,23 @@
 # TODO
 # - cpufreq applet does not start
-# - modemlights applet (currently disabled in configure.ac)
 #
 # Conditional build:
-%bcond_without	mucharmap	# Mucharmap (character map) support in charpicker applet
-%bcond_with	timerapplet	# Timer applet (requires Python binding from MATE <= 1.4)
+%bcond_without	gucharmap	# Gucharmap (character map) support in charpicker applet
 
 Summary:	Small applications which embed themselves in the MATE panel
 Summary(pl.UTF-8):	Aplety MATE - małe aplikacje osadzające się w panelu
 Summary(ru.UTF-8):	Маленькие программы, встраивающиеся в панель MATE
 Summary(uk.UTF-8):	Маленькі програми, що вбудовуються в панель MATE
 Name:		mate-applets
-Version:	1.6.2
-Release:	2
+Version:	1.8.0
+Release:	1
 License:	GPL v2+ (applets), FDL (help)
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.6/%{name}-%{version}.tar.xz
-# Source0-md5:	7a83557afd1a71940cb623d92788ecc4
+Source0:	http://pub.mate-desktop.org/releases/1.8/%{name}-%{version}.tar.xz
+# Source0-md5:	ae144e7ef848eb31d814bda1ccafa17a
 # check paths in Makefile before removing it!
 Patch0:		m4_fix.patch
 Patch1:		uidir.patch
-Patch2:		use-libwnck.patch
 URL:		https://github.com/mate-desktop/mate-applets
 BuildRequires:	NetworkManager-devel >= 0.7
 BuildRequires:	autoconf >= 2.59
@@ -31,6 +28,7 @@ BuildRequires:	dbus-glib-devel >= 0.74
 BuildRequires:	gettext-devel >= 0.10.40
 BuildRequires:	glib2-devel >= 1:2.26.0
 BuildRequires:	gtk+2-devel >= 2:2.20.0
+BuildRequires:	gtksourceview2-devel
 BuildRequires:	intltool >= 0.40.0
 BuildRequires:	libgtop-devel >= 1:2.11.92
 BuildRequires:	libmateweather-devel >= 1.6.1
@@ -38,10 +36,9 @@ BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	libtool >= 1:1.4.3
 BuildRequires:	libwnck2-devel >= 2.9.3
 BuildRequires:	libxml2-devel >= 1:2.5.0
-%{?with_mucharmap:BuildRequires:	mate-character-map-devel >= 1.5.0}
+%{?with_gucharmap:BuildRequires:	gucharmap2-devel >= 2.32.1}
 BuildRequires:	mate-common >= 1.1.0
 BuildRequires:	mate-desktop-devel >= 1.1.0
-BuildRequires:	mate-doc-utils >= 1.1.0
 BuildRequires:	mate-icon-theme-devel >= 1.1.0
 BuildRequires:	mate-panel-devel >= 1.5.2
 BuildRequires:	pkgconfig >= 1:0.19
@@ -56,7 +53,7 @@ BuildRequires:	tar >= 1:1.22
 BuildRequires:	upower-devel >= 0.9.4
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xz
-%{!?with_mucharmap:BuildConflicts:	mate-character-map-devel}
+BuildRequires:	yelp-tools
 Requires:	mate-icon-theme
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
@@ -136,7 +133,6 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.26.0
 Requires:	gtk+2 >= 2:2.20.0
 Requires:	hicolor-icon-theme
-%{?with_mucharmap:Requires:	mate-character-map >= 1.5.0}
 Requires:	mate-panel >= 1.5.2
 
 %description -n mate-applet-charpicker
@@ -162,6 +158,18 @@ apletu można dostosowywać do własnych wymagań.
 
 Paleta znaków obsługuje kodowanie znaków UTF-8, więc można jej używać
 do wyświetlania lub kopiowania dowolnych znaków unikodowych.
+
+%package -n mate-applet-command
+Summary:	Command applet for MATE Desktop
+Group:		X11/Applications
+Requires:	%{name} = %{version}-%{release}
+Requires:	glib2 >= 1:2.26.0
+Requires:	gtk+2 >= 2:2.20.0
+Requires:	hicolor-icon-theme
+Requires:	mate-panel >= 1.5.2
+
+%description -n mate-applet-command
+Command applet for MATE Desktop.
 
 %package -n mate-applet-cpufreq
 Summary:	CPU Frequency Scaling Monitor applet for MATE Desktop
@@ -367,14 +375,11 @@ ale jest przydatny o tyle, że panele są zawsze widoczne.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-%patch2 -p1
 
 %{__sed} -i -e '1s,/usr/bin/env python,/usr/bin/python,' \
-	invest-applet/invest/{invest-applet.py,mate-invest-chart} \
-	timer-applet/src/timer-applet
+	invest-applet/invest/{chart.py,invest-applet.py,mate-invest-chart}
 
 %build
-mate-doc-prepare --copy --force
 %{__intltoolize}
 %{__libtoolize}
 %{__aclocal} -I m4
@@ -386,7 +391,7 @@ mate-doc-prepare --copy --force
 	--enable-networkmanager \
 	--disable-schemas-compile \
 	--disable-static \
-	%{?with_timerapplet:--enable-timer-applet}
+	--enable-timer-applet
 
 %{__make}
 
@@ -398,6 +403,7 @@ rm -rf $RPM_BUILD_ROOT
 
 # mate < 1.5 did not exist in pld, avoid dependency on mate-conf
 %{__rm} $RPM_BUILD_ROOT%{_datadir}/MateConf/gsettings/stickynotes-applet.convert
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/cmn
 
 %py_postclean
 
@@ -441,6 +447,12 @@ rm -rf $RPM_BUILD_ROOT
 
 %postun -n mate-applet-charpicker
 %update_icon_cache hicolor
+
+%post -n mate-applet-command
+%glib_compile_schemas
+
+%preun -n mate-applet-command
+%glib_compile_schemas
 
 %post -n mate-applet-cpufreq
 %glib_compile_schemas
@@ -490,6 +502,12 @@ rm -rf $RPM_BUILD_ROOT
 %postun -n mate-applet-stickynotes
 %update_icon_cache hicolor
 
+%post -n mate-applet-timer
+%glib_compile_schemas
+
+%preun -n mate-applet-timer
+%glib_compile_schemas
+
 %files -f %{name}.lang
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
@@ -525,6 +543,13 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/glib-2.0/schemas/org.mate.panel.applet.charpick.gschema.xml
 %{_datadir}/mate-panel/applets/org.mate.applets.CharpickerApplet.mate-panel-applet
 %{_datadir}/mate-panel/ui/charpick-applet-menu.xml
+
+%files -n mate-applet-command
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libexecdir}/command-applet
+%{_datadir}/dbus-1/services/org.mate.panel.applet.CommandAppletFactory.service
+%{_datadir}/glib-2.0/schemas/org.mate.panel.applet.command.gschema.xml
+%{_datadir}/mate-panel/applets/org.mate.applets.CommandApplet.mate-panel-applet
 
 %files -n mate-applet-cpufreq -f mate-cpufreq-applet.lang
 %defattr(644,root,root,755)
@@ -601,19 +626,12 @@ rm -rf $RPM_BUILD_ROOT
 %{_pixmapsdir}/mate-stickynotes
 %{_iconsdir}/hicolor/*/apps/mate-sticky-notes-applet.*
 
-%if %{with timerapplet}
 %files -n mate-applet-timer
 %defattr(644,root,root,755)
-%doc timer-applet/AUTHORS
 %attr(755,root,root) %{_libexecdir}/timer-applet
-%dir %{_libdir}/matecomponent
-%dir %{_libdir}/matecomponent/servers
-%dir %{_libdir}/matecomponent/servers/TimerApplet.server
-%{_datadir}/mate-applets/TimerApplet.xml
-%{_datadir}/mate-applets/timer-applet.glade
-%{py_sitedir}/timerapplet
-%{_pixmapsdir}/timer-applet.png
-%endif
+%{_datadir}/dbus-1/services/org.mate.panel.applet.TimerAppletFactory.service
+%{_datadir}/glib-2.0/schemas/org.mate.panel.applet.timer.gschema.xml
+%{_datadir}/mate-panel/applets/org.mate.applets.TimerApplet.mate-panel-applet
 
 %files -n mate-applet-trash -f mate-trashapplet.lang
 %defattr(644,root,root,755)

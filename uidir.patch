@@ -1,14 +1,3 @@
---- mate-applets-1.5.2/./modemlights/Makefile.am~	2013-03-08 02:20:01.000000000 +0200
-+++ mate-applets-1.5.2/./modemlights/Makefile.am	2013-03-14 19:59:47.806812372 +0200
-@@ -14,7 +14,7 @@
- 	$(MATE_APPLETS4_LIBS)	\
- 	$(MODEMLIGHTS_LIBS)
- 
--uidir	= $(datadir)/mate-2.0/ui
-+uidir	= $(datadir)/mate-panel/ui
- ui_DATA	= modem-applet-menu.xml
- 
- 
 --- mate-applets-1.5.2/./battstat/Makefile.am~	2013-03-08 02:20:01.000000000 +0200
 +++ mate-applets-1.5.2/./battstat/Makefile.am	2013-03-14 20:00:10.041169347 +0200
 @@ -91,7 +91,7 @@
