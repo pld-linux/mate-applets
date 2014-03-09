@@ -333,16 +333,6 @@ Summary(pl.UTF-8):	Aplet czasomierza dla środowiska MATE
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 Requires:	mate-panel >= 1.5.2
-Requires:	python-dbus
-Requires:	python-gstreamer0.10
-Requires:	python-mate >= 1.1.0
-Requires:	python-mate-conf >= 1.1.0
-Requires:	python-pygobject-devel >= 2.12
-Requires:	python-pygtk-glade >= 2:2.10
-Requires:	python-pygtk-gtk >= 2:2.10
-Requires:	python-pynotify >= 0.1.1
-# ???
-#Requires:	python-mateapplet >= 2.18
 
 %description -n mate-applet-timer
 Timer applet for MATE Desktop.
@@ -403,6 +393,7 @@ rm -rf $RPM_BUILD_ROOT
 
 # mate < 1.5 did not exist in pld, avoid dependency on mate-conf
 %{__rm} $RPM_BUILD_ROOT%{_datadir}/MateConf/gsettings/stickynotes-applet.convert
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/help/ast
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/cmn
 
 %py_postclean
