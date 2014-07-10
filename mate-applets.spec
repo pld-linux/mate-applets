@@ -174,6 +174,7 @@ do wyświetlania lub kopiowania dowolnych znaków unikodowych.
 
 %package -n mate-applet-command
 Summary:	Command applet for MATE Desktop
+Summary(pl.UTF-8):	Aplet uruchamiania poleceń dla środowiska MATE
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.26.0
@@ -184,6 +185,9 @@ Requires:	mate-panel >= 1.7.0
 
 %description -n mate-applet-command
 Command applet for MATE Desktop.
+
+%description -n mate-applet-command -l pl.UTF-8
+Aplet uruchamiania poleceń dla środowiska MATE.
 
 %package -n mate-applet-cpufreq
 Summary:	CPU Frequency Scaling Monitor applet for MATE Desktop
