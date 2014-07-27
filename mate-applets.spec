@@ -11,7 +11,7 @@ Summary(ru.UTF-8):	Маленькие программы, встраивающи
 Summary(uk.UTF-8):	Маленькі програми, що вбудовуються в панель MATE
 Name:		mate-applets
 Version:	1.8.0
-Release:	2
+Release:	3
 License:	GPL v2+ (applets), FDL (help)
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.8/%{name}-%{version}.tar.xz
@@ -21,7 +21,9 @@ Patch0:		m4_fix.patch
 Patch1:		uidir.patch
 URL:		https://github.com/mate-desktop/mate-applets
 BuildRequires:	NetworkManager-devel >= 0.7
+%ifarch %{ix86} arm mips ppc sh
 BuildRequires:	apmd-devel
+%endif
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	cpufrequtils-devel >= 0.3
