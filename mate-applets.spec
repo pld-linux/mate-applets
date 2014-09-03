@@ -11,7 +11,7 @@ Summary(ru.UTF-8):	Маленькие программы, встраивающи
 Summary(uk.UTF-8):	Маленькі програми, що вбудовуються в панель MATE
 Name:		mate-applets
 Version:	1.8.0
-Release:	3
+Release:	4
 License:	GPL v2+ (applets), FDL (help)
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.8/%{name}-%{version}.tar.xz
