@@ -10,12 +10,12 @@ Summary(pl.UTF-8):	Aplety MATE - małe aplikacje osadzające się w panelu
 Summary(ru.UTF-8):	Маленькие программы, встраивающиеся в панель MATE
 Summary(uk.UTF-8):	Маленькі програми, що вбудовуються в панель MATE
 Name:		mate-applets
-Version:	1.8.1
-Release:	3
+Version:	1.10.0
+Release:	1
 License:	GPL v2+ (applets), FDL (help)
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.8/%{name}-%{version}.tar.xz
-# Source0-md5:	01979ea5f4d453ed0a91d3edc1de0eb0
+Source0:	http://pub.mate-desktop.org/releases/1.10/%{name}-%{version}.tar.xz
+# Source0-md5:	bd0f0cae0ee6215d16fa63df688f3b43
 # check paths in Makefile before removing it!
 Patch0:		m4_fix.patch
 Patch1:		uidir.patch
@@ -544,7 +544,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n mate-applet-battstat -f mate-battstat.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libexecdir}/battstat-applet-2
+%attr(755,root,root) %{_libexecdir}/battstat-applet
 %{_datadir}/%{name}/builder/battstat_applet.ui
 %{_datadir}/dbus-1/services/org.mate.panel.applet.BattstatAppletFactory.service
 %{_datadir}/mate-panel/applets/org.mate.applets.BattstatApplet.mate-panel-applet
@@ -557,7 +557,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n mate-applet-charpicker -f mate-char-palette.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libexecdir}/charpick_applet2
+%attr(755,root,root) %{_libexecdir}/mate-charpick-applet
 %{_datadir}/dbus-1/services/org.mate.panel.applet.CharpickerAppletFactory.service
 %{_datadir}/glib-2.0/schemas/org.mate.panel.applet.charpick.gschema.xml
 %{_datadir}/mate-panel/applets/org.mate.applets.CharpickerApplet.mate-panel-applet
@@ -590,14 +590,14 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n mate-applet-drivemount -f mate-drivemount.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libexecdir}/drivemount_applet2
+%attr(755,root,root) %{_libexecdir}/mate-drivemount-applet
 %{_datadir}/dbus-1/services/org.mate.panel.applet.DriveMountAppletFactory.service
 %{_datadir}/mate-panel/applets/org.mate.applets.DriveMountApplet.mate-panel-applet
 %{_datadir}/mate-panel/ui/drivemount-applet-menu.xml
 
 %files -n mate-applet-geyes -f mate-geyes.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libexecdir}/geyes_applet2
+%attr(755,root,root) %{_libexecdir}/mate-geyes-applet
 %{_datadir}/%{name}/geyes
 %{_datadir}/dbus-1/services/org.mate.panel.applet.GeyesAppletFactory.service
 %{_datadir}/glib-2.0/schemas/org.mate.panel.applet.geyes.gschema.xml
@@ -607,7 +607,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n mate-applet-gweather -f mateweather.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libexecdir}/mateweather-applet-2
+%attr(755,root,root) %{_libexecdir}/mateweather-applet
 %{_datadir}/dbus-1/services/org.mate.panel.applet.MateWeatherAppletFactory.service
 %{_datadir}/mate-panel/applets/org.mate.applets.MateWeatherApplet.mate-panel-applet
 %{_datadir}/mate-panel/ui/mateweather-applet-menu.xml
@@ -628,7 +628,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n mate-applet-multiload -f mate-multiload.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libexecdir}/multiload-applet-2
+%attr(755,root,root) %{_libexecdir}/mate-multiload-applet
 %{_datadir}/dbus-1/services/org.mate.panel.applet.MultiLoadAppletFactory.service
 %{_datadir}/glib-2.0/schemas/org.mate.panel.applet.multiload.gschema.xml
 %{_datadir}/mate-panel/ui/multiload-applet-menu.xml
