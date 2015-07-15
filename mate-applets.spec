@@ -10,12 +10,12 @@ Summary(pl.UTF-8):	Aplety MATE - małe aplikacje osadzające się w panelu
 Summary(ru.UTF-8):	Маленькие программы, встраивающиеся в панель MATE
 Summary(uk.UTF-8):	Маленькі програми, що вбудовуються в панель MATE
 Name:		mate-applets
-Version:	1.10.1
+Version:	1.10.2
 Release:	1
 License:	GPL v2+ (applets), FDL (help)
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.10/%{name}-%{version}.tar.xz
-# Source0-md5:	c99d45c03966a2b58b152ab2988b9eb3
+# Source0-md5:	bafafb058082b4bb9f4d13bbe86dc5e2
 # check paths in Makefile before removing it!
 Patch0:		m4_fix.patch
 Patch1:		uidir.patch
@@ -561,6 +561,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/glib-2.0/schemas/org.mate.panel.applet.charpick.gschema.xml
 %{_datadir}/mate-panel/applets/org.mate.applets.CharpickerApplet.mate-panel-applet
 %{_datadir}/mate-panel/ui/charpick-applet-menu.xml
+%{_mandir}/man1/mate-charpick-applet.1*
 
 %files -n mate-applet-command
 %defattr(644,root,root,755)
@@ -586,6 +587,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_pixmapsdir}/mate-cpufreq-applet
 %{_iconsdir}/hicolor/*/apps/mate-cpu-frequency-applet.png
 %{_iconsdir}/hicolor/*/apps/mate-cpu-frequency-applet.svg
+%{_mandir}/man1/mate-cpufreq-selector.1*
 
 %files -n mate-applet-drivemount -f mate-drivemount.lang
 %defattr(644,root,root,755)
@@ -593,6 +595,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/dbus-1/services/org.mate.panel.applet.DriveMountAppletFactory.service
 %{_datadir}/mate-panel/applets/org.mate.applets.DriveMountApplet.mate-panel-applet
 %{_datadir}/mate-panel/ui/drivemount-applet-menu.xml
+%{_mandir}/man1/mate-drivemount-applet.1*
 
 %files -n mate-applet-geyes -f mate-geyes.lang
 %defattr(644,root,root,755)
@@ -603,6 +606,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mate-panel/applets/org.mate.applets.GeyesApplet.mate-panel-applet
 %{_datadir}/mate-panel/ui/geyes-applet-menu.xml
 %{_iconsdir}/hicolor/*/apps/mate-eyes-applet.*
+%{_mandir}/man1/mate-geyes-applet.1*
 
 %files -n mate-applet-gweather -f mateweather.lang
 %defattr(644,root,root,755)
@@ -610,6 +614,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/dbus-1/services/org.mate.panel.applet.MateWeatherAppletFactory.service
 %{_datadir}/mate-panel/applets/org.mate.applets.MateWeatherApplet.mate-panel-applet
 %{_datadir}/mate-panel/ui/mateweather-applet-menu.xml
+%{_mandir}/man1/mateweather.1*
 
 %files -n mate-applet-invest -f mate-invest-applet.lang
 %defattr(644,root,root,755)
@@ -624,6 +629,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_iconsdir}/hicolor/*/apps/mate-invest-applet.*
 %dir %{py_sitedir}/mate_invest
 %{py_sitedir}/mate_invest/*.py[co]
+%{_mandir}/man1/mate-invest-chart.1*
 
 %files -n mate-applet-multiload -f mate-multiload.lang
 %defattr(644,root,root,755)
@@ -632,6 +638,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/glib-2.0/schemas/org.mate.panel.applet.multiload.gschema.xml
 %{_datadir}/mate-panel/ui/multiload-applet-menu.xml
 %{_datadir}/mate-panel/applets/org.mate.applets.MultiLoadApplet.mate-panel-applet
+%{_mandir}/man1/mate-multiload-applet.1*
 
 %files -n mate-applet-stickynotes -f mate-stickynotes_applet.lang
 %defattr(644,root,root,755)
