@@ -10,12 +10,12 @@ Summary(pl.UTF-8):	Aplety MATE - małe aplikacje osadzające się w panelu
 Summary(ru.UTF-8):	Маленькие программы, встраивающиеся в панель MATE
 Summary(uk.UTF-8):	Маленькі програми, що вбудовуються в панель MATE
 Name:		mate-applets
-Version:	1.10.2
+Version:	1.10.3
 Release:	1
 License:	GPL v2+ (applets), FDL (help)
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.10/%{name}-%{version}.tar.xz
-# Source0-md5:	bafafb058082b4bb9f4d13bbe86dc5e2
+# Source0-md5:	4f82b95221c98622e75b8a6b00d0d90d
 # check paths in Makefile before removing it!
 Patch0:		m4_fix.patch
 Patch1:		uidir.patch
@@ -438,7 +438,7 @@ rm -rf $RPM_BUILD_ROOT
 %find_lang mateweather --with-mate
 %find_lang mate-invest-applet --with-mate
 %find_lang mate-multiload --with-mate
-%find_lang mate-stickynotes_applet --with-mate
+%find_lang mate-stickynotes-applet --with-mate
 %find_lang mate-trashapplet --with-mate
 
 %clean
@@ -640,7 +640,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mate-panel/applets/org.mate.applets.MultiLoadApplet.mate-panel-applet
 %{_mandir}/man1/mate-multiload-applet.1*
 
-%files -n mate-applet-stickynotes -f mate-stickynotes_applet.lang
+%files -n mate-applet-stickynotes -f mate-stickynotes-applet.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libexecdir}/stickynotes_applet
 %{_datadir}/%{name}/builder/stickynotes.ui
