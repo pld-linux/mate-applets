@@ -50,7 +50,6 @@ BuildRequires:	libxml2-devel >= 1:2.5.0
 %endif
 BuildRequires:	mate-common >= 1.1.0
 BuildRequires:	mate-desktop-devel >= 1.9.0
-BuildRequires:	mate-icon-theme-devel >= 1.1.0
 BuildRequires:	mate-panel-devel >= 1.7.0
 BuildRequires:	mate-settings-daemon-devel
 BuildRequires:	pkgconfig >= 1:0.19
@@ -66,7 +65,6 @@ BuildRequires:	upower-devel >= 0.9.4
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xz
 BuildRequires:	yelp-tools
-Requires:	mate-icon-theme >= 1.1.0
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
