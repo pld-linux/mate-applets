@@ -10,12 +10,12 @@ Summary(pl.UTF-8):	Aplety MATE - małe aplikacje osadzające się w panelu
 Summary(ru.UTF-8):	Маленькие программы, встраивающиеся в панель MATE
 Summary(uk.UTF-8):	Маленькі програми, що вбудовуються в панель MATE
 Name:		mate-applets
-Version:	1.10.3
+Version:	1.12.0
 Release:	1
 License:	GPL v2+ (applets), FDL (help)
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.10/%{name}-%{version}.tar.xz
-# Source0-md5:	4f82b95221c98622e75b8a6b00d0d90d
+Source0:	http://pub.mate-desktop.org/releases/1.12/%{name}-%{version}.tar.xz
+# Source0-md5:	06d50537059b3fe12e2fce9a68d12995
 # check paths in Makefile before removing it!
 Patch0:		m4_fix.patch
 Patch1:		uidir.patch
@@ -27,6 +27,7 @@ BuildRequires:	apmd-devel
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.9
 BuildRequires:	cpufrequtils-devel >= 0.3
+BuildRequires:	cpupowerutils-devel
 BuildRequires:	dbus-devel >= 1.1.2
 BuildRequires:	dbus-glib-devel >= 0.74
 BuildRequires:	gettext-tools >= 0.10.40
@@ -35,7 +36,7 @@ BuildRequires:	glib2-devel >= 1:2.26.0
 %{?with_gtk3:BuildRequires:	gtk+3-devel >= 3.0.0}
 %{!?with_gtk3:BuildRequires:	gtksourceview2-devel >= 2.0}
 %{?with_gtk3:BuildRequires:	gtksourceview3-devel >= 3.0}
-BuildRequires:	intltool >= 0.40.0
+BuildRequires:	intltool >= 0.50.1
 BuildRequires:	libgtop-devel >= 1:2.11.92
 BuildRequires:	libmateweather-devel >= 1.6.1
 BuildRequires:	libnotify-devel >= 0.7.0
@@ -48,7 +49,7 @@ BuildRequires:	libxml2-devel >= 1:2.5.0
 %{!?with_gtk3:BuildRequires:	gucharmap2-devel >= 2.32.1}
 %endif
 BuildRequires:	mate-common >= 1.1.0
-BuildRequires:	mate-desktop-devel >= 1.7.3
+BuildRequires:	mate-desktop-devel >= 1.9.0
 BuildRequires:	mate-icon-theme-devel >= 1.1.0
 BuildRequires:	mate-panel-devel >= 1.7.0
 BuildRequires:	mate-settings-daemon-devel
@@ -539,7 +540,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mate-panel/applets/org.mate.applets.AccessxStatusApplet.mate-panel-applet
 %{_datadir}/mate-panel/ui/accessx-status-applet-menu.xml
 %{_pixmapsdir}/mate-accessx-status-applet
-%{_iconsdir}/mate/*/apps/ax-applet.png
+%{_iconsdir}/hicolor/*/apps/mate-ax-applet.png
 
 %files -n mate-applet-battstat -f mate-battstat.lang
 %defattr(644,root,root,755)
