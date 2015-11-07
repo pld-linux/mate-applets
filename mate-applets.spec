@@ -26,7 +26,6 @@ BuildRequires:	apmd-devel
 %endif
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.9
-BuildRequires:	cpufrequtils-devel >= 0.3
 BuildRequires:	cpupowerutils-devel
 BuildRequires:	dbus-devel >= 1.1.2
 BuildRequires:	dbus-glib-devel >= 0.74
@@ -42,7 +41,7 @@ BuildRequires:	libmateweather-devel >= 1.6.1
 BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	libtool >= 1:1.4.3
 %{?with_gtk3:BuildRequires:	libwnck-devel >= 3.0.0}
-%{!?with_gtk3:BuildRequires:	libwnck2-devel >= 2.9.3}
+%{!?with_gtk3:BuildRequires:	libwnck2-devel >= 2.30.0}
 BuildRequires:	libxml2-devel >= 1:2.5.0
 %if %{with gucharmap}
 %{?with_gtk3:BuildRequires:	gucharmap-devel >= 3.0.0}
@@ -145,6 +144,10 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.26.0
 %{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
 %{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
+%if %{with gucharmap}
+%{?with_gtk3:Requires:	gucharmap-libs >= 3.0.0}
+%{!?with_gtk3:Requires:	gucharmap2-libs >= 2.32.1}
+%endif
 Requires:	hicolor-icon-theme
 Requires:	mate-panel >= 1.7.0
 
@@ -195,7 +198,6 @@ Summary(pl.UTF-8):	Aplet monitora częstotliwości procesora dla środowiska MAT
 Group:		X11/Applications
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name} = %{version}-%{release}
-Requires:	cpufrequtils-libs >= 0.3
 %{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
 %{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
 Requires:	hicolor-icon-theme
@@ -333,7 +335,7 @@ Requires:	glib2 >= 1:2.26.0
 %{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
 Requires:	hicolor-icon-theme
 %{?with_gtk3:Requires:	libwnck >= 3.0.0}
-%{!?with_gtk3:Requires:	libwnck2 >= 2.9.3}
+%{!?with_gtk3:Requires:	libwnck2 >= 2.30.0}
 Requires:	libxml2 >= 1:2.5.0
 Requires:	mate-panel >= 1.7.0
 
