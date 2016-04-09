@@ -10,12 +10,12 @@ Summary(pl.UTF-8):	Aplety MATE - małe aplikacje osadzające się w panelu
 Summary(ru.UTF-8):	Маленькие программы, встраивающиеся в панель MATE
 Summary(uk.UTF-8):	Маленькі програми, що вбудовуються в панель MATE
 Name:		mate-applets
-Version:	1.12.1
+Version:	1.14.0
 Release:	1
 License:	GPL v2+ (applets), FDL (help)
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.12/%{name}-%{version}.tar.xz
-# Source0-md5:	7959bb6770cda3e943bb24db4c7a4211
+Source0:	http://pub.mate-desktop.org/releases/1.14/%{name}-%{version}.tar.xz
+# Source0-md5:	4d90544d9315936b5515c8bc63b4223a
 # check paths in Makefile before removing it!
 Patch0:		m4_fix.patch
 Patch1:		uidir.patch
@@ -30,7 +30,7 @@ BuildRequires:	cpupowerutils-devel
 BuildRequires:	dbus-devel >= 1.1.2
 BuildRequires:	dbus-glib-devel >= 0.74
 BuildRequires:	gettext-tools >= 0.10.40
-BuildRequires:	glib2-devel >= 1:2.26.0
+BuildRequires:	glib2-devel >= 1:2.36.0
 %{!?with_gtk3:BuildRequires:	gtk+2-devel >= 2:2.24.0}
 %{?with_gtk3:BuildRequires:	gtk+3-devel >= 3.0.0}
 %{!?with_gtk3:BuildRequires:	gtksourceview2-devel >= 2.0}
@@ -324,6 +324,30 @@ format in a panel.
 Aplet monitora systemu wyświetla w panelu informacje o obciążeniu
 systemu w postaci graficznej.
 
+%package -n mate-applet-netspeed
+Summary:	MATE netspeed applet
+Summary(pl.UTF-8):	Aplet netspeed dla środowiska MATE
+Group:		X11/Applications
+Requires(post,postun):	gtk-update-icon-cache
+Requires:	%{name} = %{version}-%{release}
+Requires:	glib2 >= 1:2.26.0
+%{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
+%{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
+Requires:	hicolor-icon-theme
+%{?with_gtk3:Requires:	libwnck >= 3.0.0}
+%{!?with_gtk3:Requires:	libwnck2 >= 2.30.0}
+Requires:	libxml2 >= 1:2.5.0
+Requires:	mate-panel >= 1.7.0
+
+%description -n mate-applet-netspeed
+MATE netspeed is an applet that shows how much traffic occurs on a
+specified network device. It's a fork of GNOME netspeed applet.
+
+%description -n mate-applet-netspeed -l pl.UTF-8
+MATE netspeed to aplet pokazujący, jak duży ruch występuje na
+określonym urządzeniu sieciowym. Jest to odgałęzienie apletu GNOME
+netspeed
+
 %package -n mate-applet-stickynotes
 Summary:	Sticky Notes applet for MATE Desktop
 Summary(pl.UTF-8):	Aplet notatek dla środowiska MATE
@@ -421,13 +445,11 @@ rm -rf $RPM_BUILD_ROOT
 	DESTDIR=$RPM_BUILD_ROOT \
 	pythondir=%{py_sitedir}
 
-# mate < 1.5 did not exist in pld, avoid dependency on mate-conf
-%{__rm} $RPM_BUILD_ROOT%{_datadir}/MateConf/gsettings/stickynotes-applet.convert
-
 %py_postclean
 
 # outdated version of es (as of 1.6.1)
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/es_ES
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/jv
 
 %find_lang %{name}
 %find_lang mate-accessx-status --with-mate
@@ -439,6 +461,7 @@ rm -rf $RPM_BUILD_ROOT
 %find_lang mateweather --with-mate
 %find_lang mate-invest-applet --with-mate
 %find_lang mate-multiload --with-mate
+%find_lang mate-netspeed-applet --with-mate
 %find_lang mate-stickynotes-applet --with-mate
 %find_lang mate-trashapplet --with-mate
 
@@ -511,6 +534,16 @@ rm -rf $RPM_BUILD_ROOT
 %preun -n mate-applet-multiload
 %glib_compile_schemas
 
+%post -n mate-applet-netspeed
+%glib_compile_schemas
+%update_icon_cache hicolor
+
+%preun -n mate-applet-netspeed
+%glib_compile_schemas
+
+%postun -n mate-applet-netspeed
+%update_icon_cache hicolor
+
 %post -n mate-applet-stickynotes
 %glib_compile_schemas
 %update_icon_cache hicolor
@@ -532,6 +565,10 @@ rm -rf $RPM_BUILD_ROOT
 %doc AUTHORS ChangeLog NEWS README
 %dir %{_datadir}/%{name}
 %dir %{_datadir}/%{name}/builder
+%dir %{_datadir}/%{name}/icons
+%dir %{_datadir}/%{name}/icons/hicolor
+%dir %{_datadir}/%{name}/icons/hicolor/48x48
+%dir %{_datadir}/%{name}/icons/hicolor/48x48/apps
 
 %files -n mate-applet-accessx-status -f mate-accessx-status.lang
 %defattr(644,root,root,755)
@@ -641,15 +678,26 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mate-panel/applets/org.mate.applets.MultiLoadApplet.mate-panel-applet
 %{_mandir}/man1/mate-multiload-applet.1*
 
+%files -n mate-applet-netspeed -f mate-netspeed-applet.lang
+%defattr(644,root,root,755)
+%attr(755,root,root) %{_libexecdir}/mate-netspeed-applet
+%{_datadir}/dbus-1/services/org.mate.panel.applet.NetspeedAppletFactory.service
+%{_datadir}/glib-2.0/schemas/org.mate.panel.applet.netspeed.gschema.xml
+%{_datadir}/mate-panel/applets/org.mate.applets.NetspeedApplet.mate-panel-applet
+%{_datadir}/mate-panel/ui/netspeed-menu.xml
+%{_iconsdir}/hicolor/*/apps/mate-netspeed-applet.*
+%{_iconsdir}/hicolor/*x*/devices/mate-netspeed-*.png
+%{_iconsdir}/hicolor/24x24/status/mate-netspeed-*.png
+
 %files -n mate-applet-stickynotes -f mate-stickynotes-applet.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libexecdir}/stickynotes_applet
+%attr(755,root,root) %{_libexecdir}/stickynotes-applet
 %{_datadir}/%{name}/builder/stickynotes.ui
+%{_datadir}/%{name}/icons/hicolor/*/apps/stickynotes-stock-*.png
 %{_datadir}/dbus-1/services/org.mate.panel.applet.StickyNotesAppletFactory.service
 %{_datadir}/glib-2.0/schemas/org.mate.stickynotes.gschema.xml
 %{_datadir}/mate-panel/applets/org.mate.applets.StickyNotesApplet.mate-panel-applet
 %{_datadir}/mate-panel/ui/stickynotes-applet-menu.xml
-%{_pixmapsdir}/mate-stickynotes
 %{_iconsdir}/hicolor/*/apps/mate-sticky-notes-applet.*
 
 %files -n mate-applet-timer

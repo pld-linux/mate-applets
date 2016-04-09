@@ -134,3 +134,14 @@
  ui_DATA = charpick-applet-menu.xml
  
  CLEANFILES = $(applet_DATA) $(applet_DATA).in $(service_DATA) $(gsettings_SCHEMAS_in)  $(gsettings_SCHEMAS) *.gschema.valid
+--- mate-applets-1.14.0/netspeed/data/Makefile.am.old	2016-04-09 21:29:00.894029608 +0200
++++ mate-applets-1.14.0/netspeed/data/Makefile.am	2016-04-09 21:29:14.174108980 +0200
+@@ -10,7 +10,7 @@
+ 		$< > $@
+ %.mate-panel-applet: %.mate-panel-applet.in $(INTLTOOL_MERGE) $(wildcard $(top_srcdir)/po/*po) ; $(INTLTOOL_MERGE) $(top_srcdir)/po $< $@ -d -u -c $(top_builddir)/po/.intltool-merge-cache
+ 
+-xmluidir   = $(datadir)/mate/ui
++xmluidir   = $(datadir)/mate-panel/ui
+ xmlui_DATA = netspeed-menu.xml
+ 
+ servicedir       = $(datadir)/dbus-1/services
