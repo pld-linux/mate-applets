@@ -37,6 +37,7 @@ BuildRequires:	glib2-devel >= 1:2.36.0
 %{?with_gtk3:BuildRequires:	gtksourceview3-devel >= 3.0}
 BuildRequires:	intltool >= 0.50.1
 BuildRequires:	libgtop-devel >= 1:2.11.92
+BuildRequires:	libiw-devel >= 28-0.pre9
 BuildRequires:	libmateweather-devel >= 1.6.1
 BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	libtool >= 1:1.4.3
@@ -92,7 +93,7 @@ Summary(pl.UTF-8):	Aplet stanu dostepności klawiatury dla środowiska MATE
 Group:		X11/Applications
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2 >= 1:2.26.0
+Requires:	glib2 >= 1:2.36.0
 %{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
 %{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
 Requires:	mate-icon-theme >= 1.1.0
@@ -116,7 +117,7 @@ Summary:	Battery Charge Monitor applet for MATE Desktop
 Summary(pl.UTF-8):	Aplet monitora stanu naładowania akumulatora dla środowiska MATE
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2 >= 1:2.26.0
+Requires:	glib2 >= 1:2.36.0
 %{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
 %{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
 Requires:	libnotify >= 0.7.0
@@ -141,7 +142,7 @@ Summary(pl.UTF-8):	Aplet palety znaków dla środowiska MATE
 Group:		X11/Applications
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2 >= 1:2.26.0
+Requires:	glib2 >= 1:2.36.0
 %{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
 %{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
 %if %{with gucharmap}
@@ -180,7 +181,7 @@ Summary:	Command applet for MATE Desktop
 Summary(pl.UTF-8):	Aplet uruchamiania poleceń dla środowiska MATE
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2 >= 1:2.26.0
+Requires:	glib2 >= 1:2.36.0
 %{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
 %{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
 Requires:	hicolor-icon-theme
@@ -218,7 +219,7 @@ Summary:	Disk Mounter applet for MATE Desktop
 Summary(pl.UTF-8):	Aplet do montowania dysków dla środowiska MATE
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2 >= 1:2.26.0
+Requires:	glib2 >= 1:2.36.0
 %{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
 %{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
 Requires:	mate-panel >= 1.7.0
@@ -237,7 +238,7 @@ Summary(pl.UTF-8):	Aplet geyes - śledzenie wskaźnika myszy dla środowiska MAT
 Group:		X11/Applications
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2 >= 1:2.26.0
+Requires:	glib2 >= 1:2.36.0
 %{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
 %{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
 Requires:	hicolor-icon-theme
@@ -261,7 +262,7 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	dbus >= 1.1.2
 Requires:	dbus(org.freedesktop.Notifications)
 Requires:	dbus-glib >= 0.74
-Requires:	glib2 >= 1:2.26.0
+Requires:	glib2 >= 1:2.36.0
 %{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
 %{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
 Requires:	libmateweather >= 1.6.1
@@ -288,7 +289,7 @@ Summary(pl.UTF-8):	Aplet wskaźnika giełdowego dla środowiska MATE
 Group:		X11/Applications
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2 >= 1:2.26.0
+Requires:	glib2 >= 1:2.36.0
 %{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
 %{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
 Requires:	hicolor-icon-theme
@@ -309,7 +310,7 @@ Summary:	System Monitor applet for MATE Desktop
 Summary(pl.UTF-8):	Aplet monitora systemu dla środowiska MATE
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2 >= 1:2.26.0
+Requires:	glib2 >= 1:2.36.0
 %{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
 %{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
 Requires:	libgtop >= 1:2.11.92
@@ -330,7 +331,7 @@ Summary(pl.UTF-8):	Aplet netspeed dla środowiska MATE
 Group:		X11/Applications
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2 >= 1:2.26.0
+Requires:	glib2 >= 1:2.36.0
 %{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
 %{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
 Requires:	hicolor-icon-theme
@@ -354,7 +355,7 @@ Summary(pl.UTF-8):	Aplet notatek dla środowiska MATE
 Group:		X11/Applications
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2 >= 1:2.26.0
+Requires:	glib2 >= 1:2.36.0
 %{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
 %{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
 Requires:	hicolor-icon-theme
@@ -397,7 +398,7 @@ Summary:	Trash applet for MATE Desktop
 Summary(pl.UTF-8):	Aplet śmietnika dla środowiska MATE
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2 >= 1:2.26.0
+Requires:	glib2 >= 1:2.36.0
 %{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
 %{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
 Requires:	mate-panel >= 1.7.0
