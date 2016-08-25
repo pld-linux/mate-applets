@@ -10,12 +10,12 @@ Summary(pl.UTF-8):	Aplety MATE - małe aplikacje osadzające się w panelu
 Summary(ru.UTF-8):	Маленькие программы, встраивающиеся в панель MATE
 Summary(uk.UTF-8):	Маленькі програми, що вбудовуються в панель MATE
 Name:		mate-applets
-Version:	1.14.0
+Version:	1.14.1
 Release:	1
 License:	GPL v2+ (applets), FDL (help)
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.14/%{name}-%{version}.tar.xz
-# Source0-md5:	4d90544d9315936b5515c8bc63b4223a
+# Source0-md5:	1b2b644cfa810fb3ef0b80d499cf70ef
 # check paths in Makefile before removing it!
 Patch0:		m4_fix.patch
 Patch1:		uidir.patch
@@ -26,7 +26,6 @@ BuildRequires:	apmd-devel
 %endif
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.9
-BuildRequires:	cpupowerutils-devel
 BuildRequires:	dbus-devel >= 1.1.2
 BuildRequires:	dbus-glib-devel >= 0.74
 BuildRequires:	gettext-tools >= 0.10.40
@@ -36,6 +35,7 @@ BuildRequires:	glib2-devel >= 1:2.36.0
 %{!?with_gtk3:BuildRequires:	gtksourceview2-devel >= 2.0}
 %{?with_gtk3:BuildRequires:	gtksourceview3-devel >= 3.0}
 BuildRequires:	intltool >= 0.50.1
+BuildRequires:	kernel-tools-cpupower-libs-devel >= 4.7
 BuildRequires:	libgtop-devel >= 1:2.11.92
 BuildRequires:	libiw-devel >= 28-0.pre9
 BuildRequires:	libmateweather-devel >= 1.6.1
@@ -44,6 +44,7 @@ BuildRequires:	libtool >= 1:1.4.3
 %{?with_gtk3:BuildRequires:	libwnck-devel >= 3.0.0}
 %{!?with_gtk3:BuildRequires:	libwnck2-devel >= 2.30.0}
 BuildRequires:	libxml2-devel >= 1:2.5.0
+BuildRequires:	linux-libc-headers >= 7:4.7
 %if %{with gucharmap}
 %{?with_gtk3:BuildRequires:	gucharmap-devel >= 3.0.0}
 %{!?with_gtk3:BuildRequires:	gucharmap2-devel >= 2.32.1}
@@ -202,6 +203,7 @@ Requires:	%{name} = %{version}-%{release}
 %{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
 %{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
 Requires:	hicolor-icon-theme
+Requires:	kernel-tools-cpupower-libs >= 4.7
 Requires:	mate-panel >= 1.7.0
 Requires:	mate-polkit
 Requires:	polkit >= 0.92
