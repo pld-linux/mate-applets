@@ -10,12 +10,12 @@ Summary(pl.UTF-8):	Aplety MATE - małe aplikacje osadzające się w panelu
 Summary(ru.UTF-8):	Маленькие программы, встраивающиеся в панель MATE
 Summary(uk.UTF-8):	Маленькі програми, що вбудовуються в панель MATE
 Name:		mate-applets
-Version:	1.14.1
-Release:	2
+Version:	1.16.0
+Release:	1
 License:	GPL v2+ (applets), FDL (help)
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.14/%{name}-%{version}.tar.xz
-# Source0-md5:	1b2b644cfa810fb3ef0b80d499cf70ef
+Source0:	http://pub.mate-desktop.org/releases/1.16/%{name}-%{version}.tar.xz
+# Source0-md5:	c8ae59b77af9a7c5522e23425a5ee203
 # check paths in Makefile before removing it!
 Patch0:		m4_fix.patch
 Patch1:		uidir.patch
@@ -50,11 +50,10 @@ BuildRequires:	linux-libc-headers >= 7:4.7
 %{!?with_gtk3:BuildRequires:	gucharmap2-devel >= 2.32.1}
 %endif
 BuildRequires:	mate-common >= 1.1.0
-BuildRequires:	mate-desktop-devel >= 1.9.0
 BuildRequires:	mate-panel-devel >= 1.7.0
 BuildRequires:	mate-settings-daemon-devel
 BuildRequires:	pkgconfig >= 1:0.19
-BuildRequires:	polkit-devel >= 0.92
+BuildRequires:	polkit-devel >= 0.97
 BuildRequires:	python-devel >= 1:2.4
 BuildRequires:	python-pygobject3-devel >= 3.0
 BuildRequires:	rpm-pythonprov
