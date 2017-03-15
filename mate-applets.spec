@@ -2,7 +2,6 @@
 # - cpufreq applet does not start
 #
 # Conditional build:
-%bcond_with	gtk3		# use GTK+ 3.x instead of 2.x
 %bcond_without	gucharmap	# Gucharmap (character map) support in charpicker applet
 
 Summary:	Small applications which embed themselves in the MATE panel
@@ -10,12 +9,12 @@ Summary(pl.UTF-8):	Aplety MATE - małe aplikacje osadzające się w panelu
 Summary(ru.UTF-8):	Маленькие программы, встраивающиеся в панель MATE
 Summary(uk.UTF-8):	Маленькі програми, що вбудовуються в панель MATE
 Name:		mate-applets
-Version:	1.16.0
+Version:	1.18.0
 Release:	1
 License:	GPL v2+ (applets), FDL (help)
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.16/%{name}-%{version}.tar.xz
-# Source0-md5:	c8ae59b77af9a7c5522e23425a5ee203
+Source0:	http://pub.mate-desktop.org/releases/1.18/%{name}-%{version}.tar.xz
+# Source0-md5:	4e501574b5a654755b7f0d48c6f210ed
 # check paths in Makefile before removing it!
 Patch0:		m4_fix.patch
 Patch1:		uidir.patch
@@ -30,10 +29,8 @@ BuildRequires:	dbus-devel >= 1.1.2
 BuildRequires:	dbus-glib-devel >= 0.74
 BuildRequires:	gettext-tools >= 0.10.40
 BuildRequires:	glib2-devel >= 1:2.36.0
-%{!?with_gtk3:BuildRequires:	gtk+2-devel >= 2:2.24.0}
-%{?with_gtk3:BuildRequires:	gtk+3-devel >= 3.0.0}
-%{!?with_gtk3:BuildRequires:	gtksourceview2-devel >= 2.0}
-%{?with_gtk3:BuildRequires:	gtksourceview3-devel >= 3.0}
+BuildRequires:	gtk+3-devel >= 3.14
+BuildRequires:	gtksourceview3-devel >= 3.0
 BuildRequires:	intltool >= 0.50.1
 BuildRequires:	kernel-tools-cpupower-libs-devel >= 4.7
 BuildRequires:	libgtop-devel >= 1:2.11.92
@@ -41,16 +38,14 @@ BuildRequires:	libiw-devel >= 28-0.pre9
 BuildRequires:	libmateweather-devel >= 1.6.1
 BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	libtool >= 1:1.4.3
-%{?with_gtk3:BuildRequires:	libwnck-devel >= 3.0.0}
-%{!?with_gtk3:BuildRequires:	libwnck2-devel >= 2.30.0}
+BuildRequires:	libwnck-devel >= 3.0.0
 BuildRequires:	libxml2-devel >= 1:2.5.0
 BuildRequires:	linux-libc-headers >= 7:4.7
 %if %{with gucharmap}
-%{?with_gtk3:BuildRequires:	gucharmap-devel >= 3.0.0}
-%{!?with_gtk3:BuildRequires:	gucharmap2-devel >= 2.32.1}
+BuildRequires:	gucharmap-devel >= 3.0.0
 %endif
 BuildRequires:	mate-common >= 1.1.0
-BuildRequires:	mate-panel-devel >= 1.7.0
+BuildRequires:	mate-panel-devel >= 1.17.0
 BuildRequires:	mate-settings-daemon-devel
 BuildRequires:	pkgconfig >= 1:0.19
 BuildRequires:	polkit-devel >= 0.97
@@ -94,10 +89,9 @@ Group:		X11/Applications
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.36.0
-%{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
-%{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
+Requires:	gtk+3 >= 3.14
 Requires:	mate-icon-theme >= 1.1.0
-Requires:	mate-panel >= 1.7.0
+Requires:	mate-panel >= 1.17.0
 Suggests:	mate-control-center >= 1.5
 
 %description -n mate-applet-accessx-status
@@ -118,10 +112,9 @@ Summary(pl.UTF-8):	Aplet monitora stanu naładowania akumulatora dla środowiska
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.36.0
-%{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
-%{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
+Requires:	gtk+3 >= 3.14
 Requires:	libnotify >= 0.7.0
-Requires:	mate-panel >= 1.7.0
+Requires:	mate-panel >= 1.17.0
 Requires:	upower >= 0.9.4
 
 %description -n mate-applet-battstat
@@ -143,14 +136,12 @@ Group:		X11/Applications
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.36.0
-%{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
-%{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
+Requires:	gtk+3 >= 3.14
 %if %{with gucharmap}
-%{?with_gtk3:Requires:	gucharmap-libs >= 3.0.0}
-%{!?with_gtk3:Requires:	gucharmap2-libs >= 2.32.1}
+Requires:	gucharmap-libs >= 3.0.0
 %endif
 Requires:	hicolor-icon-theme
-Requires:	mate-panel >= 1.7.0
+Requires:	mate-panel >= 1.17.0
 
 %description -n mate-applet-charpicker
 The Character Palette provides a convenient way to access characters
@@ -182,10 +173,9 @@ Summary(pl.UTF-8):	Aplet uruchamiania poleceń dla środowiska MATE
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.36.0
-%{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
-%{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
+Requires:	gtk+3 >= 3.14
 Requires:	hicolor-icon-theme
-Requires:	mate-panel >= 1.7.0
+Requires:	mate-panel >= 1.17.0
 
 %description -n mate-applet-command
 Command applet for MATE Desktop.
@@ -199,11 +189,10 @@ Summary(pl.UTF-8):	Aplet monitora częstotliwości procesora dla środowiska MAT
 Group:		X11/Applications
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name} = %{version}-%{release}
-%{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
-%{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
+Requires:	gtk+3 >= 3.14
 Requires:	hicolor-icon-theme
 Requires:	kernel-tools-cpupower-libs >= 4.7
-Requires:	mate-panel >= 1.7.0
+Requires:	mate-panel >= 1.17.0
 Requires:	mate-polkit
 Requires:	polkit >= 0.92
 
@@ -221,9 +210,8 @@ Summary(pl.UTF-8):	Aplet do montowania dysków dla środowiska MATE
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.36.0
-%{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
-%{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
-Requires:	mate-panel >= 1.7.0
+Requires:	gtk+3 >= 3.14
+Requires:	mate-panel >= 1.17.0
 
 %description -n mate-applet-drivemount
 The Disk Mounter enables you to quickly mount and unmount various
@@ -240,10 +228,9 @@ Group:		X11/Applications
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.36.0
-%{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
-%{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
+Requires:	gtk+3 >= 3.14
 Requires:	hicolor-icon-theme
-Requires:	mate-panel >= 1.7.0
+Requires:	mate-panel >= 1.17.0
 
 %description -n mate-applet-geyes
 The Geyes applet provides an entertaining way to track the movement of
@@ -264,11 +251,10 @@ Requires:	dbus >= 1.1.2
 Requires:	dbus(org.freedesktop.Notifications)
 Requires:	dbus-glib >= 0.74
 Requires:	glib2 >= 1:2.36.0
-%{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
-%{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
+Requires:	gtk+3 >= 3.14
 Requires:	libmateweather >= 1.6.1
 Requires:	libnotify >= 0.7.0
-Requires:	mate-panel >= 1.7.0
+Requires:	mate-panel >= 1.17.0
 
 %description -n mate-applet-gweather
 The Weather Report downloads weather information from the U.S.
@@ -291,10 +277,9 @@ Group:		X11/Applications
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.36.0
-%{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
-%{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
+Requires:	gtk+3 >= 3.14
 Requires:	hicolor-icon-theme
-Requires:	mate-panel >= 1.7.0
+Requires:	mate-panel >= 1.17.0
 Requires:	python-dbus
 Requires:	python-pygobject3 >= 3.0
 
@@ -312,10 +297,9 @@ Summary(pl.UTF-8):	Aplet monitora systemu dla środowiska MATE
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.36.0
-%{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
-%{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
+Requires:	gtk+3 >= 3.14
 Requires:	libgtop >= 1:2.11.92
-Requires:	mate-panel >= 1.7.0
+Requires:	mate-panel >= 1.17.0
 Suggests:	mate-system-monitor >= 1.5
 
 %description -n mate-applet-multiload
@@ -333,13 +317,11 @@ Group:		X11/Applications
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.36.0
-%{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
-%{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
+Requires:	gtk+3 >= 3.14
 Requires:	hicolor-icon-theme
-%{?with_gtk3:Requires:	libwnck >= 3.0.0}
-%{!?with_gtk3:Requires:	libwnck2 >= 2.30.0}
+Requires:	libwnck >= 3.0.0
 Requires:	libxml2 >= 1:2.5.0
-Requires:	mate-panel >= 1.7.0
+Requires:	mate-panel >= 1.17.0
 
 %description -n mate-applet-netspeed
 MATE netspeed is an applet that shows how much traffic occurs on a
@@ -357,13 +339,11 @@ Group:		X11/Applications
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.36.0
-%{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
-%{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
+Requires:	gtk+3 >= 3.14
 Requires:	hicolor-icon-theme
-%{?with_gtk3:Requires:	libwnck >= 3.0.0}
-%{!?with_gtk3:Requires:	libwnck2 >= 2.30.0}
+Requires:	libwnck >= 3.0.0
 Requires:	libxml2 >= 1:2.5.0
-Requires:	mate-panel >= 1.7.0
+Requires:	mate-panel >= 1.17.0
 
 %description -n mate-applet-stickynotes
 The Sticky Notes panel application enables you to create, view, and
@@ -386,7 +366,7 @@ Summary:	Timer applet for MATE Desktop
 Summary(pl.UTF-8):	Aplet czasomierza dla środowiska MATE
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
-Requires:	mate-panel >= 1.7.0
+Requires:	mate-panel >= 1.17.0
 
 %description -n mate-applet-timer
 Timer applet for MATE Desktop.
@@ -400,9 +380,8 @@ Summary(pl.UTF-8):	Aplet śmietnika dla środowiska MATE
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.36.0
-%{!?with_gtk3:Requires:	gtk+2 >= 2:2.24.0}
-%{?with_gtk3:Requires:	gtk+3 >= 3.0.0}
-Requires:	mate-panel >= 1.7.0
+Requires:	gtk+3 >= 3.14
+Requires:	mate-panel >= 1.17.0
 
 %description -n mate-applet-trash
 The Panel Trash applet lets you manage your Trash from the panel.
@@ -436,7 +415,6 @@ ale jest przydatny o tyle, że panele są zawsze widoczne.
 	--disable-schemas-compile \
 	--disable-static \
 	--enable-timer-applet \
-	%{?with_gtk3:--with-gtk=3.0} \
 	--without-hal
 
 %{__make}
@@ -452,7 +430,7 @@ rm -rf $RPM_BUILD_ROOT
 # outdated version of es (as of 1.6.1)
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/es_ES
 # not supported by glibc (as of glibc-2.24)
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{frp,jv}
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{frp,ku_IQ,jv}
 
 %find_lang %{name}
 %find_lang mate-accessx-status --with-mate
