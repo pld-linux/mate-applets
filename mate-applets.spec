@@ -20,7 +20,7 @@ Patch0:		m4_fix.patch
 Patch1:		uidir.patch
 URL:		https://github.com/mate-desktop/mate-applets
 BuildRequires:	NetworkManager-devel >= 0.7
-%ifarch %{ix86} arm mips ppc sh
+%ifarch %{ix86} %{arm} mips ppc sh
 BuildRequires:	apmd-devel
 %endif
 BuildRequires:	autoconf >= 2.59
@@ -33,9 +33,9 @@ BuildRequires:	gtk+3-devel >= 3.14
 BuildRequires:	gtksourceview3-devel >= 3.0
 BuildRequires:	intltool >= 0.50.1
 BuildRequires:	kernel-tools-cpupower-libs-devel >= 4.7
-BuildRequires:	libgtop-devel >= 1:2.11.92
+BuildRequires:	libgtop-devel >= 1:2.12.0
 BuildRequires:	libiw-devel >= 28-0.pre9
-BuildRequires:	libmateweather-devel >= 1.6.1
+BuildRequires:	libmateweather-devel >= 1.17.0
 BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	libtool >= 1:1.4.3
 BuildRequires:	libwnck-devel >= 3.0.0
@@ -194,7 +194,7 @@ Requires:	hicolor-icon-theme
 Requires:	kernel-tools-cpupower-libs >= 4.7
 Requires:	mate-panel >= 1.17.0
 Requires:	mate-polkit
-Requires:	polkit >= 0.92
+Requires:	polkit >= 0.97
 
 %description -n mate-applet-cpufreq
 The CPU Frequency Scaling Monitor provides a convenient way to monitor
@@ -252,7 +252,7 @@ Requires:	dbus(org.freedesktop.Notifications)
 Requires:	dbus-glib >= 0.74
 Requires:	glib2 >= 1:2.36.0
 Requires:	gtk+3 >= 3.14
-Requires:	libmateweather >= 1.6.1
+Requires:	libmateweather >= 1.17.0
 Requires:	libnotify >= 0.7.0
 Requires:	mate-panel >= 1.17.0
 
@@ -298,7 +298,7 @@ Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.36.0
 Requires:	gtk+3 >= 3.14
-Requires:	libgtop >= 1:2.11.92
+Requires:	libgtop >= 1:2.12.0
 Requires:	mate-panel >= 1.17.0
 Suggests:	mate-system-monitor >= 1.5
 
