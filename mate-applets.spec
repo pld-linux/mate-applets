@@ -9,12 +9,12 @@ Summary(pl.UTF-8):	Aplety MATE - małe aplikacje osadzające się w panelu
 Summary(ru.UTF-8):	Маленькие программы, встраивающиеся в панель MATE
 Summary(uk.UTF-8):	Маленькі програми, що вбудовуються в панель MATE
 Name:		mate-applets
-Version:	1.18.2
+Version:	1.20.0
 Release:	1
 License:	GPL v2+ (applets), FDL (help)
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.18/%{name}-%{version}.tar.xz
-# Source0-md5:	35b5d1a92e3b8112fa1c5a37ba5073d6
+Source0:	http://pub.mate-desktop.org/releases/1.20/%{name}-%{version}.tar.xz
+# Source0-md5:	cd54cea51e48f4fa3920745fdf79405f
 # check paths in Makefile before removing it!
 Patch0:		m4_fix.patch
 Patch1:		uidir.patch
@@ -28,14 +28,14 @@ BuildRequires:	automake >= 1:1.9
 BuildRequires:	dbus-devel >= 1.1.2
 BuildRequires:	dbus-glib-devel >= 0.74
 BuildRequires:	gettext-tools >= 0.10.40
-BuildRequires:	glib2-devel >= 1:2.36.0
-BuildRequires:	gtk+3-devel >= 3.14
+BuildRequires:	glib2-devel >= 1:2.50.0
+BuildRequires:	gtk+3-devel >= 3.22
 BuildRequires:	gtksourceview3-devel >= 3.0
 BuildRequires:	intltool >= 0.50.1
 BuildRequires:	kernel-tools-cpupower-libs-devel >= 4.7
 BuildRequires:	libgtop-devel >= 1:2.12.0
 BuildRequires:	libiw-devel >= 28-0.pre9
-BuildRequires:	libmateweather-devel >= 1.17.0
+BuildRequires:	libmateweather-devel >= 1.19.1
 BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	libtool >= 1:1.4.3
 BuildRequires:	libwnck-devel >= 3.0.0
@@ -49,9 +49,6 @@ BuildRequires:	mate-panel-devel >= 1.17.0
 BuildRequires:	mate-settings-daemon-devel
 BuildRequires:	pkgconfig >= 1:0.19
 BuildRequires:	polkit-devel >= 0.97
-BuildRequires:	python-devel >= 1:2.4
-BuildRequires:	python-pygobject3-devel >= 3.0
-BuildRequires:	rpm-pythonprov
 BuildRequires:	rpmbuild(find_lang) >= 1.36
 BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	sed >= 4.0
@@ -60,6 +57,7 @@ BuildRequires:	upower-devel >= 0.9.4
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xz
 BuildRequires:	yelp-tools
+Obsoletes:	mate-applet-invest
 # sr@Latn vs. sr@latin
 Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
@@ -88,8 +86,8 @@ Summary(pl.UTF-8):	Aplet stanu dostepności klawiatury dla środowiska MATE
 Group:		X11/Applications
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2 >= 1:2.36.0
-Requires:	gtk+3 >= 3.14
+Requires:	glib2 >= 1:2.50.0
+Requires:	gtk+3 >= 3.22
 Requires:	mate-icon-theme >= 1.1.0
 Requires:	mate-panel >= 1.17.0
 Suggests:	mate-control-center >= 1.5
@@ -111,8 +109,8 @@ Summary:	Battery Charge Monitor applet for MATE Desktop
 Summary(pl.UTF-8):	Aplet monitora stanu naładowania akumulatora dla środowiska MATE
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2 >= 1:2.36.0
-Requires:	gtk+3 >= 3.14
+Requires:	glib2 >= 1:2.50.0
+Requires:	gtk+3 >= 3.22
 Requires:	libnotify >= 0.7.0
 Requires:	mate-panel >= 1.17.0
 Requires:	upower >= 0.9.4
@@ -135,8 +133,8 @@ Summary(pl.UTF-8):	Aplet palety znaków dla środowiska MATE
 Group:		X11/Applications
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2 >= 1:2.36.0
-Requires:	gtk+3 >= 3.14
+Requires:	glib2 >= 1:2.50.0
+Requires:	gtk+3 >= 3.22
 %if %{with gucharmap}
 Requires:	gucharmap-libs >= 3.0.0
 %endif
@@ -172,8 +170,8 @@ Summary:	Command applet for MATE Desktop
 Summary(pl.UTF-8):	Aplet uruchamiania poleceń dla środowiska MATE
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2 >= 1:2.36.0
-Requires:	gtk+3 >= 3.14
+Requires:	glib2 >= 1:2.50.0
+Requires:	gtk+3 >= 3.22
 Requires:	hicolor-icon-theme
 Requires:	mate-panel >= 1.17.0
 
@@ -189,7 +187,7 @@ Summary(pl.UTF-8):	Aplet monitora częstotliwości procesora dla środowiska MAT
 Group:		X11/Applications
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name} = %{version}-%{release}
-Requires:	gtk+3 >= 3.14
+Requires:	gtk+3 >= 3.22
 Requires:	hicolor-icon-theme
 Requires:	kernel-tools-cpupower-libs >= 4.7
 Requires:	mate-panel >= 1.17.0
@@ -209,8 +207,8 @@ Summary:	Disk Mounter applet for MATE Desktop
 Summary(pl.UTF-8):	Aplet do montowania dysków dla środowiska MATE
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2 >= 1:2.36.0
-Requires:	gtk+3 >= 3.14
+Requires:	glib2 >= 1:2.50.0
+Requires:	gtk+3 >= 3.22
 Requires:	mate-panel >= 1.17.0
 
 %description -n mate-applet-drivemount
@@ -227,8 +225,8 @@ Summary(pl.UTF-8):	Aplet geyes - śledzenie wskaźnika myszy dla środowiska MAT
 Group:		X11/Applications
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2 >= 1:2.36.0
-Requires:	gtk+3 >= 3.14
+Requires:	glib2 >= 1:2.50.0
+Requires:	gtk+3 >= 3.22
 Requires:	hicolor-icon-theme
 Requires:	mate-panel >= 1.17.0
 
@@ -250,9 +248,9 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	dbus >= 1.1.2
 Requires:	dbus(org.freedesktop.Notifications)
 Requires:	dbus-glib >= 0.74
-Requires:	glib2 >= 1:2.36.0
-Requires:	gtk+3 >= 3.14
-Requires:	libmateweather >= 1.17.0
+Requires:	glib2 >= 1:2.50.0
+Requires:	gtk+3 >= 3.22
+Requires:	libmateweather >= 1.19.1
 Requires:	libnotify >= 0.7.0
 Requires:	mate-panel >= 1.17.0
 
@@ -270,34 +268,13 @@ Information Network (IWIN) oraz innych serwisów pogodowych. Apletu
 można używać do wyświetlania aktualnych informacji pogodowych oraz
 prognoz.
 
-%package -n mate-applet-invest
-Summary:	Stock Ticker applet for MATE Desktop
-Summary(pl.UTF-8):	Aplet wskaźnika giełdowego dla środowiska MATE
-Group:		X11/Applications
-Requires(post,postun):	gtk-update-icon-cache
-Requires:	%{name} = %{version}-%{release}
-Requires:	glib2 >= 1:2.36.0
-Requires:	gtk+3 >= 3.14
-Requires:	hicolor-icon-theme
-Requires:	mate-panel >= 1.17.0
-Requires:	python-dbus
-Requires:	python-pygobject3 >= 3.0
-
-%description -n mate-applet-invest
-The Invest MATE panel applet downloads current stock quotes from
-Yahoo! Finance and displays the quotes in a drop-down list.
-
-%description -n mate-applet-invest -l pl.UTF-8
-Aplet wskaźnika giełdowego, ściągający aktualne notowania z serwisu
-Yahoo! Finance i wyświetlające je na rozwijanej liście.
-
 %package -n mate-applet-multiload
 Summary:	System Monitor applet for MATE Desktop
 Summary(pl.UTF-8):	Aplet monitora systemu dla środowiska MATE
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2 >= 1:2.36.0
-Requires:	gtk+3 >= 3.14
+Requires:	glib2 >= 1:2.50.0
+Requires:	gtk+3 >= 3.22
 Requires:	libgtop >= 1:2.12.0
 Requires:	mate-panel >= 1.17.0
 Suggests:	mate-system-monitor >= 1.5
@@ -316,8 +293,8 @@ Summary(pl.UTF-8):	Aplet netspeed dla środowiska MATE
 Group:		X11/Applications
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2 >= 1:2.36.0
-Requires:	gtk+3 >= 3.14
+Requires:	glib2 >= 1:2.50.0
+Requires:	gtk+3 >= 3.22
 Requires:	hicolor-icon-theme
 Requires:	libwnck >= 3.0.0
 Requires:	libxml2 >= 1:2.5.0
@@ -338,8 +315,8 @@ Summary(pl.UTF-8):	Aplet notatek dla środowiska MATE
 Group:		X11/Applications
 Requires(post,postun):	gtk-update-icon-cache
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2 >= 1:2.36.0
-Requires:	gtk+3 >= 3.14
+Requires:	glib2 >= 1:2.50.0
+Requires:	gtk+3 >= 3.22
 Requires:	hicolor-icon-theme
 Requires:	libwnck >= 3.0.0
 Requires:	libxml2 >= 1:2.5.0
@@ -379,8 +356,8 @@ Summary:	Trash applet for MATE Desktop
 Summary(pl.UTF-8):	Aplet śmietnika dla środowiska MATE
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
-Requires:	glib2 >= 1:2.36.0
-Requires:	gtk+3 >= 3.14
+Requires:	glib2 >= 1:2.50.0
+Requires:	gtk+3 >= 3.22
 Requires:	mate-panel >= 1.17.0
 
 %description -n mate-applet-trash
@@ -399,9 +376,6 @@ ale jest przydatny o tyle, że panele są zawsze widoczne.
 %setup -q
 %patch0 -p1
 %patch1 -p1
-
-%{__sed} -i -e '1s,/usr/bin/env python,/usr/bin/python,' \
-	invest-applet/invest/{chart.py,invest-applet.py,mate-invest-chart}
 
 %build
 %{__intltoolize}
@@ -422,15 +396,12 @@ ale jest przydatny o tyle, że panele są zawsze widoczne.
 %install
 rm -rf $RPM_BUILD_ROOT
 %{__make} install \
-	DESTDIR=$RPM_BUILD_ROOT \
-	pythondir=%{py_sitedir}
-
-%py_postclean
+	DESTDIR=$RPM_BUILD_ROOT
 
 # outdated version of es (as of 1.6.1)
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/es_ES
 # not supported by glibc (as of glibc-2.24)
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{frp,ku_IQ,jv}
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{frp,jv,ku_IQ,pms}
 
 %find_lang %{name}
 %find_lang mate-accessx-status --with-mate
@@ -440,7 +411,6 @@ rm -rf $RPM_BUILD_ROOT
 %find_lang mate-drivemount --with-mate
 %find_lang mate-geyes --with-mate
 %find_lang mateweather --with-mate
-%find_lang mate-invest-applet --with-mate
 %find_lang mate-multiload --with-mate
 %find_lang mate-netspeed-applet --with-mate
 %find_lang mate-stickynotes-applet --with-mate
@@ -501,12 +471,6 @@ rm -rf $RPM_BUILD_ROOT
 %glib_compile_schemas
 
 %postun -n mate-applet-geyes
-%update_icon_cache hicolor
-
-%post -n mate-applet-invest
-%update_icon_cache hicolor
-
-%postun -n mate-applet-invest
 %update_icon_cache hicolor
 
 %post -n mate-applet-multiload
@@ -612,6 +576,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %attr(755,root,root) %{_libexecdir}/mate-drivemount-applet
 %{_datadir}/dbus-1/services/org.mate.panel.applet.DriveMountAppletFactory.service
+%{_datadir}/glib-2.0/schemas/org.mate.drivemount.gschema.xml
 %{_datadir}/mate-panel/applets/org.mate.applets.DriveMountApplet.mate-panel-applet
 %{_datadir}/mate-panel/ui/drivemount-applet-menu.xml
 %{_mandir}/man1/mate-drivemount-applet.1*
@@ -634,21 +599,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/mate-panel/applets/org.mate.applets.MateWeatherApplet.mate-panel-applet
 %{_datadir}/mate-panel/ui/mateweather-applet-menu.xml
 %{_mandir}/man1/mateweather.1*
-
-%files -n mate-applet-invest -f mate-invest-applet.lang
-%defattr(644,root,root,755)
-%attr(755,root,root) %{_bindir}/mate-invest-chart
-%attr(755,root,root) %{_libexecdir}/invest-applet
-%{_datadir}/%{name}/Invest_Applet.xml
-%{_datadir}/%{name}/invest-applet
-%{_datadir}/%{name}/builder/financialchart.ui
-%{_datadir}/%{name}/builder/prefs-dialog.ui
-%{_datadir}/dbus-1/services/org.mate.panel.applet.InvestAppletFactory.service
-%{_datadir}/mate-panel/applets/org.mate.applets.InvestApplet.mate-panel-applet
-%{_iconsdir}/hicolor/*/apps/mate-invest-applet.*
-%dir %{py_sitedir}/mate_invest
-%{py_sitedir}/mate_invest/*.py[co]
-%{_mandir}/man1/mate-invest-chart.1*
 
 %files -n mate-applet-multiload -f mate-multiload.lang
 %defattr(644,root,root,755)

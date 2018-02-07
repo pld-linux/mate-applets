@@ -103,15 +103,15 @@
  appletdir       = $(datadir)/mate-panel/applets
 --- mate-applets-1.10.0/drivemount/Makefile.am~	2013-03-08 02:20:01.000000000 +0200
 +++ mate-applets-1.10.0/drivemount/Makefile.am	2013-03-14 20:04:02.671879372 +0200
-@@ -40,7 +40,7 @@
-             -e "s|\@LIBEXECDIR\@|$(libexecdir)|" \
-             $< > $@
+@@ -20,7 +20,7 @@
+ 	$(MATE_APPLETS4_LIBS)	\
+ 	$(MATEDESKTOP_LIBS)
  
--uidir = $(datadir)/mate/ui
-+uidir = $(datadir)/mate-panel/ui
- ui_DATA = drivemount-applet-menu.xml
+-uidir           = $(datadir)/mate/ui
++uidir           = $(datadir)/mate-panel/ui
+ ui_DATA         = drivemount-applet-menu.xml
  
- CLEANFILES = $(applet_DATA) $(applet_DATA).in $(service_DATA)
+ @INTLTOOL_XML_NOMERGE_RULE@
 --- mate-applets-1.10.0/geyes/Makefile.am~	2013-03-08 02:20:01.000000000 +0200
 +++ mate-applets-1.10.0/geyes/Makefile.am	2013-03-14 20:04:15.615808629 +0200
 @@ -40,7 +40,7 @@
