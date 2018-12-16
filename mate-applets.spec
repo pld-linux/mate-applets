@@ -10,7 +10,7 @@ Summary(ru.UTF-8):	Маленькие программы, встраивающи
 Summary(uk.UTF-8):	Маленькі програми, що вбудовуються в панель MATE
 Name:		mate-applets
 Version:	1.20.2
-Release:	1
+Release:	2
 License:	GPL v2+ (applets), FDL (help)
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.20/%{name}-%{version}.tar.xz
@@ -62,7 +62,9 @@ Obsoletes:	mate-applet-invest
 Conflicts:	glibc-misc < 6:2.7
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
-%define		_libexecdir	%{_libdir}/mate-panel
+# use the same libexecdir as mate-panel
+# (better solution: store mate-panel libexecdir in libmatepanelapplet-*.pc and read it here)
+%define		matepanel_libexecdir	%{_libexecdir}/mate-panel
 
 %description
 The mate-applets package provides Panel applets which enhance your
@@ -385,6 +387,7 @@ ale jest przydatny o tyle, że panele są zawsze widoczne.
 %{__autoheader}
 %{__automake}
 %configure \
+	--libexecdir=%{matepanel_libexecdir} \
 	--enable-networkmanager \
 	--disable-schemas-compile \
 	--disable-static \
@@ -517,7 +520,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n mate-applet-accessx-status -f mate-accessx-status.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libexecdir}/accessx-status-applet
+%attr(755,root,root) %{matepanel_libexecdir}/accessx-status-applet
 %{_datadir}/dbus-1/services/org.mate.panel.applet.AccessxStatusAppletFactory.service
 %{_datadir}/mate-panel/applets/org.mate.applets.AccessxStatusApplet.mate-panel-applet
 %{_datadir}/mate-panel/ui/accessx-status-applet-menu.xml
@@ -526,7 +529,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n mate-applet-battstat -f mate-battstat.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libexecdir}/battstat-applet
+%attr(755,root,root) %{matepanel_libexecdir}/battstat-applet
 %{_datadir}/%{name}/builder/battstat_applet.ui
 %{_datadir}/dbus-1/services/org.mate.panel.applet.BattstatAppletFactory.service
 %{_datadir}/mate-panel/applets/org.mate.applets.BattstatApplet.mate-panel-applet
@@ -539,7 +542,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n mate-applet-charpicker -f mate-char-palette.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libexecdir}/mate-charpick-applet
+%attr(755,root,root) %{matepanel_libexecdir}/mate-charpick-applet
 %{_datadir}/dbus-1/services/org.mate.panel.applet.CharpickerAppletFactory.service
 %{_datadir}/glib-2.0/schemas/org.mate.panel.applet.charpick.gschema.xml
 %{_datadir}/mate-panel/applets/org.mate.applets.CharpickerApplet.mate-panel-applet
@@ -548,7 +551,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n mate-applet-command
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libexecdir}/command-applet
+%attr(755,root,root) %{matepanel_libexecdir}/command-applet
 %{_datadir}/dbus-1/services/org.mate.panel.applet.CommandAppletFactory.service
 %{_datadir}/glib-2.0/schemas/org.mate.panel.applet.command.gschema.xml
 %{_datadir}/mate-panel/applets/org.mate.applets.CommandApplet.mate-panel-applet
@@ -561,7 +564,7 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/dbus-1/system-services/org.mate.CPUFreqSelector.service
 %{_datadir}/polkit-1/actions/org.mate.cpufreqselector.policy
 # applet itself
-%attr(755,root,root) %{_libexecdir}/mate-cpufreq-applet
+%attr(755,root,root) %{matepanel_libexecdir}/mate-cpufreq-applet
 %{_datadir}/%{name}/builder/cpufreq-preferences.ui
 %{_datadir}/dbus-1/services/org.mate.panel.applet.CPUFreqAppletFactory.service
 %{_datadir}/glib-2.0/schemas/org.mate.panel.applet.cpufreq.gschema.xml
@@ -574,7 +577,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n mate-applet-drivemount -f mate-drivemount.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libexecdir}/mate-drivemount-applet
+%attr(755,root,root) %{matepanel_libexecdir}/mate-drivemount-applet
 %{_datadir}/dbus-1/services/org.mate.panel.applet.DriveMountAppletFactory.service
 %{_datadir}/glib-2.0/schemas/org.mate.drivemount.gschema.xml
 %{_datadir}/mate-panel/applets/org.mate.applets.DriveMountApplet.mate-panel-applet
@@ -583,7 +586,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n mate-applet-geyes -f mate-geyes.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libexecdir}/mate-geyes-applet
+%attr(755,root,root) %{matepanel_libexecdir}/mate-geyes-applet
 %{_datadir}/%{name}/geyes
 %{_datadir}/dbus-1/services/org.mate.panel.applet.GeyesAppletFactory.service
 %{_datadir}/glib-2.0/schemas/org.mate.panel.applet.geyes.gschema.xml
@@ -594,7 +597,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n mate-applet-gweather -f mateweather.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libexecdir}/mateweather-applet
+%attr(755,root,root) %{matepanel_libexecdir}/mateweather-applet
 %{_datadir}/dbus-1/services/org.mate.panel.applet.MateWeatherAppletFactory.service
 %{_datadir}/mate-panel/applets/org.mate.applets.MateWeatherApplet.mate-panel-applet
 %{_datadir}/mate-panel/ui/mateweather-applet-menu.xml
@@ -602,7 +605,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n mate-applet-multiload -f mate-multiload.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libexecdir}/mate-multiload-applet
+%attr(755,root,root) %{matepanel_libexecdir}/mate-multiload-applet
 %{_datadir}/dbus-1/services/org.mate.panel.applet.MultiLoadAppletFactory.service
 %{_datadir}/glib-2.0/schemas/org.mate.panel.applet.multiload.gschema.xml
 %{_datadir}/mate-panel/ui/multiload-applet-menu.xml
@@ -611,7 +614,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n mate-applet-netspeed -f mate-netspeed-applet.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libexecdir}/mate-netspeed-applet
+%attr(755,root,root) %{matepanel_libexecdir}/mate-netspeed-applet
 %{_datadir}/dbus-1/services/org.mate.panel.applet.NetspeedAppletFactory.service
 %{_datadir}/glib-2.0/schemas/org.mate.panel.applet.netspeed.gschema.xml
 %{_datadir}/mate-panel/applets/org.mate.applets.NetspeedApplet.mate-panel-applet
@@ -622,7 +625,7 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n mate-applet-stickynotes -f mate-stickynotes-applet.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libexecdir}/stickynotes-applet
+%attr(755,root,root) %{matepanel_libexecdir}/stickynotes-applet
 %{_datadir}/%{name}/builder/stickynotes.ui
 %{_datadir}/%{name}/icons/hicolor/*/apps/stickynotes-stock-*.png
 %{_datadir}/dbus-1/services/org.mate.panel.applet.StickyNotesAppletFactory.service
@@ -633,14 +636,14 @@ rm -rf $RPM_BUILD_ROOT
 
 %files -n mate-applet-timer
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libexecdir}/timer-applet
+%attr(755,root,root) %{matepanel_libexecdir}/timer-applet
 %{_datadir}/dbus-1/services/org.mate.panel.applet.TimerAppletFactory.service
 %{_datadir}/glib-2.0/schemas/org.mate.panel.applet.timer.gschema.xml
 %{_datadir}/mate-panel/applets/org.mate.applets.TimerApplet.mate-panel-applet
 
 %files -n mate-applet-trash -f mate-trashapplet.lang
 %defattr(644,root,root,755)
-%attr(755,root,root) %{_libexecdir}/trashapplet
+%attr(755,root,root) %{matepanel_libexecdir}/trashapplet
 %{_datadir}/%{name}/builder/trashapplet-empty-progress.ui
 %{_datadir}/dbus-1/services/org.mate.panel.applet.TrashAppletFactory.service
 %{_datadir}/mate-panel/applets/org.mate.applets.TrashApplet.mate-panel-applet
