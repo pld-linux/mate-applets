@@ -9,12 +9,12 @@ Summary(pl.UTF-8):	Aplety MATE - małe aplikacje osadzające się w panelu
 Summary(ru.UTF-8):	Маленькие программы, встраивающиеся в панель MATE
 Summary(uk.UTF-8):	Маленькі програми, що вбудовуються в панель MATE
 Name:		mate-applets
-Version:	1.20.2
-Release:	2
+Version:	1.20.3
+Release:	1
 License:	GPL v2+ (applets), FDL (help)
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.20/%{name}-%{version}.tar.xz
-# Source0-md5:	01f189fd7cad20cd88e125179888a249
+# Source0-md5:	c1273cce9d9bd9c45419518c3f682960
 # check paths in Makefile before removing it!
 Patch0:		m4_fix.patch
 Patch1:		uidir.patch
@@ -388,11 +388,9 @@ ale jest przydatny o tyle, że panele są zawsze widoczne.
 %{__automake}
 %configure \
 	--libexecdir=%{matepanel_libexecdir} \
-	--enable-networkmanager \
 	--disable-schemas-compile \
-	--disable-static \
-	--enable-timer-applet \
-	--without-hal
+	--disable-silent-rules \
+	--disable-static
 
 %{__make}
 
@@ -405,6 +403,8 @@ rm -rf $RPM_BUILD_ROOT
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/es_ES
 # not supported by glibc (as of glibc-2.24)
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{frp,jv,ku_IQ,pms}
+
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/help/{es_CL,es_CR,es_DO,es_EC,es_ES,es_MX,es_NI,es_PA,es_PE,es_PR,es_SV,es_UY,es_VE,fil,fr_CA,frp,jv,kab,ks,ku_IQ,la,lb,pms,sc,ts,ur_PK,zh-Hans}
 
 %find_lang %{name}
 %find_lang mate-accessx-status --with-mate
