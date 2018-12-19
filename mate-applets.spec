@@ -404,7 +404,7 @@ rm -rf $RPM_BUILD_ROOT
 # not supported by glibc (as of glibc-2.24)
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{frp,jv,ku_IQ,pms}
 
-%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/help/{es_CL,es_CR,es_DO,es_EC,es_ES,es_MX,es_NI,es_PA,es_PE,es_PR,es_SV,es_UY,es_VE,fil,fr_CA,frp,jv,kab,ks,ku_IQ,la,lb,pms,sc,ts,ur_PK,zh-Hans}
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/help/{es_ES,frp,jv,kab,ku_IQ,pms,ur_PK,zh-Hans}
 
 %find_lang %{name}
 %find_lang mate-accessx-status --with-mate
