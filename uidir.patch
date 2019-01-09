@@ -145,3 +145,16 @@
  xmlui_DATA = netspeed-menu.xml
  
  servicedir       = $(datadir)/dbus-1/services
+--- mate-applets-1.20.3.orig/netspeed/src/Makefile.am	2019-01-09 23:44:33.037400475 +0100
++++ mate-applets-1.20.3/netspeed/src/Makefile.am	2019-01-09 23:49:31.625098023 +0100
+@@ -1,8 +1,9 @@
++uidir = $(datadir)/mate-panel/ui
+ AM_CPPFLAGS = -I$(top_srcdir) -I$(includedir) \
+        $(GIO_CFLAGS) $(GTOP_APPLETS_CFLAGS) \
+        $(MATE_APPLETS4_CFLAGS) $(MATEDESKTOP_CFLAGS) \
+        -DMATELOCALEDIR=\""$(datadir)/locale"\" \
+-       -DNETSPEED_MENU_UI_DIR=\""$(datadir)/mate/ui"\"
++       -DNETSPEED_MENU_UI_DIR=\""$(uidir)"\"
+ 
+ libexec_PROGRAMS = mate-netspeed-applet
+ 
