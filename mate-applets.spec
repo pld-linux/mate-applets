@@ -9,12 +9,12 @@ Summary(pl.UTF-8):	Aplety MATE - małe aplikacje osadzające się w panelu
 Summary(ru.UTF-8):	Маленькие программы, встраивающиеся в панель MATE
 Summary(uk.UTF-8):	Маленькі програми, що вбудовуються в панель MATE
 Name:		mate-applets
-Version:	1.22.1
+Version:	1.22.2
 Release:	1
 License:	GPL v2+ (applets), FDL (help)
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.22/%{name}-%{version}.tar.xz
-# Source0-md5:	0990288f68ba77ca1a698c7345fafbbf
+# Source0-md5:	7856be3f2609a60fc54cfe008b08dca2
 # check paths in Makefile before removing it!
 Patch0:		m4_fix.patch
 Patch1:		uidir.patch
@@ -402,9 +402,9 @@ rm -rf $RPM_BUILD_ROOT
 # outdated version of es (as of 1.6.1)
 %{__rm} -r $RPM_BUILD_ROOT%{_localedir}/es_ES
 # not supported by glibc (as of glibc-2.24)
-%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{frp,jv,ku_IQ,pms}
+%{__rm} -r $RPM_BUILD_ROOT%{_localedir}/{frp,ie,jv,ku_IQ,pms}
 
-%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/help/{es_ES,frp,jv,ku_IQ,pms,ur_PK,zh-Hans}
+%{__rm} -r $RPM_BUILD_ROOT%{_datadir}/help/{es_ES,frp,ie,jv,ku_IQ,pms,ur_PK,zh-Hans}
 
 %find_lang %{name}
 %find_lang mate-accessx-status --with-mate
