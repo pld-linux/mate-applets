@@ -9,12 +9,12 @@ Summary(pl.UTF-8):	Aplety MATE - małe aplikacje osadzające się w panelu
 Summary(ru.UTF-8):	Маленькие программы, встраивающиеся в панель MATE
 Summary(uk.UTF-8):	Маленькі програми, що вбудовуються в панель MATE
 Name:		mate-applets
-Version:	1.22.2
+Version:	1.24.0
 Release:	1
 License:	GPL v2+ (applets), FDL (help)
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.22/%{name}-%{version}.tar.xz
-# Source0-md5:	7856be3f2609a60fc54cfe008b08dca2
+Source0:	http://pub.mate-desktop.org/releases/1.24/%{name}-%{version}.tar.xz
+# Source0-md5:	bd278c337163ce9defde2c636ab12dc4
 # check paths in Makefile before removing it!
 Patch0:		m4_fix.patch
 Patch1:		uidir.patch
@@ -25,13 +25,12 @@ BuildRequires:	apmd-devel
 %endif
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.9
-BuildRequires:	dbus-devel >= 1.1.2
+BuildRequires:	dbus-devel >= 1.10.0
 BuildRequires:	dbus-glib-devel >= 0.74
-BuildRequires:	gettext-tools >= 0.10.40
+BuildRequires:	gettext-tools >= 0.19.8
 BuildRequires:	glib2-devel >= 1:2.50.0
 BuildRequires:	gtk+3-devel >= 3.22
 BuildRequires:	gtksourceview3-devel >= 3.0
-BuildRequires:	intltool >= 0.50.1
 BuildRequires:	kernel-tools-cpupower-libs-devel >= 4.7
 BuildRequires:	libgtop-devel >= 1:2.12.0
 BuildRequires:	libiw-devel >= 28-0.pre9
@@ -247,7 +246,7 @@ Summary:	Weather Report applet for MATE Desktop
 Summary(pl.UTF-8):	Aplet raportu pogodowego dla środowiska MATE
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
-Requires:	dbus >= 1.1.2
+Requires:	dbus >= 1.10.0
 Requires:	dbus(org.freedesktop.Notifications)
 Requires:	dbus-glib >= 0.74
 Requires:	glib2 >= 1:2.50.0
@@ -380,7 +379,6 @@ ale jest przydatny o tyle, że panele są zawsze widoczne.
 %patch1 -p1
 
 %build
-%{__intltoolize}
 %{__libtoolize}
 %{__aclocal} -I m4
 %{__autoconf}
@@ -560,7 +558,7 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 # selector
 %attr(755,root,root) %{_bindir}/mate-cpufreq-selector
-/etc/dbus-1/system.d/org.mate.CPUFreqSelector.conf
+%{_datadir}/dbus-1/system.d/org.mate.CPUFreqSelector.conf
 %{_datadir}/dbus-1/system-services/org.mate.CPUFreqSelector.service
 %{_datadir}/polkit-1/actions/org.mate.cpufreqselector.policy
 # applet itself
