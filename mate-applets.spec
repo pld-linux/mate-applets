@@ -9,12 +9,12 @@ Summary(pl.UTF-8):	Aplety MATE - małe aplikacje osadzające się w panelu
 Summary(ru.UTF-8):	Маленькие программы, встраивающиеся в панель MATE
 Summary(uk.UTF-8):	Маленькі програми, що вбудовуються в панель MATE
 Name:		mate-applets
-Version:	1.24.0
+Version:	1.24.1
 Release:	1
 License:	GPL v2+ (applets), FDL (help)
 Group:		X11/Applications
 Source0:	http://pub.mate-desktop.org/releases/1.24/%{name}-%{version}.tar.xz
-# Source0-md5:	bd278c337163ce9defde2c636ab12dc4
+# Source0-md5:	9337edf28a6f95188f85f9f6c6ad0b1c
 # check paths in Makefile before removing it!
 Patch0:		m4_fix.patch
 Patch1:		uidir.patch
