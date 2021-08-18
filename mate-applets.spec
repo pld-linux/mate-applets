@@ -9,15 +9,14 @@ Summary(pl.UTF-8):	Aplety MATE - małe aplikacje osadzające się w panelu
 Summary(ru.UTF-8):	Маленькие программы, встраивающиеся в панель MATE
 Summary(uk.UTF-8):	Маленькі програми, що вбудовуються в панель MATE
 Name:		mate-applets
-Version:	1.24.1
+Version:	1.26.0
 Release:	1
 License:	GPL v2+ (applets), FDL (help)
 Group:		X11/Applications
-Source0:	http://pub.mate-desktop.org/releases/1.24/%{name}-%{version}.tar.xz
-# Source0-md5:	9337edf28a6f95188f85f9f6c6ad0b1c
+Source0:	https://pub.mate-desktop.org/releases/1.26/%{name}-%{version}.tar.xz
+# Source0-md5:	a5767fe56e5f39834f6f2166616be769
 # check paths in Makefile before removing it!
 Patch0:		m4_fix.patch
-Patch1:		uidir.patch
 URL:		https://github.com/mate-desktop/mate-applets
 BuildRequires:	NetworkManager-devel >= 0.7
 %ifarch %{ix86} %{arm} mips ppc sh
@@ -25,7 +24,6 @@ BuildRequires:	apmd-devel
 %endif
 BuildRequires:	autoconf >= 2.59
 BuildRequires:	automake >= 1:1.9
-BuildRequires:	dbus-devel >= 1.10.0
 BuildRequires:	dbus-glib-devel >= 0.74
 BuildRequires:	gettext-tools >= 0.19.8
 BuildRequires:	glib2-devel >= 1:2.50.0
@@ -35,16 +33,18 @@ BuildRequires:	kernel-tools-cpupower-libs-devel >= 4.7
 BuildRequires:	libgtop-devel >= 1:2.12.0
 BuildRequires:	libiw-devel >= 28-0.pre9
 BuildRequires:	libmateweather-devel >= 1.19.1
+BuildRequires:	libnl-devel >= 3.0
 BuildRequires:	libnotify-devel >= 0.7.0
 BuildRequires:	libtool >= 1:1.4.3
 BuildRequires:	libwnck-devel >= 3.0.0
 BuildRequires:	libxml2-devel >= 1:2.5.0
+BuildRequires:	libxml2-progs
 BuildRequires:	linux-libc-headers >= 7:4.7
 %if %{with gucharmap}
 BuildRequires:	gucharmap-devel >= 3.0.0
 %endif
 BuildRequires:	mate-common >= 1.1.0
-BuildRequires:	mate-panel-devel >= 1.17.0
+BuildRequires:	mate-panel-devel >= 1.25.2
 BuildRequires:	mate-settings-daemon-devel
 BuildRequires:	pkgconfig >= 1:0.19
 BuildRequires:	polkit-devel >= 0.97
@@ -52,7 +52,7 @@ BuildRequires:	rpmbuild(find_lang) >= 1.36
 BuildRequires:	rpmbuild(macros) >= 1.311
 BuildRequires:	sed >= 4.0
 BuildRequires:	tar >= 1:1.22
-BuildRequires:	upower-devel >= 0.9.4
+BuildRequires:	upower-devel >= 0.99.8
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xz
 BuildRequires:	yelp-tools
@@ -90,7 +90,7 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.50.0
 Requires:	gtk+3 >= 3.22
 Requires:	mate-icon-theme >= 1.1.0
-Requires:	mate-panel >= 1.17.0
+Requires:	mate-panel >= 1.25.2
 Suggests:	mate-control-center >= 1.5
 
 %description -n mate-applet-accessx-status
@@ -113,8 +113,8 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.50.0
 Requires:	gtk+3 >= 3.22
 Requires:	libnotify >= 0.7.0
-Requires:	mate-panel >= 1.17.0
-Requires:	upower >= 0.9.4
+Requires:	mate-panel >= 1.25.2
+Requires:	upower >= 0.99.8
 
 %description -n mate-applet-battstat
 The Battery Charge Monitor shows the status of any batteries in your
@@ -140,7 +140,7 @@ Requires:	gtk+3 >= 3.22
 Requires:	gucharmap-libs >= 3.0.0
 %endif
 Requires:	hicolor-icon-theme
-Requires:	mate-panel >= 1.17.0
+Requires:	mate-panel >= 1.25.2
 
 %description -n mate-applet-charpicker
 The Character Palette provides a convenient way to access characters
@@ -174,7 +174,7 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.50.0
 Requires:	gtk+3 >= 3.22
 Requires:	hicolor-icon-theme
-Requires:	mate-panel >= 1.17.0
+Requires:	mate-panel >= 1.25.2
 
 %description -n mate-applet-command
 Command applet for MATE Desktop.
@@ -191,7 +191,7 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	gtk+3 >= 3.22
 Requires:	hicolor-icon-theme
 Requires:	kernel-tools-cpupower-libs >= 4.7
-Requires:	mate-panel >= 1.17.0
+Requires:	mate-panel >= 1.25.2
 Requires:	mate-polkit
 Requires:	polkit >= 0.97
 
@@ -210,7 +210,7 @@ Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.50.0
 Requires:	gtk+3 >= 3.22
-Requires:	mate-panel >= 1.17.0
+Requires:	mate-panel >= 1.25.2
 
 %description -n mate-applet-drivemount
 The Disk Mounter enables you to quickly mount and unmount various
@@ -229,7 +229,7 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.50.0
 Requires:	gtk+3 >= 3.22
 Requires:	hicolor-icon-theme
-Requires:	mate-panel >= 1.17.0
+Requires:	mate-panel >= 1.25.2
 
 %description -n mate-applet-geyes
 The Geyes applet provides an entertaining way to track the movement of
@@ -246,14 +246,13 @@ Summary:	Weather Report applet for MATE Desktop
 Summary(pl.UTF-8):	Aplet raportu pogodowego dla środowiska MATE
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
-Requires:	dbus >= 1.10.0
 Requires:	dbus(org.freedesktop.Notifications)
 Requires:	dbus-glib >= 0.74
 Requires:	glib2 >= 1:2.50.0
 Requires:	gtk+3 >= 3.22
 Requires:	libmateweather >= 1.19.1
 Requires:	libnotify >= 0.7.0
-Requires:	mate-panel >= 1.17.0
+Requires:	mate-panel >= 1.25.2
 
 %description -n mate-applet-gweather
 The Weather Report downloads weather information from the U.S.
@@ -277,7 +276,7 @@ Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.50.0
 Requires:	gtk+3 >= 3.22
 Requires:	libgtop >= 1:2.12.0
-Requires:	mate-panel >= 1.17.0
+Requires:	mate-panel >= 1.25.2
 Suggests:	mate-system-monitor >= 1.5
 
 %description -n mate-applet-multiload
@@ -299,7 +298,7 @@ Requires:	gtk+3 >= 3.22
 Requires:	hicolor-icon-theme
 Requires:	libwnck >= 3.0.0
 Requires:	libxml2 >= 1:2.5.0
-Requires:	mate-panel >= 1.17.0
+Requires:	mate-panel >= 1.25.2
 
 %description -n mate-applet-netspeed
 MATE netspeed is an applet that shows how much traffic occurs on a
@@ -321,7 +320,7 @@ Requires:	gtk+3 >= 3.22
 Requires:	hicolor-icon-theme
 Requires:	libwnck >= 3.0.0
 Requires:	libxml2 >= 1:2.5.0
-Requires:	mate-panel >= 1.17.0
+Requires:	mate-panel >= 1.25.2
 
 %description -n mate-applet-stickynotes
 The Sticky Notes panel application enables you to create, view, and
@@ -344,7 +343,7 @@ Summary:	Timer applet for MATE Desktop
 Summary(pl.UTF-8):	Aplet czasomierza dla środowiska MATE
 Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
-Requires:	mate-panel >= 1.17.0
+Requires:	mate-panel >= 1.25.2
 
 %description -n mate-applet-timer
 Timer applet for MATE Desktop.
@@ -359,7 +358,7 @@ Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.50.0
 Requires:	gtk+3 >= 3.22
-Requires:	mate-panel >= 1.17.0
+Requires:	mate-panel >= 1.25.2
 
 %description -n mate-applet-trash
 The Panel Trash applet lets you manage your Trash from the panel.
@@ -376,7 +375,6 @@ ale jest przydatny o tyle, że panele są zawsze widoczne.
 %prep
 %setup -q
 %patch0 -p1
-%patch1 -p1
 
 %build
 %{__libtoolize}
@@ -510,7 +508,6 @@ rm -rf $RPM_BUILD_ROOT
 %defattr(644,root,root,755)
 %doc AUTHORS ChangeLog NEWS README
 %dir %{_datadir}/%{name}
-%dir %{_datadir}/%{name}/builder
 %dir %{_datadir}/%{name}/icons
 %dir %{_datadir}/%{name}/icons/hicolor
 %dir %{_datadir}/%{name}/icons/hicolor/48x48
@@ -521,17 +518,14 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{matepanel_libexecdir}/accessx-status-applet
 %{_datadir}/dbus-1/services/org.mate.panel.applet.AccessxStatusAppletFactory.service
 %{_datadir}/mate-panel/applets/org.mate.applets.AccessxStatusApplet.mate-panel-applet
-%{_datadir}/mate-panel/ui/accessx-status-applet-menu.xml
 %{_iconsdir}/hicolor/*/apps/mate-ax-*.png
 %{_iconsdir}/hicolor/*/apps/mate-mousekeys-*.png
 
 %files -n mate-applet-battstat -f mate-battstat.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{matepanel_libexecdir}/battstat-applet
-%{_datadir}/%{name}/builder/battstat_applet.ui
 %{_datadir}/dbus-1/services/org.mate.panel.applet.BattstatAppletFactory.service
 %{_datadir}/mate-panel/applets/org.mate.applets.BattstatApplet.mate-panel-applet
-%{_datadir}/mate-panel/ui/battstat-applet-menu.xml
 %{_datadir}/glib-2.0/schemas/org.mate.panel.applet.battstat.gschema.xml
 # FIXME package not to pull 'balsa'
 %dir %{_sysconfdir}/sound
@@ -544,7 +538,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/dbus-1/services/org.mate.panel.applet.CharpickerAppletFactory.service
 %{_datadir}/glib-2.0/schemas/org.mate.panel.applet.charpick.gschema.xml
 %{_datadir}/mate-panel/applets/org.mate.applets.CharpickerApplet.mate-panel-applet
-%{_datadir}/mate-panel/ui/charpick-applet-menu.xml
 %{_mandir}/man1/mate-charpick-applet.1*
 
 %files -n mate-applet-command
@@ -563,11 +556,9 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/polkit-1/actions/org.mate.cpufreqselector.policy
 # applet itself
 %attr(755,root,root) %{matepanel_libexecdir}/mate-cpufreq-applet
-%{_datadir}/%{name}/builder/cpufreq-preferences.ui
 %{_datadir}/dbus-1/services/org.mate.panel.applet.CPUFreqAppletFactory.service
 %{_datadir}/glib-2.0/schemas/org.mate.panel.applet.cpufreq.gschema.xml
 %{_datadir}/mate-panel/applets/org.mate.applets.CPUFreqApplet.mate-panel-applet
-%{_datadir}/mate-panel/ui/cpufreq-applet-menu.xml
 %{_pixmapsdir}/mate-cpufreq-applet
 %{_iconsdir}/hicolor/*/apps/mate-cpu-frequency-applet.png
 %{_iconsdir}/hicolor/*/apps/mate-cpu-frequency-applet.svg
@@ -579,7 +570,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/dbus-1/services/org.mate.panel.applet.DriveMountAppletFactory.service
 %{_datadir}/glib-2.0/schemas/org.mate.drivemount.gschema.xml
 %{_datadir}/mate-panel/applets/org.mate.applets.DriveMountApplet.mate-panel-applet
-%{_datadir}/mate-panel/ui/drivemount-applet-menu.xml
 %{_mandir}/man1/mate-drivemount-applet.1*
 
 %files -n mate-applet-geyes -f mate-geyes.lang
@@ -589,7 +579,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/dbus-1/services/org.mate.panel.applet.GeyesAppletFactory.service
 %{_datadir}/glib-2.0/schemas/org.mate.panel.applet.geyes.gschema.xml
 %{_datadir}/mate-panel/applets/org.mate.applets.GeyesApplet.mate-panel-applet
-%{_datadir}/mate-panel/ui/geyes-applet-menu.xml
 %{_iconsdir}/hicolor/*/apps/mate-eyes-applet.*
 %{_mandir}/man1/mate-geyes-applet.1*
 
@@ -598,7 +587,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{matepanel_libexecdir}/mateweather-applet
 %{_datadir}/dbus-1/services/org.mate.panel.applet.MateWeatherAppletFactory.service
 %{_datadir}/mate-panel/applets/org.mate.applets.MateWeatherApplet.mate-panel-applet
-%{_datadir}/mate-panel/ui/mateweather-applet-menu.xml
 %{_mandir}/man1/mateweather.1*
 
 %files -n mate-applet-multiload -f mate-multiload.lang
@@ -606,7 +594,6 @@ rm -rf $RPM_BUILD_ROOT
 %attr(755,root,root) %{matepanel_libexecdir}/mate-multiload-applet
 %{_datadir}/dbus-1/services/org.mate.panel.applet.MultiLoadAppletFactory.service
 %{_datadir}/glib-2.0/schemas/org.mate.panel.applet.multiload.gschema.xml
-%{_datadir}/mate-panel/ui/multiload-applet-menu.xml
 %{_datadir}/mate-panel/applets/org.mate.applets.MultiLoadApplet.mate-panel-applet
 %{_mandir}/man1/mate-multiload-applet.1*
 
@@ -616,7 +603,6 @@ rm -rf $RPM_BUILD_ROOT
 %{_datadir}/dbus-1/services/org.mate.panel.applet.NetspeedAppletFactory.service
 %{_datadir}/glib-2.0/schemas/org.mate.panel.applet.netspeed.gschema.xml
 %{_datadir}/mate-panel/applets/org.mate.applets.NetspeedApplet.mate-panel-applet
-%{_datadir}/mate-panel/ui/netspeed-menu.xml
 %{_iconsdir}/hicolor/*/apps/mate-netspeed-applet.*
 %{_iconsdir}/hicolor/*x*/devices/mate-netspeed-*.png
 %{_iconsdir}/hicolor/24x24/status/mate-netspeed-*.png
@@ -624,12 +610,10 @@ rm -rf $RPM_BUILD_ROOT
 %files -n mate-applet-stickynotes -f mate-stickynotes-applet.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{matepanel_libexecdir}/stickynotes-applet
-%{_datadir}/%{name}/builder/stickynotes.ui
 %{_datadir}/%{name}/icons/hicolor/*/apps/stickynotes-stock-*.png
 %{_datadir}/dbus-1/services/org.mate.panel.applet.StickyNotesAppletFactory.service
 %{_datadir}/glib-2.0/schemas/org.mate.stickynotes.gschema.xml
 %{_datadir}/mate-panel/applets/org.mate.applets.StickyNotesApplet.mate-panel-applet
-%{_datadir}/mate-panel/ui/stickynotes-applet-menu.xml
 %{_iconsdir}/hicolor/*/apps/mate-sticky-*.*
 
 %files -n mate-applet-timer
@@ -642,7 +626,5 @@ rm -rf $RPM_BUILD_ROOT
 %files -n mate-applet-trash -f mate-trashapplet.lang
 %defattr(644,root,root,755)
 %attr(755,root,root) %{matepanel_libexecdir}/trashapplet
-%{_datadir}/%{name}/builder/trashapplet-empty-progress.ui
 %{_datadir}/dbus-1/services/org.mate.panel.applet.TrashAppletFactory.service
 %{_datadir}/mate-panel/applets/org.mate.applets.TrashApplet.mate-panel-applet
-%{_datadir}/mate-panel/ui/trashapplet-menu.xml
