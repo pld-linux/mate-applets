@@ -56,7 +56,7 @@ BuildRequires:	upower-devel >= 0.99.8
 BuildRequires:	xorg-lib-libX11-devel
 BuildRequires:	xz
 BuildRequires:	yelp-tools
-Obsoletes:	mate-applet-invest
+Obsoletes:	mate-applet-invest < 1.20
 BuildRoot:	%{tmpdir}/%{name}-%{version}-root-%(id -u -n)
 
 # use the same libexecdir as mate-panel
