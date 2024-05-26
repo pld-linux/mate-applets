@@ -9,12 +9,12 @@ Summary(pl.UTF-8):	Aplety MATE - małe aplikacje osadzające się w panelu
 Summary(ru.UTF-8):	Маленькие программы, встраивающиеся в панель MATE
 Summary(uk.UTF-8):	Маленькі програми, що вбудовуються в панель MATE
 Name:		mate-applets
-Version:	1.26.1
-Release:	2
+Version:	1.28.0
+Release:	1
 License:	GPL v2+ (applets), FDL (help)
 Group:		X11/Applications
-Source0:	https://pub.mate-desktop.org/releases/1.26/%{name}-%{version}.tar.xz
-# Source0-md5:	5150590edef56ab09504eff6d646dbaa
+Source0:	https://pub.mate-desktop.org/releases/1.28/%{name}-%{version}.tar.xz
+# Source0-md5:	e1bd55d2e707832450a5710d7ae4e28b
 # check paths in Makefile before removing it!
 Patch0:		m4_fix.patch
 URL:		https://github.com/mate-desktop/mate-applets
@@ -29,6 +29,9 @@ BuildRequires:	gettext-tools >= 0.19.8
 BuildRequires:	glib2-devel >= 1:2.50.0
 BuildRequires:	gtk+3-devel >= 3.22
 BuildRequires:	gtksourceview3-devel >= 3.0
+%if %{with gucharmap}
+BuildRequires:	gucharmap-devel >= 3.0.0
+%endif
 BuildRequires:	kernel-tools-cpupower-libs-devel >= 4.7
 BuildRequires:	libgtop-devel >= 1:2.12.0
 BuildRequires:	libiw-devel >= 28-0.pre9
@@ -40,10 +43,8 @@ BuildRequires:	libwnck-devel >= 3.0.0
 BuildRequires:	libxml2-devel >= 1:2.5.0
 BuildRequires:	libxml2-progs
 BuildRequires:	linux-libc-headers >= 7:4.7
-%if %{with gucharmap}
-BuildRequires:	gucharmap-devel >= 3.0.0
-%endif
 BuildRequires:	mate-common >= 1.1.0
+BuildRequires:	mate-desktop-devel >= 1.27.1
 BuildRequires:	mate-panel-devel >= 1.25.2
 BuildRequires:	mate-settings-daemon-devel
 BuildRequires:	pkgconfig >= 1:0.19
@@ -208,6 +209,7 @@ Group:		X11/Applications
 Requires:	%{name} = %{version}-%{release}
 Requires:	glib2 >= 1:2.50.0
 Requires:	gtk+3 >= 3.22
+Requires:	mate-desktop >= 1.27.1
 Requires:	mate-panel >= 1.25.2
 
 %description -n mate-applet-drivemount
