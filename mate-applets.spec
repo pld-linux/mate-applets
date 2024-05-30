@@ -28,7 +28,7 @@ BuildRequires:	dbus-glib-devel >= 0.74
 BuildRequires:	gettext-tools >= 0.19.8
 BuildRequires:	glib2-devel >= 1:2.50.0
 BuildRequires:	gtk+3-devel >= 3.22
-BuildRequires:	gtksourceview3-devel >= 3.0
+BuildRequires:	gtksourceview4-devel >= 4.0
 %if %{with gucharmap}
 BuildRequires:	gucharmap-devel >= 3.0.0
 %endif
